@@ -6,16 +6,16 @@
  */
 
 /* Adds the page builder meta box to appropriate post types */
-function puzzle_page_builder_admin_init() {
+function ppb_meta_box_admin_init() {
     $puzzle_page_builder = new PuzzlePageBuilder;
     $puzzle_page_builder_post_types = $puzzle_page_builder->page_builder_post_types();
     
     if ($puzzle_page_builder_post_types) {
         foreach ($puzzle_page_builder_post_types as $post_type) {
-            add_meta_box('page_builder_options', 'Page Builder', 'puzzle_page_builder_meta_options', $post_type, 'normal', 'high');
+            add_meta_box('page_builder_options', 'Page Builder', 'ppb_meta_box_options', $post_type, 'normal', 'high');
         
             if ($post_type != 'page') {
-                add_meta_box('puzzle_custom_template', 'Template', 'puzzle_custom_post_type_template_meta_options', $post_type, 'side', 'low');
+                add_meta_box('puzzle_custom_template', 'Template', 'ppb_custom_post_type_template_meta_options', $post_type, 'side', 'low');
             }
         }
     }
@@ -25,7 +25,7 @@ function puzzle_page_builder_admin_init() {
  * A dropdown that emulates the functionality of the template picker,
  * for post types that are not 'page' that need to use the page builder.
  */
-function puzzle_custom_post_type_template_meta_options() {
+function ppb_custom_post_type_template_meta_options() {
     global $post;
     $template = get_post_meta($post->ID, 'puzzle_custom_template', true); ?>
     <select id="puzzle_custom_template_select" name="puzzle_custom_template">
@@ -35,7 +35,7 @@ function puzzle_custom_post_type_template_meta_options() {
     <?php
 }
 
-function puzzle_page_builder_meta_options() {
+function ppb_meta_box_options() {
     global $post;
     $puzzle_page_builder = new PuzzlePageBuilder;
     $puzzle_sections = $puzzle_page_builder->sections();
@@ -136,7 +136,7 @@ function puzzle_page_builder_meta_options() {
 <?php
 }
 
-function puzzle_page_builder_save_options() {
+function ppb_save_options() {
     global $post;
     
     // Saves the template for custom post types that enable the page builder
@@ -177,7 +177,7 @@ function puzzle_page_builder_save_options() {
 
         if (!wp_is_post_revision($post_id)) {
             // Unhook this function so it doesn't loop infinitely
-            remove_action('save_post', 'puzzle_page_builder_save_options');
+            remove_action('save_post', 'ppb_save_options');
 
             // Update the post with the content from the page builder, which
             // calls save_post again
@@ -188,12 +188,12 @@ function puzzle_page_builder_save_options() {
             wp_update_post($args);
 
             // Re-hook the function
-            add_action('save_post', 'puzzle_page_builder_save_options');
+            add_action('save_post', 'ppb_save_options');
         }
     }
 }
 
-add_action('admin_init', 'puzzle_page_builder_admin_init');
-add_action('save_post', 'puzzle_page_builder_save_options');
+add_action('admin_init', 'ppb_meta_box_admin_init');
+add_action('save_post', 'ppb_save_options');
 
 ?>

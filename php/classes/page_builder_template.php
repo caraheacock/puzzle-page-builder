@@ -17,12 +17,12 @@ class PuzzlePageBuilderTemplate {
     protected $templates;
     
     /**
-     * Returns an instance of this class. 
+     * Returns an instance of this class.
      */
     public static function get_instance() {
         if (null == self::$instance) {
             self::$instance = new PuzzlePageBuilderTemplate();
-        } 
+        }
 
         return self::$instance;
     }
@@ -41,23 +41,20 @@ class PuzzlePageBuilderTemplate {
         add_filter('wp_insert_post_data', array($this, 'register_puzzle_page_builder_template'));
 
 
-        // Add a filter to the template include to determine if the page has our 
+        // Add a filter to the template include to determine if the page has our
         // template assigned and return it's path
-        add_filter('template_include', array($this, 'view_project_template'));
+        add_filter('template_include', array($this, 'view_puzzle_page_builder_template'));
 
 
         // Add your templates to this array.
         $this->templates = array(
-            'php/template_page_builder.php' => 'Page Builder'
+            'template_page_builder.php' => 'Page Builder'
         );
-        
-    } 
-
+    }
 
     /**
      * Adds our template to the pages cache in order to trick WordPress
      * into thinking the template file exists where it doens't really exist.
-     *
      */
 
     public function register_puzzle_page_builder_template($atts) {
@@ -88,26 +85,20 @@ class PuzzlePageBuilderTemplate {
     /**
      * Checks if the template is assigned to the page
      */
-    public function view_project_template($template) {
+    public function view_puzzle_page_builder_template($template) {
         global $post;
 
         if (!isset($this->templates[get_post_meta($post->ID, '_wp_page_template', true)])) {
             return $template;
-        } 
-
-        $file = plugin_dir_path(dirname(dirname(__FILE__))) . get_post_meta(
-            $post->ID, '_wp_page_template', true
-        );
-        
-        if (file_exists($file)) {
-            return $file;
-        } else {
-            echo $file;
         }
+
+        $file = plugin_dir_path(dirname(dirname(__FILE__))) . 'php/' . get_post_meta($post->ID, '_wp_page_template', true);
+        
+        if (file_exists($file)) return $file;
 
         return $template;
     }
-} 
+}
 
 add_action('plugins_loaded', array('PuzzlePageBuilderTemplate', 'get_instance'));
 ?>

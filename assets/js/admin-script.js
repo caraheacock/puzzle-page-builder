@@ -1,4 +1,4 @@
-jQuery('document').ready(function($){
+jQuery('document').ready(function($) {
     var $window = $(window),
         $document = $(document),
         $pageBuilder = $('#puzzle-page-section-options'),
@@ -12,7 +12,7 @@ jQuery('document').ready(function($){
 
     // Show and hide areas depending on template
     var templateCheck = function() {
-        if ($('#page_template').val() === 'php/template_page_builder.php') {
+        if ($('#page_template').val() === 'template_page_builder.php') {
             $('#postdivrich, #post-preview').hide();
             $('#page_builder_options').show();
             $('#using-page-builder').val(1);
