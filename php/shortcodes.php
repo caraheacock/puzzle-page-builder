@@ -5,16 +5,16 @@
  * Shortcodes
  */
 
-$puzzle_page_builder = new PuzzlePageBuilder;
+$puzzle_settings = new PuzzleSettings;
 
-if ($puzzle_page_builder->has_shortcodes()) {
+if ($puzzle_settings->has_shortcodes()) {
     add_shortcode('puzzle_button', 'ppb_button_shortcode');
     add_action('init', 'ppb_add_tinymce_buttons');
     add_filter('tiny_mce_version', 'ppb_refresh_mce');
     add_action('admin_init', 'ppb_admin_init_shortcode_meta_box');
 }
 
-// Add Puzzle button shortcode
+// Add puzzle button shortcode
 function ppb_button_shortcode($atts) {
     $a = shortcode_atts(array(
         'color'                 => 'primary-color',
@@ -37,7 +37,7 @@ function ppb_button_shortcode($atts) {
     return $output;
 }
 
-// Add Puzzle button shortcode button to WYSIWYG editor
+// Add puzzle button shortcode button to WYSIWYG editor
 function ppb_add_tinymce_buttons() {
     if (!current_user_can('edit_posts') && !current_user_can('edit_pages')) return;
     

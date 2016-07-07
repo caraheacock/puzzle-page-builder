@@ -1,4 +1,10 @@
 <?php
+
+/*
+ * Puzzle Page Builder
+ * Page Builder Template Class
+ */
+
 class PuzzlePageBuilderTemplate {
 
     /**

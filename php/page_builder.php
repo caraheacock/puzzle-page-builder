@@ -7,8 +7,8 @@
 
 /* Adds the page builder meta box to appropriate post types */
 function ppb_meta_box_admin_init() {
-    $puzzle_page_builder = new PuzzlePageBuilder;
-    $puzzle_page_builder_post_types = $puzzle_page_builder->page_builder_post_types();
+    $puzzle_settings = new PuzzleSettings;
+    $puzzle_page_builder_post_types = $puzzle_settings->page_builder_post_types();
     
     if ($puzzle_page_builder_post_types) {
         foreach ($puzzle_page_builder_post_types as $post_type) {
@@ -38,7 +38,7 @@ function ppb_custom_post_type_template_meta_options() {
 function ppb_meta_box_options() {
     global $post;
     $puzzle_page_builder = new PuzzlePageBuilder;
-    $puzzle_sections = $puzzle_page_builder->sections();
+    $puzzle_sections = (new PuzzleSections)->sections();
     
     // Use nonce for verification
     wp_nonce_field(plugin_basename(__FILE__), 'puzzle_page_sections_meta');
@@ -52,14 +52,20 @@ function ppb_meta_box_options() {
         // Loops through $puzzle_sections to create each section's options
         if (!empty($puzzle_sections_data)) {
             foreach ($puzzle_sections_data as $puzzle_section_data) {
-                $puzzle_options_data = $puzzle_section_data['options'];
-                $puzzle_columns_data = (!empty($puzzle_section_data['columns']) ? $puzzle_section_data['columns'] : NULL);
                 $puzzle_section_type = $puzzle_section_data['type'];
-                $puzzle_show = $puzzle_section_data['show'];
-                $puzzle_section = $puzzle_sections[$puzzle_section_type];
-
-                echo $puzzle_page_builder->admin_section_markup($puzzle_section, $s, $puzzle_options_data, $puzzle_columns_data, $puzzle_show);
-                $s++;
+                
+                // Make sure the section still exists, just in case the user
+                // removes a section from the page builder but the data still
+                // exists in the post_meta.
+                if (!empty($puzzle_sections[$puzzle_section_type])) {
+                    $puzzle_options_data = $puzzle_section_data['options'];
+                    $puzzle_columns_data = (!empty($puzzle_section_data['columns']) ? $puzzle_section_data['columns'] : NULL);
+                    $puzzle_show = $puzzle_section_data['show'];
+                    $puzzle_section = $puzzle_sections[$puzzle_section_type];
+                    
+                    echo $puzzle_page_builder->admin_section_markup($puzzle_section, $s, $puzzle_options_data, $puzzle_columns_data, $puzzle_show);
+                    $s++;
+                }
             }
         }
         ?>
@@ -71,7 +77,7 @@ function ppb_meta_box_options() {
             <?php
             // Loops through the $puzzle_sections to create buttons
             foreach ($puzzle_sections as $puzzle_section) : ?>
-            <a class="button puzzle-add-section puzzle-add-<?php echo $puzzle_section->get_group_name_slug(); ?>" href="#"><?php echo $puzzle_section->get_group_name(); ?></a>
+            <a class="button puzzle-add-section puzzle-add-<?php echo $puzzle_section->slug(); ?>" href="#"><?php echo $puzzle_section->name(); ?></a>
             <?php endforeach; ?>
         </div>
         
@@ -94,7 +100,7 @@ function ppb_meta_box_options() {
             
             // Add a section
             <?php foreach ($puzzle_sections as $puzzle_section) : ?>
-            $document.on('click', '.puzzle-add-<?php echo $puzzle_section->get_group_name_slug(); ?>', function(e) {
+            $document.on('click', '.puzzle-add-<?php echo $puzzle_section->slug(); ?>', function(e) {
                 e.preventDefault();
                 var $t = $(this);
                 
@@ -118,7 +124,7 @@ function ppb_meta_box_options() {
                 
                 foreach ($puzzle_sections as $puzzle_section) :
                     if ($puzzle_section->has_multiple()) : ?>
-                        <?php if ($first_statement == false) echo ' else '; ?>if (sectionType === '<?php echo $puzzle_section->get_group_name_slug(); ?>') {
+                        <?php if ($first_statement == false) echo ' else '; ?>if (sectionType === '<?php echo $puzzle_section->slug(); ?>') {
                             $addedColumns.append('<?php echo $puzzle_page_builder->admin_column_markup($puzzle_section, '\'+sectionCount+\'', '\'+columnCount+\''); ?>');
                             $('.color-field').wpColorPicker();
                         }
@@ -149,20 +155,14 @@ function ppb_save_options() {
         
         // Verify if this is an auto save routine. 
         // If it is our form has not been submitted, so we dont want to do anything
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return;
-        }
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     
         // Verify this came from the our screen and with proper authorization,
         // because save_post can be triggered at other times
-        if (!isset($_POST['puzzle_page_sections_meta'])) {
-            return;
-        }
+        if (!isset($_POST['puzzle_page_sections_meta'])) return;
         
         // Use nonce for verification
-        if (!wp_verify_nonce($_POST['puzzle_page_sections_meta'], plugin_basename(__FILE__))) {
-            return;
-        }
+        if (!wp_verify_nonce($_POST['puzzle_page_sections_meta'], plugin_basename(__FILE__))) return;
 
         // Save the page builder fields as post meta
         update_post_meta($post_id, 'puzzle_page_sections', $_POST['puzzle_page_sections']);

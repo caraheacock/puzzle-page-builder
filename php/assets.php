@@ -7,7 +7,7 @@
 
 // Add Styles and Scripts
 function ppb_scripts() {
-    $puzzle_page_builder = new PuzzlePageBuilder;
+    $puzzle_settings = new PuzzleSettings;
     
     $ppb_frontend_styles_location = 'assets/css/frontend-styles.css';
     wp_enqueue_style(
@@ -17,7 +17,7 @@ function ppb_scripts() {
         filemtime(plugin_dir_path(dirname(__FILE__)) . $ppb_frontend_styles_location)
     );
     
-    if ($puzzle_page_builder->has_owl_carousel()) {
+    if ($puzzle_settings->has_owl_carousel()) {
         $owl_carousel_script_location = 'assets/js/lib/owl.carousel.min.js';
         wp_enqueue_script(
             'owl-carousel-script',

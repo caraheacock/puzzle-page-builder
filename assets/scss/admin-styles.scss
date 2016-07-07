@@ -2,8 +2,9 @@
 
 @import '_global/_variables';
 @import '_global/_mixins';
-@import '_global/_global';
 @import '_global/_utility';
+@import '_global/_global';
+@import '_global/_grid';
 
 body {
     line-height: 1;
@@ -134,11 +135,11 @@ body {
                 }
                 
                 .columns-area {
-                    @extend %display-flex;
+                    @include display-flex;
                     @include flex-wrap(wrap);
                     
                     > .column {
-                        @include flex(0, 1, auto);
+                        @include flex(0 1 auto);
                         border: solid 1px #ddd;
                         background-color: #f6f6f6;
                     }

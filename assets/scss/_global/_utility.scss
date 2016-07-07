@@ -2,175 +2,19 @@
 /* Utility Classes */
 /*-----------------*/
 
-$miscellaneous_widths: (1point5: 1.5, 2point4: 2.4);
-
-.row {
-    @extend %clearfix;
-    @extend %page-max-width;
-}
-
-.column {
-    float: left;
-    min-height: 1px;
-    
-    &.center {
-        float: none;
-        margin: 0 auto;
+%clearfix {
+    &:after {
+        clear: both;
+        display: table;
+        content: " ";
     }
 }
 
-@for $i from 1 through 12 {
-    .column.xs-span#{$i} {
-        width: 100% / 12 * $i;
-    }
+%default-border-radius {
+    border-radius: 5px;
 }
 
-@for $i from 0 through 12 {
-    .column.xs-left#{$i} {
-        margin-left: 100% / 12 * $i;
-    }
-
-    .column.xs-right#{$i} {
-        margin-right: 100% / 12 * $i;
-    }
-}
-
-@each $name, $value in $miscellaneous_widths {
-    .column.xs-span#{$name} {
-        width: 100% / 12 * $value;
-    }
-    
-    .column.xs-left#{$name} {
-        margin-left: 100% / 12 * $value;
-    }
-    
-    .column.xs-right#{$name} {
-        margin-right: 100% / 12 * $value;
-    }
-}
-
-@media screen and (min-width: $size-sm) {
-    @for $i from 1 through 12 {
-        .column.sm-span#{$i} {
-            width: 100% / 12 * $i;
-        }
-    }
-    
-    @for $i from 0 through 12 {
-        .column.sm-left#{$i} {
-            margin-left: 100% / 12 * $i;
-        }
-
-        .column.sm-right#{$i} {
-            margin-right: 100% / 12 * $i;
-        }
-    }
-    
-    .column.sm-span1point5 {
-        width: 100% / 12 * 1.5;
-    }
-    
-    .column.sm-left1point5 {
-        margin-left: 100% / 12 * 1.5;
-    }
-    
-    .column.sm-right1point5 {
-        margin-right: 100% / 12 * 1.5;
-    }
-
-    .column.sm-span2point4 {
-        width: 20%;
-    }
-    
-    .column.sm-left2point4 {
-        margin-left: 20%;
-    }
-
-    .column.sm-right2point4 {
-        margin-right: 20%;
-    }
-}
-
-@media screen and (min-width: $size-md) {
-    @for $i from 1 through 12 {
-        .column.md-span#{$i} {
-            width: 100% / 12 * $i;
-        }
-    }
-    
-    @for $i from 0 through 12 {
-        .column.md-left#{$i} {
-            margin-left: 100% / 12 * $i;
-        }
-
-        .column.md-right#{$i} {
-            margin-right: 100% / 12 * $i;
-        }
-    }
-    
-    .column.md-span1point5 {
-        width: 100% / 12 * 1.5;
-    }
-    
-    .column.md-left1point5 {
-        margin-left: 100% / 12 * 1.5;
-    }
-    
-    .column.md-right1point5 {
-        margin-right: 100% / 12 * 1.5;
-    }
-
-    .column.md-span2point4 {
-        width: 20%;
-    }
-    
-    .column.md-left2point4 {
-        margin-left: 20%;
-    }
-
-    .column.md-right2point4 {
-        margin-right: 20%;
-    }
-}
-
-@media screen and (min-width: $size-lg) {
-    @for $i from 1 through 12 {
-        .column.lg-span#{$i} {
-            width: 100% / 12 * $i;
-        }
-    }
-    
-    @for $i from 0 through 12 {
-        .column.lg-left#{$i} {
-            margin-left: 100% / 12 * $i;
-        }
-
-        .column.lg-right#{$i} {
-            margin-right: 100% / 12 * $i;
-        }
-    }
-    
-    .column.lg-span1point5 {
-        width: 100% / 12 * 1.5;
-    }
-    
-    .column.lg-left1point5 {
-        margin-left: 100% / 12 * 1.5;
-    }
-    
-    .column.lg-right1point5 {
-        margin-right: 100% / 12 * 1.5;
-    }
-
-    .column.lg-span2point4 {
-        width: 20%;
-    }
-    
-    .column.lg-left2point4 {
-        margin-left: 20%;
-    }
-
-    .column.lg-right2point4 {
-        margin-right: 20%;
-    }
+%page-max-width {
+    max-width: $max-width;
+    margin: 0 auto;
 }
