@@ -1,25 +1,33 @@
 <?php
 global $post;
 $page_sections = get_post_meta($post->ID, 'puzzle_page_sections', true);
+$puzzle_sections = (new PuzzleSections)->sections();
 
 if (!empty($page_sections)) :
     foreach ($page_sections as $s => $page_section) :
+        $puzzle_section_type = $page_section['type'];
+        
+        /*
+         * If this section type is not valid (likely because the user removed
+         * this section type but its data was still in the database), skip it.
+         */
+        if (!array_key_exists($puzzle_section_type, $puzzle_sections)) continue;
+        
         $puzzle_options_data = $page_section['options'];
         $puzzle_columns_data = (!empty($page_section['columns']) ? $page_section['columns'] : false);
         $puzzle_columns_num = count($puzzle_columns_data);
-        $puzzle_section_type = $page_section['type'];
         
         $section_id = ppb_section_id($s, $page_section);
         
         $main_content = (!empty($puzzle_options_data['main_content']) ? $puzzle_options_data['main_content'] : false);
         $background_image = (!empty($puzzle_options_data['background_image']) ? ' ' . wp_get_attachment_url($puzzle_options_data['background_image']) : false);
         ?>
-    
+        
         <section id="<?php echo $section_id; ?>" class="<?php echo ppb_section_classes($page_section); ?>"<?php if ($background_image) echo ' style="background-image: url(' . $background_image . ');"'; ?>>
             <?php if (!empty($puzzle_options_data['overlay'])) : ?>
             <div class="puzzle-background-overlay <?php echo $background_color; ?>"></div>
             <?php endif; ?>
-        
+            
             <?php if (!empty($puzzle_options_data['headline'])) : ?>
             <div class="row puzzle-section-headline">
                 <div class="column xs-span12">
@@ -29,7 +37,7 @@ if (!empty($page_sections)) :
                 </div>
             </div>
             <?php endif; ?>
-
+            
             <?php if (!empty($main_content)) : ?>
             <div class="row puzzle-main-content">
                 <div class="column xs-span12">
@@ -39,7 +47,7 @@ if (!empty($page_sections)) :
                 </div>
             </div>
             <?php endif; ?>
-    
+            
             <?php
             if (!empty($puzzle_columns_data)) :
                 if ($puzzle_section_type == 'features' || $puzzle_section_type == 'team-members') {

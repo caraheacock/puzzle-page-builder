@@ -60,7 +60,7 @@ class PuzzleSection {
     
     /*
      * Integer: the order in which this section will appear in the page builder
-     *          relative to other sections
+     * relative to other sections
      */
     private $order = 0;
     function set_order($new_order) {
@@ -70,34 +70,30 @@ class PuzzleSection {
     function get_order() { return $this->order; }
     
     /*
-     * Array: multidimensional array of the unique attributes of the section,
-     *        needed for admin fields and front-end markup
-     *
-     * Available input types: text, textarea, checkbox, select, icon, image, and hidden.
+     * Array: PuzzleField objects, needed for admin column fields and
+     * front-end markup
      */
-    private $markup_attr;
-    function set_markup_attr($new_markup_attr) {
-        $this->markup_attr = $new_markup_attr;
+    private $column_fields;
+    function set_column_fields($new_column_fields) {
+        foreach ($new_column_fields as $field) {
+            $this->column_fields[$field->id()] = $field;
+        }
         return $this;
     }
-    function get_markup_attr() {
-        return $this->markup_attr;
-    }
+    function column_fields() { return $this->column_fields; }
     
     /*
-     * Array: multidimensional array of the section options
-     * Setting this variable is optional. Use if a section needs more options.
-     *
-     * Available input types: text, textarea, checkbox, select, icon, image, and hidden.
+     * Array: PuzzleField objects for the section fields. Setting this variable
+     * is optional. Use if a section needs more options.
      */
-    private $options;
-    function set_options($new_options) {
-        $this->options = $new_options;
+    private $section_fields;
+    function set_section_fields($new_section_fields) {
+        foreach ($new_section_fields as $field) {
+            $this->section_fields[$field->id()] = $field;
+        }
         return $this;
     }
-    function get_options() {
-        return $this->options;
-    }
+    function section_fields() { return $this->section_fields; }
 }
 
 ?>

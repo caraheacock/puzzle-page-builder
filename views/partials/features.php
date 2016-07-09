@@ -13,9 +13,9 @@ if (!empty($puzzle_column['link']) && !empty($puzzle_column['icon_link'])) {
         <?php echo $icon_link_start; ?><i class="puzzle-main-icon <?php echo $puzzle_column['icon']; ?>"></i><?php echo $icon_link_end; ?>
         <div class="puzzle-feature-column-content">
             <?php
-            if (!empty($puzzle_column['headline'])) {
+            if (!empty($puzzle_column['subhead'])) {
                 $headline_tag = ($puzzle_options_data['layout'] == 'columns' ? 'h4' : 'h3');
-                echo '<' . $headline_tag . '>' . $puzzle_column['headline'] . '</' . $headline_tag . '>';
+                echo '<' . $headline_tag . '>' . $puzzle_column['subhead'] . '</' . $headline_tag . '>';
             }
             ?>
             
