@@ -8,6 +8,6 @@
 
 <?php
 get_header();
-get_template_part('sections');
+ppb_get_template_part('sections');
 get_footer();
 ?>

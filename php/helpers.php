@@ -6,31 +6,6 @@
  */
 
 /*
- * Converts a hex value to rgb
- *
- * $hex - string, hex color, e.g. '#abc123'
- *
- * Returns a string of the color converted to rgb, with values separated by commas
- */
-function ppb_hex2rgb($hex) {
-    $hex = str_replace('#', '', $hex);
-
-    if (strlen($hex) == 3) {
-        $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
-        $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
-        $b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
-    } else {
-        $r = hexdec(substr($hex, 0, 2));
-        $g = hexdec(substr($hex, 2, 2));
-        $b = hexdec(substr($hex, 4, 2));
-    }
-    $rgb = array($r, $g, $b);
-    
-    return implode(', ', $rgb); // returns a string of the rgb values separated by commas
-    // return $rgb; // returns an array with the rgb values
-}
-
-/*
  * Add ppb_like_the_content filter
  *
  * Has the same actions as the_content but for times when running
@@ -42,6 +17,47 @@ function ppb_hex2rgb($hex) {
 $actions = array('wptexturize', 'convert_smilies', 'convert_chars', 'wpautop', 'shortcode_unautop');
 foreach ($actions as $action) {
     add_filter('ppb_like_the_content', $action);
+}
+
+/*
+ * Determines classes for a section. Can be edited on a theme-by-theme basis.
+ *
+ * $page_section - array of data pertaining to the section
+ *
+ * Returns a string of classes for a section
+ */
+function ppb_section_classes($page_section) {
+    $puzzle_options_data = $page_section['options'];
+    
+    $section_classes  = 'puzzle-' . $page_section['type'];
+    $section_classes .= (!empty($puzzle_options_data['background_color']) ? ' ' . $puzzle_options_data['background_color'] . '-background' : '');
+    $section_classes .= (!empty($puzzle_options_data['text_color_scheme']) ? ' ' . $puzzle_options_data['text_color_scheme'] . '-text-color-scheme' : '');
+    $section_classes .= (!empty($puzzle_options_data['padding_top']) ? ' ' . $puzzle_options_data['padding_top'] . '-padding-top' : '');
+    $section_classes .= (!empty($puzzle_options_data['padding_bottom']) ? ' ' . $puzzle_options_data['padding_bottom'] . '-padding-bottom' : '');
+    $section_classes .= (!empty($puzzle_options_data['open_one_at_a_time']) ? ' puzzle-accordions-one-open' : '');
+    
+    return $section_classes;
+}
+
+/*
+ * Determines the ID for a section. Can be edited on a theme-by-theme basis.
+ *
+ * $s - integer, the section number we are on
+ * $page_section - array of data pertaining to the section
+ *
+ * Returns a string of the ID for a section
+ */
+function ppb_section_id($s, $page_section) {
+    $puzzle_options_data = $page_section['options'];
+    
+    $section_id = 'section-' . ($s + 1);
+    if (!empty($puzzle_options_data['id'])) {
+        $section_id = ppb_to_slug($puzzle_options_data['id']);
+    } else if (!empty($puzzle_options_data['headline'])) {
+        $section_id = ppb_to_slug($puzzle_options_data['headline']);
+    }
+    
+    return $section_id;
 }
 
 /*

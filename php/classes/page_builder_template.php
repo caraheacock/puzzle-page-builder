@@ -98,7 +98,7 @@ class PuzzlePageBuilderTemplate {
             return $template;
         }
 
-        $file = plugin_dir_path(dirname(dirname(__FILE__))) . 'php/' . get_post_meta($post->ID, '_wp_page_template', true);
+        $file = plugin_dir_path(dirname(dirname(__FILE__))) . 'views/' . get_post_meta($post->ID, '_wp_page_template', true);
         
         if (file_exists($file)) return $file;
 
@@ -107,4 +107,5 @@ class PuzzlePageBuilderTemplate {
 }
 
 add_action('plugins_loaded', array('PuzzlePageBuilderTemplate', 'get_instance'));
+
 ?>

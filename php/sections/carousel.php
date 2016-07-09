@@ -1,6 +1,6 @@
 <?php
-$header = new PuzzleSection;
-$header->set_name('Header')
+$carousel = new PuzzleSection;
+$carousel->set_name('Carousel')
     ->set_single_name('Slide')
     ->set_multiple(true)
     ->set_admin_column_classes('xs-span12 sm-span4 md-span6 lg-span4')
@@ -43,11 +43,11 @@ $header->set_name('Header')
             'width'         => 'xs-span6',
             'input_type'    => 'select',
             'options'       => array(
-                'Default Headline Color'    => 'puzzle-header-text-default',
-                'White'                     => 'puzzle-header-text-white',
-                'Black'                     => 'puzzle-header-text-black',
-                'Primary Color'             => 'puzzle-header-text-primary-color',
-                'Secondary Color'           => 'puzzle-header-text-secondary-color'
+                'Default Headline Color'    => 'default',
+                'White'                     => 'white',
+                'Black'                     => 'black',
+                'Primary Color'             => 'primary-color',
+                'Secondary Color'           => 'secondary-color'
             )
         ),
         'headline_background_color' => array(
@@ -55,11 +55,11 @@ $header->set_name('Header')
             'width'         => 'xs-span6',
             'input_type'    => 'select',
             'options'       => array(
-                'Black'             => 'puzzle-header-text-background-black',
-                'White'             => 'puzzle-header-text-background-white',
-                'Primary Color'     => 'puzzle-header-text-background-primary-color',
-                'Secondary Color'   => 'puzzle-header-text-background-secondary-color',
-                'None'              => 'puzzle-header-text-background-transparent'
+                'Black'             => 'black',
+                'White'             => 'white',
+                'Primary Color'     => 'primary-color',
+                'Secondary Color'   => 'secondary-color',
+                'None'              => 'transparent'
             )
         ),
         'tagline'           => array(
@@ -72,11 +72,11 @@ $header->set_name('Header')
             'width'         => 'xs-span6',
             'input_type'    => 'select',
             'options'       => array(
-                'Default Headline Color'    => 'puzzle-header-text-default',
-                'White'                     => 'puzzle-header-text-white',
-                'Black'                     => 'puzzle-header-text-black',
-                'Primary Color'             => 'puzzle-header-text-primary-color',
-                'Secondary Color'           => 'puzzle-header-text-secondary-color'
+                'Default Headline Color'    => 'default',
+                'White'                     => 'white',
+                'Black'                     => 'black',
+                'Primary Color'             => 'primary-color',
+                'Secondary Color'           => 'secondary-color'
             )
         ),
         'tagline_background_color'  => array(
@@ -84,11 +84,11 @@ $header->set_name('Header')
             'width'         => 'xs-span6',
             'input_type'    => 'select',
             'options'       => array(
-                'Black'             => 'puzzle-header-text-background-black',
-                'White'             => 'puzzle-header-text-background-white',
-                'Primary Color'     => 'puzzle-header-text-background-primary-color',
-                'Secondary Color'   => 'puzzle-header-text-background-secondary-color',
-                'None'              => 'puzzle-header-text-background-transparent'
+                'Black'             => 'black',
+                'White'             => 'white',
+                'Primary Color'     => 'primary-color',
+                'Secondary Color'   => 'secondary-color',
+                'None'              => 'transparent'
             )
         ),
         'content'       => array(
@@ -125,5 +125,5 @@ $header->set_name('Header')
     ));
 
 $puzzle_sections = new PuzzleSections;
-$puzzle_sections->add_section($header);
+$puzzle_sections->add_section($carousel);
 ?>

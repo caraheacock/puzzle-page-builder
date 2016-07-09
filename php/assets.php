@@ -5,7 +5,7 @@
  * Stylesheets and Scripts
  */
 
-// Add Styles and Scripts
+/* Add styles and scripts */
 function ppb_scripts() {
     $puzzle_settings = new PuzzleSettings;
     
@@ -37,7 +37,7 @@ function ppb_scripts() {
 }
 add_action('wp_enqueue_scripts', 'ppb_scripts');
 
-// Add Admin Styles
+/* Add admin styles */
 function ppb_admin_styles() {
     wp_enqueue_style('wp-color-picker');
     
@@ -51,7 +51,7 @@ function ppb_admin_styles() {
 }
 add_action('admin_print_styles', 'ppb_admin_styles');
 
-// Add Admin Scripts
+/* Add admin scripts */
 function ppb_admin_scripts() {
     wp_enqueue_media();
     wp_enqueue_script('wp-color-picker');

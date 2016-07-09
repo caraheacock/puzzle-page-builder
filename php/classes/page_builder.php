@@ -9,9 +9,10 @@ class PuzzlePageBuilder {
     /*
      * Returns the markup for fields
      *
-     * $array - the array that the field is being saved to
-     * $attrs - the fields to loop through
-     * $input_name_prefix - the prefix for the name attribute in the input field
+     * $array - array that the field is being saved to
+     * $attrs - array, the fields to loop through
+     * $input_name_prefix - string, the prefix for the name attribute in the
+     * input field
      */
     private function fields_markup($array, $attrs, $input_name_prefix) {
         $puzzle_icon_libraries = new PuzzleIconLibraries;
@@ -270,7 +271,7 @@ class PuzzlePageBuilder {
      * Returns a string of HTML to save to the post content
      */
     function saveable_content($puzzle_sections_data) {
-        $puzzle_sections = $this->sections();
+        $puzzle_sections = (new PuzzleSections)->sections();
         $content = '';
         
         // Loops through each page section
