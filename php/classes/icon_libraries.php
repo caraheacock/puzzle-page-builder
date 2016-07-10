@@ -19,7 +19,7 @@ class PuzzleIconLibraries {
         self::$Libraries[$new_library->name()] = $new_library;
         
         uasort(self::$Libraries, function($a, $b) {
-            return strnatcmp($a->get_order(), $b->get_order());
+            return strnatcmp($a->order(), $b->order());
         });
     }
     

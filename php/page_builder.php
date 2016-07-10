@@ -125,7 +125,7 @@ function ppb_meta_box_options() {
                 foreach ($puzzle_sections as $puzzle_section) :
                     if ($puzzle_section->has_multiple()) : ?>
                         <?php if ($first_statement == false) echo ' else '; ?>if (sectionType === '<?php echo $puzzle_section->slug(); ?>') {
-                            $addedColumns.append('<?php echo $puzzle_page_builder->admin_column_markup($puzzle_section, '\'+sectionCount+\'', '\'+columnCount+\''); ?>');
+                            $addedColumns.append('<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+sectionCount+\'', '\'+columnCount+\''); ?>');
                             $('.color-field').wpColorPicker();
                         }
                     <?php

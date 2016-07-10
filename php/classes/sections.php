@@ -14,7 +14,7 @@ class PuzzleSections {
         self::$Sections[$new_section->slug()] = $new_section;
         
         uasort(self::$Sections, function($a, $b) {
-            return strnatcmp($a->get_order(), $b->get_order());
+            return strnatcmp($a->order(), $b->order());
         });
     }
     

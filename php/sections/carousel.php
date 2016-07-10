@@ -4,7 +4,7 @@ $f = new PuzzleFields;
 $carousel = new PuzzleSection;
 $carousel->set_name('Carousel')
     ->set_single_name('Slide')
-    ->set_multiple(true)
+    ->set_columns_num(-1)
     ->set_admin_column_classes('xs-span12 sm-span4 md-span6 lg-span4')
     ->set_order(0)
     ->set_column_fields(array(
@@ -24,7 +24,7 @@ $carousel->set_name('Carousel')
             ->set_width(6),
         $f->field('content')
     ))
-    ->set_section_fields(array(
+    ->set_option_fields(array(
         $f->field('id')->set_width(6),
         (new PuzzleField)->set_name('Carousel Speed')
             ->set_id('speed')

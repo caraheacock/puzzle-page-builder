@@ -4,13 +4,13 @@ $f = new PuzzleFields;
 $two_column = new PuzzleSection;
 $two_column->set_name('Two Column')
     ->set_single_name('Column')
-    ->set_fixed_column_num(2)
+    ->set_columns_num(2)
     ->set_admin_column_classes('xs-span12 sm-span6')
     ->set_order(20)
     ->set_column_fields(array(
         $f->field('content')->set_rows(10)
     ))
-    ->set_section_fields(array(
+    ->set_option_fields(array(
         $f->field('headline')->set_width(6),
         $f->field('id')->set_width(6),
         (new PuzzleField)->set_name('Column Widths')

@@ -29,26 +29,21 @@ class PuzzleSection {
         $this->single_name = $new_single_name;
         return $this;
     }
-    function get_single_name() { return $this->single_name; }
-    
-    /* Boolean: whether or not the section has a dynamic number of sub-sections */
-    private $multiple = false;
-    function set_multiple($new_multiple) {
-        $this->multiple = $new_multiple;
-        return $this;
-    }
-    function has_multiple() { return $this->multiple; }
+    function single_name() { return $this->single_name; }
     
     /*
-     * Integer: the fixed number of columns
-     * This property is only used for sections where has_multiple returns false.
+     * Integer: the number of columns
+     * Set to -1 to allow the user to add unlimited columns.
      */
-    private $fixed_column_num = null;
-    function set_fixed_column_num($new_fixed_column_num) {
-        $this->fixed_column_num = $new_fixed_column_num;
+    private $columns_num = null;
+    function set_columns_num($new_columns_num) {
+        $this->columns_num = $new_columns_num;
         return $this;
     }
-    function get_fixed_column_num() { return $this->fixed_column_num; }
+    function columns_num() { return $this->columns_num; }
+    
+    /* Returns a boolean indicating if the user can add unlimited columns */
+    function unlimited_columns() { return $this->columns_num < 0; }
     
     /* String: the width of the columns in the admin view */
     private $admin_column_classes;
@@ -56,7 +51,7 @@ class PuzzleSection {
         $this->admin_column_classes = $new_admin_column_classes;
         return $this;
     }
-    function get_admin_column_classes() { return $this->admin_column_classes; }
+    function admin_column_classes() { return $this->admin_column_classes; }
     
     /*
      * Integer: the order in which this section will appear in the page builder
@@ -67,7 +62,7 @@ class PuzzleSection {
         $this->order = $new_order;
         return $this;
     }
-    function get_order() { return $this->order; }
+    function order() { return $this->order; }
     
     /*
      * Array: PuzzleField objects, needed for admin column fields and
@@ -83,17 +78,18 @@ class PuzzleSection {
     function column_fields() { return $this->column_fields; }
     
     /*
-     * Array: PuzzleField objects for the section fields. Setting this variable
-     * is optional. Use if a section needs more options.
+     * Array: PuzzleField objects for the option fields. Setting this variable
+     * is optional. Use if a section needs general options, such as a headline,
+     * main content, top and bottom padding, etc.
      */
-    private $section_fields;
-    function set_section_fields($new_section_fields) {
-        foreach ($new_section_fields as $field) {
-            $this->section_fields[$field->id()] = $field;
+    private $option_fields;
+    function set_option_fields($new_option_fields) {
+        foreach ($new_option_fields as $field) {
+            $this->option_fields[$field->id()] = $field;
         }
         return $this;
     }
-    function section_fields() { return $this->section_fields; }
+    function option_fields() { return $this->option_fields; }
 }
 
 ?>

@@ -4,7 +4,7 @@
 // $team_members = new PuzzleSection;
 // $team_members->set_name('Team Members')
 //     ->set_single_name('Team Member')
-//     ->set_multiple(true)
+//     ->set_columns_num(-1)
 //     ->set_admin_column_classes('xs-span12 sm-span4 md-span6 lg-span4')
 //     ->set_order(50)
 //     ->set_column_fields(array(
@@ -64,7 +64,7 @@
 //             'save_as'       => 'link'
 //         )
 //     ))
-//     ->set_section_fields(array(
+//     ->set_option_fields(array(
 //         'headline'          => array(
 //             'name'          => 'Headline',
 //             'width'         => 'xs-span12 sm-span6',

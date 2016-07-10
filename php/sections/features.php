@@ -4,7 +4,7 @@ $f = new PuzzleFields;
 $features = new PuzzleSection;
 $features->set_name('Features')
     ->set_single_name('Feature')
-    ->set_multiple(true)
+    ->set_columns_num(-1)
     ->set_admin_column_classes('xs-span12 sm-span4 md-span6 lg-span4')
     ->set_order(40)
     ->set_column_fields(array(
@@ -18,7 +18,7 @@ $features->set_name('Features')
             ->set_id('icon_link')
             ->set_input_type('checkbox')
     ))
-    ->set_section_fields(array(
+    ->set_option_fields(array(
         $f->field('headline')->set_width(6),
         $f->field('id')->set_width(6),
         $f->field('layout')->set_width(3),

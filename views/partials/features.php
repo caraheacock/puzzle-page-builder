@@ -3,8 +3,8 @@ $link_target = (!empty($puzzle_column['open_link_in_new_tab']) ? ' target="_blan
 
 $icon_link_start = '';
 $icon_link_end = '';
-if (!empty($puzzle_column['link']) && !empty($puzzle_column['icon_link'])) {
-    $icon_link_start = '<a class="puzzle-icon-link" href="' . $puzzle_column['link'] . '"' . $link_target . '>';
+if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])) {
+    $icon_link_start = '<a class="puzzle-icon-link" href="' . $puzzle_column['button_link'] . '"' . $link_target . '>';
     $icon_link_end = '</a>';
 }
 ?>
@@ -22,7 +22,7 @@ if (!empty($puzzle_column['link']) && !empty($puzzle_column['icon_link'])) {
             <?php echo apply_filters('the_content', $puzzle_column['content']); ?>
         </div>
         <?php if (!empty($puzzle_column['button_text'])) : ?>
-        <a class="puzzle-button puzzle-feature-main-button" href="<?php echo $puzzle_column['link']; ?>"<?php echo $link_target; ?>><?php echo $puzzle_column['button_text']; ?></a>
+        <a class="puzzle-button puzzle-feature-main-button" href="<?php echo $puzzle_column['button_link']; ?>"<?php echo $link_target; ?>><?php echo $puzzle_column['button_text']; ?></a>
         <?php endif; ?>
     </div>
 </div>

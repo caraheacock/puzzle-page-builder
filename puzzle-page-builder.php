@@ -11,17 +11,11 @@
  */
 
 require_once('php/helpers.php');
-require_once('php/classes/settings.php');
 
 /* Classes */
-require_once('php/classes/field.php');
-require_once('php/classes/fields.php');
-require_once('php/classes/icon_library.php');
-require_once('php/classes/icon_libraries.php');
-require_once('php/classes/page_builder_template.php');
-require_once('php/classes/section.php');
-require_once('php/classes/sections.php');
-require_once('php/classes/page_builder.php');
+foreach (glob(plugin_dir_path(__FILE__) . 'php/classes/*.php') as $filename) {
+    include $filename;
+}
 
 /* Objects */
 foreach (glob(plugin_dir_path(__FILE__) . 'php/fields/*.php') as $filename) {

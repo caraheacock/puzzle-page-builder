@@ -4,14 +4,14 @@ $f = new PuzzleFields;
 $accordions = new PuzzleSection;
 $accordions->set_name('Accordions')
     ->set_single_name('Accordion')
-    ->set_multiple(true)
+    ->set_columns_num(-1)
     ->set_admin_column_classes('xs-span12')
     ->set_order(60)
     ->set_column_fields(array(
         $f->field('subhead'),
         $f->field('content')
     ))
-    ->set_section_fields(array(
+    ->set_option_fields(array(
         $f->field('headline')->set_width(6),
         $f->field('id')->set_width(6),
         $f->field('padding_top')->set_width(4),

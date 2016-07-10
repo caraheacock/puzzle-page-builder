@@ -25,7 +25,7 @@ if (!empty($page_sections)) :
         
         <section id="<?php echo $section_id; ?>" class="<?php echo ppb_section_classes($page_section); ?>"<?php if ($background_image) echo ' style="background-image: url(' . $background_image . ');"'; ?>>
             <?php if (!empty($puzzle_options_data['overlay'])) : ?>
-            <div class="puzzle-background-overlay <?php echo $background_color; ?>"></div>
+            <div class="puzzle-background-overlay <?php echo $puzzle_options_data['background_color']; ?>-background"></div>
             <?php endif; ?>
             
             <?php if (!empty($puzzle_options_data['headline'])) : ?>
