@@ -1,14 +1,6 @@
 jQuery('document').ready(function($) {
-    var $window = $(window),
-        $document = $(document),
-        $pageBuilder = $('#puzzle-page-section-options'),
-        $chooseSectionArea = $('#choose-section-area'),
-        $chooseSectionButtons = $('#choose-section-area .button'),
-        $removedSections = '',
-        $addSectionButton = $('.puzzle-add-section'),
-        $allSections = $('.puzzle-add-section-area'),
-        $allColumns = $('.puzzle-add-section-area > .row > .column'),
-        $sectionTypeField = $('#puzzle_section_type');
+    var $document = $(document),
+        $body = $('body');
 
     // Show and hide areas depending on template
     var templateCheck = function() {
@@ -45,7 +37,7 @@ jQuery('document').ready(function($) {
     }
     
     // Allow user to sort columns using jQuery UI sortable
-    $('.puzzle-sections, .added-columns').sortable();
+    $('.puzzle-sections, .puzzle-unlimited-columns').sortable();
     
     // Show and hide sections and columns
     $document.on('click', '.puzzle-collapse', function() {
@@ -66,10 +58,10 @@ jQuery('document').ready(function($) {
         $(this).parent('.puzzle-collapsable-menu').parent().remove();
     });
     
-    // Add Image
+    // Add image
     var custom_uploader;
     
-    $document.on('click', '.puzzle_add_image_button', function(e) {
+    $document.on('click', '.puzzle-add-image-button', function(e) {
         e.preventDefault();
         $button = $(this);
 
@@ -103,16 +95,16 @@ jQuery('document').ready(function($) {
         custom_uploader.open();
     });
     
-    // Remove Image
-    $document.on('click', '.puzzle_remove_image_button', function(e) {
+    // Remove image
+    $document.on('click', '.puzzle-remove-image-button', function(e) {
        e.preventDefault();
        $button = $(this);
        $button.siblings('input').val('');
        $button.siblings('img').replaceWith('<img src="" />');
     });
     
-    // WYSIWYG Editor
-    var $puzzleEditor = $('#puzzle-text-editor-area'),
+    // WYSIWYG editor
+    var $puzzleEditor = $('.puzzle-text-editor-area'),
         $puzzleEditorHTML = $('#puzzlecustomeditor'),
         $visualButton = $('#puzzlecustomeditor-tmce'),
         $textButton = $('#puzzlecustomeditor-html'),
@@ -121,6 +113,7 @@ jQuery('document').ready(function($) {
     
     $document.on('click', '.open-editor-button', function(e) {
         e.preventDefault();
+        $body.addClass('modal-open');
         
         var $button = $(this),
             $originalTextBox = $button.siblings('textarea');
@@ -137,11 +130,13 @@ jQuery('document').ready(function($) {
             $originalTextBox.val($puzzleEditorHTML.val());
             $puzzleEditor.removeClass('show');
             $updateButton.off('click');
+            $body.removeClass('modal-open');
         });
 
         $cancelButton.click(function(e) {
             e.preventDefault();
             $puzzleEditor.removeClass('show');
+            $body.removeClass('modal-open');
         });
     });
     
@@ -156,6 +151,7 @@ jQuery('document').ready(function($) {
         $iconInput = $(this).siblings('input');
         
         $iconLibrary.addClass('show');
+        $body.addClass('modal-open');
         
         $iconMolecules.click(function(e) {
             e.preventDefault();
@@ -164,11 +160,13 @@ jQuery('document').ready(function($) {
             
             $iconInput.val(iconValue);
             $iconDisplay.attr('class', iconValue);
+            $body.removeClass('modal-open');
         })
         
         $cancelIconButton.click(function(e) {
             e.preventDefault();
             $iconLibrary.removeClass('show');
+            $body.removeClass('modal-open');
         })
     });
     
@@ -178,8 +176,8 @@ jQuery('document').ready(function($) {
         $tipText.slideToggle();
     });
     
-    // Initialize WordPress Color Picker
-    var $colorFields = $('.color-field');
+    // Initialize WordPress color picker
+    var $colorFields = $('.puzzle-color-field');
     
     if ($colorFields.length > 0) {
         $colorFields.wpColorPicker();

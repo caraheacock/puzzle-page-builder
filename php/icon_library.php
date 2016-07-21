@@ -53,7 +53,7 @@ function ppb_meta_options_icon_library() {
             <?php echo $puzzle_icon_library->markup(); ?>
         </div>
         <div class="puzzle-pop-up-controls">
-            <a class="button puzzle-cancel-icon" href="#">Cancel <i class="fa fa-close"></i></a>
+            <a class="puzzle-button puzzle-cancel-icon" href="#">Cancel <i class="fa fa-close"></i></a>
         </div>
     </div>
 <?php } ?>

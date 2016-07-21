@@ -12,7 +12,7 @@ function ppb_meta_box_admin_init() {
     
     if ($puzzle_page_builder_post_types) {
         foreach ($puzzle_page_builder_post_types as $post_type) {
-            add_meta_box('page_builder_options', 'Page Builder', 'ppb_meta_box_options', $post_type, 'normal', 'high');
+            add_meta_box('puzzle_page_builder_options', 'Page Builder', 'ppb_meta_box_options', $post_type, 'normal', 'high');
         
             if ($post_type != 'page') {
                 add_meta_box('puzzle_custom_template', 'Template', 'ppb_custom_post_type_template_meta_options', $post_type, 'side', 'low');
@@ -35,6 +35,7 @@ function ppb_custom_post_type_template_meta_options() {
     <?php
 }
 
+/* Page builder markup */
 function ppb_meta_box_options() {
     global $post;
     $puzzle_page_builder = new PuzzlePageBuilder;
@@ -46,7 +47,7 @@ function ppb_meta_box_options() {
     $puzzle_sections_data = get_post_meta($post->ID, 'puzzle_page_sections', true);
     $s = 0;
     ?>
-    <div id="puzzle-page-section-options">
+    <div id="puzzle-page-section-options" class="puzzle-page-section-options">
         <div class="puzzle-sections">
         <?php
         // Loops through $puzzle_sections to create each section's options
@@ -71,24 +72,24 @@ function ppb_meta_box_options() {
         ?>
         </div>
 
-        <div class="choose-section-area">
+        <div class="puzzle-choose-section-area">
             <h2>Add Section</h2>
             
             <?php
             // Loops through the $puzzle_sections to create buttons
             foreach ($puzzle_sections as $puzzle_section) : ?>
-            <a class="button puzzle-add-section puzzle-add-<?php echo $puzzle_section->slug(); ?>" href="#"><?php echo $puzzle_section->name(); ?></a>
+            <button class="puzzle-button puzzle-add-section puzzle-add-<?php echo $puzzle_section->slug(); ?>"><?php echo $puzzle_section->name(); ?></button>
             <?php endforeach; ?>
         </div>
         
         <input id="using-page-builder" name="using_page_builder" type="hidden" value="0" />
     </div>
     
-    <div id="puzzle-text-editor-area" class="puzzle-pop-up-area">
+    <div class="puzzle-text-editor-area puzzle-pop-up-area">
         <?php wp_editor('', 'puzzlecustomeditor'); ?>
         <div class="puzzle-pop-up-controls">
-            <a class="button" href="#" id="puzzle-update-content">Update and Close <i class="fa fa-save"></i></a>
-            <a class="button" href="#" id="puzzle-cancel-editor">Cancel <i class="fa fa-close"></i></a>
+            <button class="puzzle-button" id="puzzle-update-content">Update and Close <i class="fa fa-save"></i></button>
+            <button class="puzzle-button" id="puzzle-cancel-editor">Cancel <i class="fa fa-close"></i></button>
         </div>
     </div>
     
@@ -116,17 +117,17 @@ function ppb_meta_box_options() {
                 var $t = $(this),
                     $thisSection = $t.parents('.puzzle-section'),
                     sectionType = $thisSection.find('.puzzle-section-type-field').val(),
-                    $addedColumns = $thisSection.find('.added-columns'),
+                    $addedColumns = $thisSection.find('.puzzle-unlimited-columns'),
                     sectionCount = $thisSection.find('.puzzle-section-type-field').attr('name').match(/\[([0-9]+)\]/)[1],
                     columnCount = $addedColumns.children('.column').length;
                 <?php
                 $first_statement = true;
                 
                 foreach ($puzzle_sections as $puzzle_section) :
-                    if ($puzzle_section->has_multiple()) : ?>
+                    if ($puzzle_section->has_unlimited_columns()) : ?>
                         <?php if ($first_statement == false) echo ' else '; ?>if (sectionType === '<?php echo $puzzle_section->slug(); ?>') {
                             $addedColumns.append('<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+sectionCount+\'', '\'+columnCount+\''); ?>');
-                            $('.color-field').wpColorPicker();
+                            $('.puzzle-color-field').wpColorPicker();
                         }
                     <?php
                         if ($first_statement == true) {

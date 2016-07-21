@@ -11,10 +11,27 @@
 }
 
 %default-border-radius {
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 %page-max-width {
     max-width: $max-width;
     margin: 0 auto;
+}
+
+%puzzle-button {
+    display: inline-block;
+    padding: 10px 15px;
+    border: solid 1px $medium-gray;
+    @extend %default-border-radius;
+    background-color: $medium-gray;
+    color: #fff;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    @include transition (all 0.4s ease);
+    
+    &:hover {
+        color: #fff;
+    }
 }

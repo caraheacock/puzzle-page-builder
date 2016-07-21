@@ -1,0 +1,49 @@
+/*-----------------*/
+/* Utility Classes */
+/*-----------------*/
+
+%puzzle-admin-button {
+    display: inline-block;
+    padding: 6px 15px;
+    @extend %default-border-radius;
+    background-color: $very-light-gray;
+    border: solid 1px $medium-gray;
+    color: $body-color;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    @include transition (all 0.4s ease);
+    
+    &:hover, &:focus, &:active, &.puzzle-button-primary {
+        color: #fff;
+    }
+    
+    &:hover, &:focus, &.puzzle-button-primary {
+        border-color: transparent;
+        background-color: $primary-color;
+    }
+    
+    &:active {
+        border-color: transparent;
+        background-color: $primary-color-dark;
+        @include transition(none);
+    }
+    
+    &.puzzle-button-primary:hover, &.puzzle-button-primary:focus {
+        border-color: transparent;
+        background-color: $secondary-color;
+    }
+    
+    &.puzzle-button-primary:active {
+        background-color: $secondary-color-dark;
+    }
+    
+    &.puzzle-button-large {
+        padding: 8px 20px;
+        font-size: 20px;
+    }
+}
+
+.puzzle-button {
+    @extend %puzzle-admin-button;
+}

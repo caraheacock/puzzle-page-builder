@@ -38,7 +38,7 @@ class PuzzlePageBuilder {
                 case 'textarea':
                     $output .= $field->name() . $tip;
                     $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
-                    $output .= '<a class="button open-editor-button" href="#">Open Editor</a>';
+                    $output .= '<button class="puzzle-button open-editor-button">Open Editor</button>';
                     break;
                 case 'checkbox':
                     $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '><label for="' . $input_name . '">' . $field->name() . '</label>' . $tip;
@@ -57,7 +57,7 @@ class PuzzlePageBuilder {
                     $output .= $field->name() . $tip;
                     $output .= '<i class="' . $icon_value . '"></i>';
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $icon_value . '" readonly />';
-                    $output .= '<a class="button puzzle-add-icon" href="#">Choose Icon</a>';
+                    $output .= '<button class="puzzle-button puzzle-add-icon">Choose Icon</button>';
                     break;
                 case 'image':
                     $image_id = $data[$id];
@@ -66,12 +66,12 @@ class PuzzlePageBuilder {
                     $output .= $field->name() . $tip;
                     $output .= $image . '<br />';
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $image_id . '" readonly />';
-                    $output .= '<a href="#" class="puzzle_add_image_button button" data-editor="content" title="Add Image">Add Image</a> ';
-                    $output .= '<a href="#" class="puzzle_remove_image_button button">Remove Image</a>';
+                    $output .= '<button class="puzzle-add-image-button puzzle-button" data-editor="content" title="Add Image">Add Image</button> ';
+                    $output .= '<button class="puzzle-remove-image-button puzzle-button">Remove Image</button>';
                     break;
                 case 'color':
                     $output .= $field->name() . $tip;
-                    $output .= '<input class="color-field" name="' . $input_name . '" value="' . esc_attr($data[$id]) . '" type="text" />';
+                    $output .= '<input class="puzzle-color-field" name="' . $input_name . '" value="' . esc_attr($data[$id]) . '" type="text" />';
                     break;
                 default:
                     $output .= $field->name() . $tip;
@@ -93,9 +93,9 @@ class PuzzlePageBuilder {
      * $column_data - array, the column's data
      */
     function column_markup($puzzle_section, $s, $c, $column_data = array('show' => 'show')) {
-        $output = '<div class="column ' . $puzzle_section->admin_column_classes() . '">';
+        $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '">';
 
-        if ($puzzle_section->unlimited_columns()) {
+        if ($puzzle_section->has_unlimited_columns()) {
             $output .= '<div class="puzzle-collapsable-menu' . ($column_data['show'] == 'show' ? '' : ' collapsed-state') . '">';
             $output .= '<i class="fa fa-chevron-' . ($column_data['show'] == 'show' ? 'down' : 'up') . ' puzzle-collapse"></i>';
             $output .= '<h5>' . $puzzle_section->single_name() . '</h5>';
@@ -110,7 +110,7 @@ class PuzzlePageBuilder {
         $output .= $this->fields_markup($column_data, $puzzle_section->column_fields(), 'puzzle_page_sections[' . $s . '][columns][' . $c . ']');
         $output .= '</div>';
     
-        if ($puzzle_section->unlimited_columns()) {
+        if ($puzzle_section->has_unlimited_columns()) {
             $output .= '</div>';
         }
     
@@ -127,9 +127,9 @@ class PuzzlePageBuilder {
     function add_new_column_button_markup($puzzle_section) {
         $output  = '';
         
-        if ($puzzle_section->unlimited_columns()) {
+        if ($puzzle_section->has_unlimited_columns()) {
             $output .= '<div class="puzzle-add-column-area">';
-            $output .= '<a class="button puzzle-add-column">Add ' . $puzzle_section->single_name() . '</a>';
+            $output .= '<button class="puzzle-button puzzle-button-primary puzzle-button-large puzzle-add-column">Add ' . $puzzle_section->single_name() . '</button>';
             $output .= '</div>';
         }
         
@@ -173,7 +173,7 @@ class PuzzlePageBuilder {
         $output .= '<h3>' . $puzzle_section->name() . ' Section</h3>';
         
         if ($puzzle_section->option_fields()) {
-            $output .= '<div class="row general-options-area">';
+            $output .= '<div class="row puzzle-general-options-area">';
             $output .= '<div class="column xs-span12">';
             $output .= '<h4>General Options</h4>';
             $output .= '<div class="row">';
@@ -185,7 +185,7 @@ class PuzzlePageBuilder {
         
         $output .= self::add_new_column_button_markup($puzzle_section);
         
-        $output .= '<div class="row columns-area' . ($puzzle_section->unlimited_columns() ? ' added-columns' : '') . '">';
+        $output .= '<div class="row puzzle-columns-area ' . ($puzzle_section->has_unlimited_columns() ? 'puzzle-unlimited-columns' : 'puzzle-fixed-columns') . '">';
 
         // Gets the max number of columns.
         $max_columns = $puzzle_section->columns_num();
@@ -194,12 +194,12 @@ class PuzzlePageBuilder {
         // or just adds one column with empty fields if this is a new section.
         if (!empty($columns_data)) {
             foreach ($columns_data as $puzzle_column) {
-                if ($puzzle_section->unlimited_columns() || $c < $max_columns) {
+                if ($puzzle_section->has_unlimited_columns() || $c < $max_columns) {
                     $output .= self::column_markup($puzzle_section, $s, $c, $puzzle_column);
                     $c++;
                 }
             }
-        } else if ($puzzle_section->unlimited_columns() && is_array($columns_data)) {
+        } else if ($puzzle_section->has_unlimited_columns() && is_array($columns_data)) {
             $output .= self::column_markup($puzzle_section, $s, $c);
             $c++;
         }

@@ -1,0 +1,75 @@
+/*------*/
+/* Text */
+/*------*/
+
+h1, h2, h3, h4, h5, h6, p, li, th, td {
+    font-family: $open-sans;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol {
+    margin: $text-space-unit 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $headline-color;
+    font-weight: $semibold;
+    line-height: 1.25;
+    
+    a {
+        text-decoration: none;
+    }
+}
+
+h1, h2, h3 {
+    font-weight: $normal;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2, h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 20px;
+    text-align: center;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 12px;
+}
+
+p, li, th, td {
+    color: $body-color;
+    font-size: 14px;
+    font-weight: $normal;
+}
+
+p, li {
+    line-height: 1.5;
+}
+
+p {
+    margin: ($text-space-unit * 3) 0
+}
+
+small {
+    font-size: 80%;
+}
+
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-bottom: solid 1px #888;
+}
+
+a {
+    @include transition(all 0.4s ease);
+}

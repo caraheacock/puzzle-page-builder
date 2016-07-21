@@ -43,7 +43,7 @@ class PuzzleSection {
     function columns_num() { return $this->columns_num; }
     
     /* Returns a boolean indicating if the user can add unlimited columns */
-    function unlimited_columns() { return $this->columns_num < 0; }
+    function has_unlimited_columns() { return $this->columns_num < 0; }
     
     /* String: the width of the columns in the admin view */
     private $admin_column_classes;

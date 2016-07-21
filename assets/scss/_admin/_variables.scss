@@ -1,0 +1,25 @@
+//-----------//
+// Variables //
+//-----------//
+
+// Admin side only sizes
+$size-sm: 600px;
+$size-md: 851px;
+$size-lg: 1200px;
+$size-xl: 1600px;
+
+// Admin colors
+$very-light-gray: #f4f4f4;
+$light-gray: #eee;
+$medium-light-gray: #ddd;
+$medium-gray: #92979a;
+$dark-gray: #5e6265;
+
+$headline-color: #444;
+$body-color: #555;
+
+$primary-color: #568ace;
+$primary-color-dark: darken($primary-color, 15%);
+$secondary-color: #74c32e;
+$secondary-color-dark: darken($secondary-color, 15%);
+$warning-color: #ec581d;
