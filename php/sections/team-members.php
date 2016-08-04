@@ -5,7 +5,7 @@
 // $team_members->set_name('Team Members')
 //     ->set_single_name('Team Member')
 //     ->set_columns_num(-1)
-//     ->set_admin_column_classes('xs-span12 sm-span4 md-span6 lg-span4')
+//     ->set_admin_column_width(4)
 //     ->set_order(50)
 //     ->set_column_fields(array(
 //         'name'              => array(

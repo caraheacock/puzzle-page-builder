@@ -2,7 +2,7 @@ jQuery('document').ready(function($) {
     var $document = $(document),
         $body = $('body');
 
-    // Show and hide areas depending on template
+    /* Show and hide areas depending on template */
     var templateCheck = function() {
         if ($('#page_template').val() === 'template_page_builder.php') {
             $('#postdivrich, #post-preview').hide();
@@ -18,7 +18,7 @@ jQuery('document').ready(function($) {
     templateCheck();
     $('#page_template').change(templateCheck);
     
-    // Shows and hides areas depending on template for custom post types
+    /* Shows and hides areas depending on template for custom post types */
     var customTemplateCheck = function() {
         if ($('#puzzle_custom_template_select').val() === 'page_builder') {
             $('#postdivrich, #post-preview').hide();
@@ -36,42 +36,55 @@ jQuery('document').ready(function($) {
         $('#puzzle_custom_template_select').change(customTemplateCheck);
     }
     
-    // Allow user to sort columns using jQuery UI sortable
-    $('.puzzle-sections, .puzzle-unlimited-columns').sortable();
+    /* Allow user to sort columns using jQuery UI sortable */
+    $('.puzzle-sections, .puzzle-columns-area').sortable();
     
-    // Show and hide sections and columns
-    $document.on('click', '.puzzle-collapse', function() {
-        t = $(this);
-        t.toggleClass('fa-chevron-down');
-        t.toggleClass('fa-chevron-up');
-        t.parents('.puzzle-collapsable-menu').toggleClass('collapsed-state').parent().children('.puzzle-collapsable-content').toggleClass('show');
-        
-        if (t.siblings('input').val() === 'hide') {
-            t.siblings('input').val('show');
-        } else {
-            t.siblings('input').val('hide');
+    /* Show and hide add section buttons */
+    $document.on('click', '.puzzle-add-section-open-buttons', function(e) {
+        e.preventDefault();
+        $(this).siblings('.puzzle-add-section-buttons').toggleClass('show');
+    });
+    
+    $document.bind('click', function(e) {
+        if ($(e.target).closest('.puzzle-add-section-open-buttons, .puzzle-add-section-buttons').length === 0) {
+            $('.puzzle-add-section-buttons').removeClass('show');
         }
     });
     
-    // Remove a section or column
-    $document.on('click', '.puzzle-remove-section', function() {
-        $(this).parent('.puzzle-collapsable-menu').parent().remove();
+    /* Show and hide sections and columns */
+    $document.on('click', '.puzzle-edit', function(e) {
+        e.preventDefault();
+        
+        var $t = $(this);
+        
+        $t.closest('.puzzle-section-menu').siblings('.puzzle-collapsable-content').slideToggle();
     });
     
-    // Add image
+    /* Remove a section or column */
+    $document.on('click', '.puzzle-remove-section', function(e) {
+        e.preventDefault();
+        
+        var $section = $(this).closest('.puzzle-section, .puzzle-page-builder-column'),
+            $chooseSectionButtons = $section.next('.puzzle-add-section');
+        
+        if ($chooseSectionButtons.length > 0) { $chooseSectionButtons.remove(); }
+        $section.remove();
+    });
+    
+    /* Add image */
     var custom_uploader;
     
     $document.on('click', '.puzzle-add-image-button', function(e) {
         e.preventDefault();
-        $button = $(this);
+        var $button = $(this);
 
-        // If the uploader object has already been created, reopen the dialog
+        /* If the uploader object has already been created, reopen the dialog */
         if (custom_uploader) {
             custom_uploader.open();
             return;
         }
 
-        // Extend the wp.media object
+        /* Extend the wp.media object */
         custom_uploader = wp.media.frames.file_frame = wp.media({
             title: 'Choose File',
             button: {
@@ -79,31 +92,33 @@ jQuery('document').ready(function($) {
             },
             multiple: false
         });
-
-        // When a file is selected, set the input's value as the post ID
-        // and the preview image's src as the url.
-        //
-        // Saving the post ID instead of the url gives us more options
-        // in terms of WordPress functions later.
+        
+        /*
+         * When a file is selected, set the input's value as the post ID
+         * and the preview image's src as the url.
+         *
+         * Saving the post ID instead of the url gives us more options
+         * in terms of WordPress functions later.
+         */
         custom_uploader.on('select', function() {
             attachment = custom_uploader.state().get('selection').first().toJSON();
             $button.siblings('input').val(attachment.id);
             $button.siblings('img').replaceWith('<img width="' + attachment.sizes.full.width + '" height="' + attachment.sizes.full.height + '" src="' + attachment.url + '" alt="' + attachment.alt + '" />');
         });
 
-        // Open the uploader dialog
+        /* Open the uploader dialog */
         custom_uploader.open();
     });
     
-    // Remove image
+    /* Remove image */
     $document.on('click', '.puzzle-remove-image-button', function(e) {
        e.preventDefault();
-       $button = $(this);
+       var $button = $(this);
        $button.siblings('input').val('');
        $button.siblings('img').replaceWith('<img src="" />');
     });
     
-    // WYSIWYG editor
+    /* WYSIWYG editor */
     var $puzzleEditor = $('.puzzle-text-editor-area'),
         $puzzleEditorHTML = $('#puzzlecustomeditor'),
         $visualButton = $('#puzzlecustomeditor-tmce'),
@@ -140,15 +155,15 @@ jQuery('document').ready(function($) {
         });
     });
     
-    // Add icon
+    /* Add icon */
     var $iconLibrary = $('.puzzle-icon-library'),
         $iconMolecules = $('.icon-molecule'),
         $cancelIconButton = $('.puzzle-cancel-icon');
     
     $document.on('click', '.puzzle-add-icon', function(e) {
         e.preventDefault();
-        $iconDisplay = $(this).siblings('i');
-        $iconInput = $(this).siblings('input');
+        var $iconDisplay = $(this).siblings('i'),
+            $iconInput = $(this).siblings('input');
         
         $iconLibrary.addClass('show');
         $body.addClass('modal-open');
@@ -170,16 +185,13 @@ jQuery('document').ready(function($) {
         })
     });
     
-    // Show and hide tip
+    /* Show and hide tip */
     $document.on('click tap', '.puzzle-field-tip-button', function() {
         var $tipText = $(this).siblings('.puzzle-field-tip-content').children();
         $tipText.slideToggle();
     });
     
-    // Initialize WordPress color picker
+    /* Initialize WordPress color picker */
     var $colorFields = $('.puzzle-color-field');
-    
-    if ($colorFields.length > 0) {
-        $colorFields.wpColorPicker();
-    }
+    if ($colorFields.length > 0) { $colorFields.wpColorPicker(); }
 });

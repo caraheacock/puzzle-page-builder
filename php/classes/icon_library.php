@@ -76,7 +76,7 @@ class PuzzleIconLibrary {
     /* Returns the markup for the icon library */
     function markup() {
         $output = '<hr />';
-        $output .= '<h2><i class="' . $this->icon_class . ' ' . $this->prefix . $this->example_icon . '"></i> ' . $this->name . ' Icons</h2>';
+        $output .= '<h3><i class="' . $this->icon_class . ' ' . $this->prefix . $this->example_icon . '"></i> ' . $this->name . ' Icons</h3>';
         
         foreach ($this->icons as $icon) {
             $output .= '<div class="icon-molecule"><i class="' . $this->icon_class . ' ' . $this->prefix . $icon . '"></i> <span class="icon-description">' . $icon . '</span></div>';

@@ -22,4 +22,5 @@ $primary-color: #568ace;
 $primary-color-dark: darken($primary-color, 15%);
 $secondary-color: #74c32e;
 $secondary-color-dark: darken($secondary-color, 15%);
-$warning-color: #ec581d;
+$alert-color: #ec581d;
+$alert-color-dark: darken($alert-color, 15%);

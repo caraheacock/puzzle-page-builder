@@ -2,7 +2,7 @@
 /* Utility Classes */
 /*-----------------*/
 
-%puzzle-admin-button {
+%admin-button {
     display: inline-block;
     padding: 6px 15px;
     @extend %default-border-radius;
@@ -38,12 +38,56 @@
         background-color: $secondary-color-dark;
     }
     
+    &.puzzle-button-transparent {
+        border-color: #fff;
+        background-color: transparent;
+        color: #fff;
+        
+        &:hover, &:focus {
+            border-color: transparent;
+            background-color: $primary-color;
+        }
+        
+        &:active {
+            border-color: transparent;
+            background-color: $primary-color-dark;
+        }
+    }
+    
     &.puzzle-button-large {
         padding: 8px 20px;
         font-size: 20px;
     }
 }
 
+%circle-button {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: solid 2px $primary-color;
+    border-radius: 50%;
+    color: $primary-color;
+    font-size: 20px;
+    line-height: 26px;
+    text-align: center;
+    
+    &:hover, &:focus {
+        border-color: transparent;
+        background-color: $primary-color;
+        color: #fff;
+    }
+    
+    &:active {
+        border-color: transparent;
+        background-color: $primary-color-dark;
+        color: #fff;
+    }
+}
+
 .puzzle-button {
-    @extend %puzzle-admin-button;
+    @extend %admin-button;
+}
+
+.puzzle-circle-button {
+    @extend %circle-button;
 }

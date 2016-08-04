@@ -9,7 +9,7 @@ label, input, select, textarea {
 button, input, select, textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
-    margin: 2px 0 5px 0;
+    margin: 2px 0 5px;
 }
 
 input, select, textarea {
@@ -32,7 +32,7 @@ input, select {
 }
 
 button, input[type='button'], input[type='submit'] {
-    @extend %puzzle-admin-button;
+    @extend %admin-button;
     white-space: normal;
     cursor: pointer;
 }

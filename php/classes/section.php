@@ -45,13 +45,39 @@ class PuzzleSection {
     /* Returns a boolean indicating if the user can add unlimited columns */
     function has_unlimited_columns() { return $this->columns_num < 0; }
     
-    /* String: the width of the columns in the admin view */
-    private $admin_column_classes;
-    function set_admin_column_classes($new_admin_column_classes) {
-        $this->admin_column_classes = $new_admin_column_classes;
+    /*
+     * Integer: the width of the columns in the page builder, in the context of
+     * a 12 column grid
+     */
+    private $admin_column_width = 12;
+    function set_admin_column_width($new_admin_column_width) {
+        if (!in_array($new_admin_column_width, array(3, 4, 6, 12))) {
+            trigger_error('Invalid value "' . $new_admin_column_width . '" used for "admin_column_width".');
+        } else {
+            $this->admin_column_width = $new_admin_column_width;
+        }
         return $this;
     }
-    function admin_column_classes() { return $this->admin_column_classes; }
+    function admin_column_width() { return $this->admin_column_width; }
+    
+    /* Returns a string of classes for the columns in the page builder */
+    function admin_column_classes() {
+        $output = 'xs-span12';
+        
+        switch ($this->admin_column_width) {
+            case 3:
+                $output .= ' sm-span3 md-span6 lg-span3';
+                break;
+            case 4:
+                $output .= ' sm-span4 md-span6 lg-span4';
+                break;
+            case 6:
+                $output .= ' sm-span6';
+                break;
+        }
+        
+        return $output;
+    }
     
     /*
      * Integer: the order in which this section will appear in the page builder

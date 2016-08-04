@@ -5,7 +5,6 @@ $call_to_action = new PuzzleSection;
 $call_to_action->set_name('Call to Action')
     ->set_single_name('Call to Action')
     ->set_columns_num(1)
-    ->set_admin_column_classes('xs-span12')
     ->set_order(70)
     ->set_column_fields(array(
         $f->field('headline'),

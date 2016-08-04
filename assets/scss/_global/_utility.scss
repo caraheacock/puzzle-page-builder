@@ -2,24 +2,7 @@
 /* Utility Classes */
 /*-----------------*/
 
-%clearfix {
-    &:after {
-        clear: both;
-        display: table;
-        content: " ";
-    }
-}
-
-%default-border-radius {
-    border-radius: 3px;
-}
-
-%page-max-width {
-    max-width: $max-width;
-    margin: 0 auto;
-}
-
-%puzzle-button {
+%button {
     display: inline-block;
     padding: 10px 15px;
     border: solid 1px $medium-gray;
@@ -34,4 +17,23 @@
     &:hover {
         color: #fff;
     }
+}
+
+%default-border-radius {
+    border-radius: 3px;
+}
+
+%page-max-width {
+    max-width: $max-width;
+    margin: 0 auto;
+}
+
+// Hide text for screen readers
+%screen-reader-only {
+    position: absolute;
+    top: auto;
+    left: -100000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }

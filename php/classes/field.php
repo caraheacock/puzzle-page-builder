@@ -54,10 +54,7 @@ class PuzzleField {
         'textarea'
     );
     
-    /*
-     * Integer: the width that the field should be, in the context of a 12
-     * column grid
-     */
+    /* Integer: the width of the field, in the context of a 12 column grid */
     private $width = 12;
     function set_width($new_width) {
         if (!in_array($new_width, array(2, 3, 4, 6, 12))) {

@@ -5,7 +5,7 @@ $features = new PuzzleSection;
 $features->set_name('Features')
     ->set_single_name('Feature')
     ->set_columns_num(-1)
-    ->set_admin_column_classes('xs-span12 sm-span4 md-span6 lg-span4')
+    ->set_admin_column_width(4)
     ->set_order(40)
     ->set_column_fields(array(
         $f->field('icon'),

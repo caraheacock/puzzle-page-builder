@@ -5,7 +5,6 @@ $accordions = new PuzzleSection;
 $accordions->set_name('Accordions')
     ->set_single_name('Accordion')
     ->set_columns_num(-1)
-    ->set_admin_column_classes('xs-span12')
     ->set_order(60)
     ->set_column_fields(array(
         $f->field('subhead'),

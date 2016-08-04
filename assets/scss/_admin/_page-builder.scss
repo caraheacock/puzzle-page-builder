@@ -10,6 +10,14 @@
     @import '_admin/_typography';
     @import '_admin/_forms';
     @import '_global/_media';
+    
+    *:focus {
+        @include box-shadow(none);
+    }
+    
+    img {
+        display: block;
+    }
 }
 
 #postdivrich {
@@ -23,117 +31,213 @@
         text-align: left;
     }
     
-    .puzzle-collapsable-menu {
-        @extend %clearfix;
-        margin: 0;
-        padding: 5px;
-        border-bottom: solid 2px $medium-light-gray;
-        background-color: $light-gray;
+    .puzzle-section-menu {
         text-align: center;
         
-        &.collapsed-state {
-            h5 {
-                visibility: visible;
+        .row {
+            @include align-items(center);
+            @include justify-content(space-between);
+            padding: 5px 10px;
+            
+            &.puzzle-section-menu-top {
+                @extend %default-border-radius;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+                background-color: $light-gray;
             }
         }
         
-        .fa {
-            @include transition(all 0.4s ease);
+        h3, h4 {
+            margin: 0;
+        }
+        
+        a {
             display: block;
             width: 30px;
             height: 30px;
             color: $medium-gray;
-            cursor: pointer;
-        }
-
-        .fa-chevron-down, .fa-chevron-up {
-            float: left;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 30px;
+            cursor: pointer;
+            @include transition(all 0.4s ease);
             
             &:hover, &:focus {
                 color: $primary-color;
             }
+            
+            &:active {
+                color: $primary-color-dark;
+            }
         }
         
-        h5 {
-            visibility: hidden;
-            float: left;
-            width: calc(100% - 60px);
-            margin: 0;
-            padding: 0 5px;
-            font-size: 16px;
-            line-height: 30px;
-        }
-
-        .fa-close {
-            float: left;
-            border: solid 2px $medium-gray;
-            border-radius: 50%;
-            font-size: 20px;
-            line-height: 26px;
+        .puzzle-remove-section {
+            @extend %circle-button;
+            border-color: $medium-gray;
+            color: $medium-gray;
             
-            &:hover {
-                border-color: transparent;
-                background-color: $warning-color;
-                color: #fff;
+            &:hover, &:focus {
+                background-color: $alert-color;
+            }
+            
+            &:active {
+                background-color: $alert-color-dark;
             }
         }
     }
-
+    
     .puzzle-collapsable-content {
         display: none;
-
-        &.show {
-            display: block;
-            padding: 10px 0;
-        }
+        padding: 10px 0;
     }
 
     .puzzle-section {
         @extend %page-max-width;
-        margin-bottom: 30px;
+        @extend %default-border-radius;
         background-color: $very-light-gray;
         
-        h3, > p {
+        h3 {
             text-align: center;
-        }
-    
-        img {
-            margin: 10px auto 0 auto;
         }
     }
 
     .puzzle-general-options-area, .puzzle-columns-area {
         padding: 10px;
-        
-        > .column {
-            margin-bottom: 10px;
-        
-            .column {
-                padding: 5px 10px;
-            }
-        }
+    }
+    
+    .puzzle-general-options-area .column,
+    .puzzle-columns-area .column .column {
+        padding: 5px 10px;
     }
     
     .puzzle-columns-area {
-        > .column {
-            border: solid 1px $medium-light-gray;
+        .column-inner {
+            width: calc(100% - 10px);
+            margin: 5px;
+            padding: 0;
+            @extend %default-border-radius;
+            background-color: #fff;
         }
-    }
-    
-    .puzzle-fixed-columns {
-        > .column {
-            padding: 10px 0;
-        }
-    }
-
-    .puzzle-choose-section-area, .puzzle-add-column-area {
-        text-align: center;
     }
     
     .puzzle-add-column-area {
         padding: 15px;
+        text-align: center;
+    }
+    
+    /* Add section buttons */
+    .puzzle-add-section {
+        position: relative;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .puzzle-add-section-open-buttons {
+        @extend %circle-button;
+    }
+
+    .puzzle-add-section-buttons {
+        position: absolute;
+        right: -45%;
+        bottom: calc(100% - 5px);
+        left: 50%;
+        padding: 10px;
+        @extend %default-border-radius;
+        background-color: rgba($dark-gray, 0.95);
+        @include transform(translate(-50%, 0));
+        @include transition(all 0.4s ease);
+        visibility: hidden;
+        opacity: 0;
+    
+        h4 {
+            color: #fff;
+        }
+        
+        &:after {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 7px solid $dark-gray;
+            border-right: 7px solid transparent;
+            border-left: 7px solid transparent;
+            content: ' ';
+            @include transform(translate(-50%, 0));
+        }
+        
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    
+    .puzzle-image-container {
+        position: relative;
+        margin: 2px 0 5px;
+        border: solid 1px $medium-light-gray;
+        background-color: $medium-light-gray;
+        
+        img[src=''] {
+            display: block;
+            height: 100px;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    
+    .puzzle-add-image-button, .puzzle-remove-image-button {
+        position: absolute;
+        
+        span {
+            @extend %screen-reader-only;
+        }
+    }
+    
+    .puzzle-add-image-button {
+        @extend %circle-button;
+        top: 50%;
+        left: 50%;
+        border-color: rgba(#fff, 0.85);
+        color: rgba(#fff, 0.85);
+        @include box-shadow(0 0 2px rgba(#000, 0.5));
+        text-shadow: 0 0 2px rgba(#000, 0.5);
+        @include transform(translate(-50%, -50%));
+    }
+    
+    img[src=''] {
+        ~ .puzzle-add-image-button {
+            border-color: $medium-gray;
+            color: $medium-gray;
+            @include box-shadow(none);
+            text-shadow: none;
+        
+            &:hover, &:focus, &:active {
+                border-color: transparent;
+                color: #fff;
+            }
+        }
+        
+        ~ .puzzle-remove-image-button {
+            display: none;
+        }
+    }
+    
+    .puzzle-remove-image-button {
+        top: 0;
+        right: 0;
+        color: $medium-gray;
+        font-size: 20px;
+        line-height: 20px;
+        @include transform(translate(50%, -50%));
+        
+        &:hover, &:focus {
+            color: $alert-color;
+        }
+        
+        &:active {
+            color: $alert-color-dark;
+        }
     }
 }
 

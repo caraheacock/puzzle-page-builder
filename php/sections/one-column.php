@@ -5,7 +5,6 @@ $one_column = new PuzzleSection;
 $one_column->set_name('One Column')
     ->set_single_name('Column')
     ->set_columns_num(1)
-    ->set_admin_column_classes('xs-span12')
     ->set_order(10)
     ->set_column_fields(array(
         $f->field('content')->set_rows(10)
