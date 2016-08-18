@@ -87,38 +87,71 @@ function ppb_meta_box_options() {
             $document = $(document),
             sectionCount = <?php echo $s ?>;
         
-        <?php foreach ($puzzle_sections as $puzzle_section) : ?>
-        /* Add <?php echo $puzzle_section->name(); ?> section */
-        $document.on('click', '.puzzle-add-<?php echo $puzzle_section->slug(); ?>', function(e) {
+        /* Add section */
+        $document.on('click', '.puzzle-add-section-button', function(e) {
             e.preventDefault();
             
             var $t = $(this),
-                $addSectionButtons = $t.closest('.puzzle-add-section-buttons');
+                markup = '',
+                sectionType = $t.data('type'),
+                insertLocation = $t.data('insert');
             
-            $t.parents('.puzzle-add-section').after('<?php echo $puzzle_page_builder->admin_section_markup($puzzle_section, '\'+sectionCount+\'') ?>');
-            $addSectionButtons.removeClass('show');
+            switch (sectionType) {
+                <?php foreach ($puzzle_sections as $puzzle_section) : ?>
+                case ('<?php echo $puzzle_section->slug(); ?>') :
+                    markup = '<?php echo $puzzle_page_builder->admin_section_markup($puzzle_section, '\'+sectionCount+\'') ?>';
+                    break;
+                <?php endforeach; ?>
+            }
+            
+            if (insertLocation === 'before') {
+                $t.closest('.puzzle-add-section, .puzzle-section').before(markup);
+            } else {
+                $t.closest('.puzzle-add-section, .puzzle-section').after(markup);
+            }
+            
+            $('.puzzle-add-section-buttons, .puzzle-has-dropdown ul').removeClass('show');
             sectionCount++;
         });
         
-        <?php if ($puzzle_section->has_unlimited_columns()) : ?>
-        /* Add <?php echo $puzzle_section->single_name(); ?> */
-        $document.on('click', '.puzzle-<?php echo $puzzle_section->slug(); ?> .puzzle-add-column', function(e) {
+        /* Add column */
+        $document.on('click', '.puzzle-add-column-button', function(e) {
             e.preventDefault();
             
             var $t = $(this),
+                markup = '',
                 $thisSection = $t.parents('.puzzle-section'),
-                $addedColumns = $thisSection.find('.puzzle-unlimited-columns'),
-                sectionCount = $thisSection.data('id'),
-                columnCount = $addedColumns.children('.column').length;
+                thisSectionCount = $thisSection.data('id'),
+                columnCount = $thisSection.find('.puzzle-page-builder-column').length,
+                sectionType = $t.data('type'),
+                insertLocation = $t.data('insert');
             
-            $addedColumns.append('<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+sectionCount+\'', '\'+columnCount+\''); ?>');
+            switch (sectionType) {
+                <?php foreach ($puzzle_sections as $puzzle_section) :
+                    if ($puzzle_section->has_unlimited_columns()) :
+                    ?>
+                case ('<?php echo $puzzle_section->slug(); ?>') :
+                    markup = '<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+thisSectionCount+\'', '\'+columnCount+\''); ?>';
+                    break;
+                    <?php
+                    endif;
+                endforeach;
+                ?>
+            }
+            
+            if (insertLocation === 'before') {
+                $t.closest('.puzzle-page-builder-column').before(markup);
+            } else if (insertLocation === 'end') {
+                $thisSection.find('.puzzle-columns-area').append(markup);
+            } else {
+                $t.closest('.puzzle-page-builder-column').after(markup);
+            }
+            
+            $('.puzzle-has-dropdown ul').removeClass('show');
+            
             $('.puzzle-color-field').wpColorPicker();
             return false;
         });
-        <?php
-        endif;
-        endforeach;
-        ?>
     </script>
 <?php
 }

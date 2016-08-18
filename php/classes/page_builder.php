@@ -87,23 +87,6 @@ class PuzzlePageBuilder {
     }
     
     /*
-     * Returns the page builder markup for the add new column button
-     *
-     * $puzzle_section - PuzzleSection object
-     */
-    function add_new_column_button_markup($puzzle_section) {
-        $output  = '';
-        
-        if ($puzzle_section->has_unlimited_columns()) {
-            $output .= '<div class="puzzle-add-column-area">';
-            $output .= '<button class="puzzle-button puzzle-button-primary puzzle-button-large puzzle-add-column">Add ' . $puzzle_section->single_name() . '</button>';
-            $output .= '</div>';
-        }
-        
-        return $output;
-    }
-    
-    /*
      * Returns the page builder markup for the add new sections buttons
      */
     function add_new_section_buttons_markup() {
@@ -117,7 +100,7 @@ class PuzzlePageBuilder {
         $output .= '<h4>Add Section</h4>';
         
         foreach ($puzzle_sections as $current_puzzle_section) {
-            $output .= '<button class="puzzle-button puzzle-button-transparent puzzle-add-section-button puzzle-add-' . $current_puzzle_section->slug() . '">' . $current_puzzle_section->name() . '</button> ';
+            $output .= '<button class="puzzle-button puzzle-button-transparent puzzle-add-section-button" data-type="' . $current_puzzle_section->slug() . '" data-insert="after">' . $current_puzzle_section->name() . '</button> ';
         }
         
         $output .= '</div>';
@@ -129,20 +112,52 @@ class PuzzlePageBuilder {
     /*
      * Returns the page builder markup for the section menu (copy, delete, etc.)
      *
-     * $name - string, the name of the section or column
+     * $puzzle_section - PuzzleSection object
+     * $is_section - boolean, whether this is the menu for a section or not,
+     *   as opposed to the menu for a column
      */
-    function section_menu($name, $has_top_menu, $headline_tag) {
+    function section_menu($puzzle_section, $is_section) {
         $output  = '<div class="puzzle-section-menu">';
         
-        if ($has_top_menu) {
+        if ($is_section || $puzzle_section->has_unlimited_columns()) {
             $output .= '<div class="row puzzle-section-menu-top">';
-            $output .= '<a class="puzzle-copy" href="#" title="Copy"><i class="fa fa-copy"></i></a>';
+            $output .= '<div class="puzzle-has-dropdown">';
+            $output .= '<a class="puzzle-dropdown-trigger" href="#" title="Add"><i class="fa fa-plus"></i></a>';
+            $output .= '<ul>';
+            $output .= '<li>';
+            $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before">';
+            $output .= '<i class="fa fa-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
+            $output .= '</a>';
+            $output .= '</li>';
+            $output .= '<li>';
+            $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after">';
+            $output .= '<i class="fa fa-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
+            $output .= '</a>';
+            $output .= '</li>';
+            $output .= '<li>';
+            $output .= '<a class="puzzle-copy-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before">';
+            $output .= '<i class="fa fa-copy"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
+            $output .= '</a>';
+            $output .= '</li>';
+            $output .= '<li>';
+            $output .= '<a class="puzzle-copy-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after">';
+            $output .= '<i class="fa fa-copy"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
+            $output .= '</a>';
+            $output .= '</li>';
+            $output .= '</ul>';
+            $output .= '</div>';
             $output .= '<a class="puzzle-remove-section" href="#" title="Delete"><i class="fa fa-close"></i></a>';
             $output .= '</div>';
         }
         
         $output .= '<div class="row">';
-        $output .= '<' . $headline_tag . '>' . $name . '</' . $headline_tag . '>';
+        
+        if ($is_section) {
+            $output .= '<h3>' . $puzzle_section->name() . '</h3>';
+        } else {
+            $output .= '<h4>' . $puzzle_section->single_name() . '</h4>';
+        }
+        
         $output .= '<a class="puzzle-edit" href="#" title="Edit"><i class="fa fa-pencil"></i></a>';
         $output .= '</div>';
         $output .= '</div>';
@@ -158,11 +173,11 @@ class PuzzlePageBuilder {
      * $c - integer, the counter keeping track of what column we are on
      * $column_data - array, the column's data
      */
-    function column_markup($puzzle_section, $s, $c, $column_data = array('show' => 1)) {
-        $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . (isset($column_data['show']) && empty($column_data['show']) ? ' puzzle-collapsed-state' : '') . '">';
+    function column_markup($puzzle_section, $s, $c, $column_data = array()) {
+        $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '">';
         $output .= '<div class="column-inner">';
         
-        $output .= self::section_menu($puzzle_section->single_name(), $puzzle_section->has_unlimited_columns(), 'h4');
+        $output .= self::section_menu($puzzle_section, false);
         $output .= '<div class="puzzle-collapsable-content">';
         
         $output .= '<div class="row">';
@@ -206,8 +221,9 @@ class PuzzlePageBuilder {
         }
         
         $output .= '<div class="puzzle-section puzzle-' . $puzzle_section->slug() . '" data-id="' . $s . '">';
+        $output .= '<div class="puzzle-section-content">';
         
-        $output .= self::section_menu($puzzle_section->name(), true, 'h3');
+        $output .= self::section_menu($puzzle_section, true);
 
         $output .= '<div class="puzzle-collapsable-content">';
         
@@ -218,8 +234,6 @@ class PuzzlePageBuilder {
         }
         
         $output .= '</div>';
-        
-        $output .= self::add_new_column_button_markup($puzzle_section);
         
         $output .= '<div class="row puzzle-columns-area ' . ($puzzle_section->has_unlimited_columns() ? 'puzzle-unlimited-columns' : 'puzzle-fixed-columns') . '">';
 
@@ -253,12 +267,18 @@ class PuzzlePageBuilder {
         
         $output .= '</div>';
         
-        $output .= self::add_new_column_button_markup($puzzle_section);
+        if ($puzzle_section->has_unlimited_columns()) {
+            $output .= '<div class="puzzle-add-column-area">';
+            $output .= '<button class="puzzle-button puzzle-button-primary puzzle-add-column-button" data-type="' . $puzzle_section->slug() . '" data-insert="end">Add ' . $puzzle_section->single_name() . '</button>';
+            $output .= '</div>';
+        }
         
         $output .= '<input class="puzzle-section-type-field" name="puzzle_page_sections[' . $s . '][type]" type="hidden" value="' . $puzzle_section->slug() . '" />';
         $output .= '</div>';
         
         $output .= self::add_new_section_buttons_markup();
+        
+        $output .= '</div>';
         
         return $output;
     }

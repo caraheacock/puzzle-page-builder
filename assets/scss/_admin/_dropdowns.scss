@@ -1,0 +1,50 @@
+/*-----------*/
+/* Dropdowns */
+/*-----------*/
+
+.puzzle-has-dropdown {
+    position: relative;
+  
+    /* The dropdown itself */
+    ul {
+        position: absolute;
+        visibility: hidden;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+        width: 200px;
+        margin: 0;
+        background-color: #fff;
+        text-align: left;
+        @include box-shadow(1px 1px 3px rgba(#000, 0.1));
+        @include transition(all 0.4s ease);
+        opacity: 0;
+  
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        li, a {
+            font-size: 12px;
+        }
+  
+        a {
+            display: block;
+            width: 100%;
+            height: auto;
+            padding: 3px 15px;
+            color: $body-color;
+            text-decoration: none;
+      
+            &:hover {
+                background-color: lighten($primary-color, 40%);
+                color: $body-color;
+            }
+            
+            i {
+                width: 15px;
+            }
+        }
+    }
+}

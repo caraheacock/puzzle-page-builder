@@ -25,6 +25,15 @@
         }
     }
     
+    input.puzzle-icon-library-search {
+        display: block;
+        max-width: 400px;
+        height: 46px;
+        margin: ($space-unit / 2) auto;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
     hr {
         margin: 30px 0;
     }

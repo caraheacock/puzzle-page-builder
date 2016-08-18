@@ -36,8 +36,11 @@ jQuery('document').ready(function($) {
         $('#puzzle_custom_template_select').change(customTemplateCheck);
     }
     
-    /* Allow user to sort columns using jQuery UI sortable */
-    $('.puzzle-sections, .puzzle-columns-area').sortable();
+    /* Allow user to sort sections and columns using jQuery UI sortable */
+    $('.puzzle-sections').sortable({
+        items: '.puzzle-section'
+    });
+    $('.puzzle-columns-area').sortable();
     
     /* Show and hide add section buttons */
     $document.on('click', '.puzzle-add-section-open-buttons', function(e) {
@@ -185,10 +188,41 @@ jQuery('document').ready(function($) {
         })
     });
     
-    /* Show and hide tip */
-    $document.on('click tap', '.puzzle-field-tip-button', function() {
+    /* Search icons */
+    $document.on('keyup', '.puzzle-icon-library-search', function() {
+        var searchValue = $(this).val();
+        
+        $('.puzzle-icon-library .icon-molecule').hide();
+        $('.puzzle-icon-library .icon-molecule').filter(function() {
+            return $(this).text().indexOf(searchValue) !== -1;
+        }).show();
+    });
+    
+    /* Show/hide tip */
+    $document.on('click', '.puzzle-field-tip-button', function() {
         var $tipText = $(this).siblings('.puzzle-field-tip-content').children();
         $tipText.slideToggle();
+    });
+
+    /* Open/close dropdown */
+    $document.on('click', '.puzzle-dropdown-trigger', function(e) {
+        e.preventDefault();
+
+        var $dropdown = $(this).closest('.puzzle-has-dropdown').children('ul');
+        $dropdown.toggleClass('show');
+
+        // Close other dropdowns
+        $('.puzzle-has-dropdown ul.show').not($dropdown).removeClass('show');
+    });
+    
+    /*
+     * Close all dropdowns when the user clicks on something that is
+     * not a dropdown
+     */
+    $document.bind('click', function(e) {
+        if ($(e.target).closest('.puzzle-has-dropdown').length === 0) {
+            $('.puzzle-has-dropdown').children('ul').removeClass('show');
+        }
     });
     
     /* Initialize WordPress color picker */

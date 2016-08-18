@@ -20,10 +20,6 @@ function ppb_icon_library($library) {
     return $icon_list;
 }
 
-function ppb_font_awesome_icons() {
-    
-}
-
 // Add hidden icon library
 function ppb_admin_init_icon_library() {
     $puzzle_settings = new PuzzleSettings;
@@ -43,7 +39,7 @@ function ppb_meta_options_icon_library() {
     <div class="puzzle-icon-library puzzle-pop-up-area">
         <div class="puzzle-icon-library-inner">
             <h1>Icon Library</h1>
-            <p>Find an icon faster with <strong>CTRL+F</strong> on PC or <strong>Command+F</strong> on Mac.</p>
+            <input class="puzzle-icon-library-search" placeholder="Search icons" />
             
             <?php if ($puzzle_settings->has_icon_library_choice_none()) : ?>
             <hr />

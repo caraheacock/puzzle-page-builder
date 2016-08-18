@@ -10,6 +10,7 @@
     @import '_admin/_typography';
     @import '_admin/_forms';
     @import '_global/_media';
+    @import '_admin/_dropdowns';
     
     *:focus {
         @include box-shadow(none);
@@ -26,7 +27,20 @@
 
 #puzzle-page-section-options {
     word-wrap: break-word;
-
+    
+    .puzzle-section {
+        @extend %page-max-width;
+        
+        h3 {
+            text-align: center;
+        }
+    }
+    
+    .puzzle-section-content {
+        @extend %default-border-radius;
+        background-color: $very-light-gray;
+    }
+    
     .puzzle-general-options-area {
         text-align: left;
     }
@@ -90,16 +104,6 @@
         padding: 10px 0;
     }
 
-    .puzzle-section {
-        @extend %page-max-width;
-        @extend %default-border-radius;
-        background-color: $very-light-gray;
-        
-        h3 {
-            text-align: center;
-        }
-    }
-
     .puzzle-general-options-area, .puzzle-columns-area {
         padding: 10px;
     }
@@ -116,6 +120,7 @@
             padding: 0;
             @extend %default-border-radius;
             background-color: #fff;
+            @include box-shadow(0 0 3px rgba(#000, 0.1));
         }
     }
     
@@ -132,6 +137,7 @@
     }
 
     .puzzle-add-section-open-buttons {
+        background-color: #fff;
         @extend %circle-button;
     }
 
