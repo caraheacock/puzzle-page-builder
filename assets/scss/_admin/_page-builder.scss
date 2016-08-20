@@ -25,6 +25,16 @@
     display: none;
 }
 
+@include keyframes(new-section) {
+    0%, 100% {
+        outline: solid 0px transparent;
+    }
+    
+    50% {
+        outline: solid 5px $primary-color;
+    }
+}
+
 #puzzle-page-section-options {
     word-wrap: break-word;
     
@@ -33,6 +43,12 @@
         
         h3 {
             text-align: center;
+        }
+    }
+    
+    .puzzle-section-content, .puzzle-columns-area .column-inner {
+        &.new {
+            @include animation(new-section 1s ease);
         }
     }
     
@@ -45,6 +61,21 @@
         text-align: left;
     }
     
+    .puzzle-collapse {
+        i:before {
+            content: '\f107'; // angle-down
+        }
+    }
+    
+    .puzzle-collapse-all {
+        position: relative;
+        z-index: 1;
+        
+        i:before {
+            content: '\f103'; // angle-double-down
+        }
+    }
+    
     .puzzle-section-menu {
         text-align: center;
         
@@ -53,16 +84,41 @@
             @include justify-content(space-between);
             padding: 5px 10px;
             
+            > * {
+                @include flex(0 1 auto);
+                
+                &:first-child {
+                    margin-right: auto;
+                }
+            }
+            
             &.puzzle-section-menu-top {
                 @extend %default-border-radius;
                 border-bottom-right-radius: 0;
                 border-bottom-left-radius: 0;
                 background-color: $light-gray;
             }
+            
+            &.puzzle-section-menu-title {
+                cursor: pointer;
+                
+                &:hover, &:focus {
+                    .puzzle-collapse {
+                        color: $primary-color;
+                    }
+                }
+                
+                &:active {
+                    .puzzle-collapse {
+                        color: $primary-color-dark;
+                    }
+                }
+            }
         }
         
         h3, h4 {
             margin: 0;
+            text-align: left;
         }
         
         a {
@@ -95,6 +151,25 @@
             
             &:active {
                 background-color: $alert-color-dark;
+            }
+        }
+        
+        &.show, &.show-all {
+            .puzzle-collapse {
+                i:before {
+                    content: '\f106'; // angle-up
+                }
+            }
+        }
+        
+        &.show-all {
+            .puzzle-collapse-all {
+                position: relative;
+                z-index: 1;
+        
+                i:before {
+                    content: '\f102'; // angle-double-up
+                }
             }
         }
     }
@@ -295,7 +370,7 @@
  * Color Picker
  *
  * Make sure it looks like WordPress intended it to, and not be affected by
- * out styles.
+ * our styles.
  */
 .wp-picker-container {
     * {

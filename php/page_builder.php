@@ -85,32 +85,47 @@ function ppb_meta_box_options() {
     <script>
         var $ = jQuery.noConflict(),
             $document = $(document),
-            sectionCount = <?php echo $s ?>;
+            sectionCount = <?php echo $s + 1; ?>;
+        
+        /* Indicates a new section visually */
+        var highlightSection = function($newSection) {
+            $newSection.addClass('new');
+            setTimeout(function() {
+                $newSection.removeClass('new');
+            }, 1000);
+        };
         
         /* Add section */
         $document.on('click', '.puzzle-add-section-button', function(e) {
             e.preventDefault();
             
             var $t = $(this),
-                markup = '',
+                $newSection = '',
                 sectionType = $t.data('type'),
                 insertLocation = $t.data('insert');
             
             switch (sectionType) {
                 <?php foreach ($puzzle_sections as $puzzle_section) : ?>
                 case ('<?php echo $puzzle_section->slug(); ?>') :
-                    markup = '<?php echo $puzzle_page_builder->admin_section_markup($puzzle_section, '\'+sectionCount+\'') ?>';
+                    $newSection = $('<?php echo $puzzle_page_builder->admin_section_markup($puzzle_section, '\'+sectionCount+\'') ?>');
                     break;
                 <?php endforeach; ?>
             }
             
             if (insertLocation === 'before') {
-                $t.closest('.puzzle-add-section, .puzzle-section').before(markup);
+                $t.closest('.puzzle-section').before($newSection);
             } else {
-                $t.closest('.puzzle-add-section, .puzzle-section').after(markup);
+                var $afterSection = $t.closest('.puzzle-section');
+                
+                if ($afterSection.length === 0) {
+                    $afterSection = $t.closest('.puzzle-add-section');
+                }
+                
+                $afterSection.after($newSection);
             }
             
             $('.puzzle-add-section-buttons, .puzzle-has-dropdown ul').removeClass('show');
+            highlightSection($newSection.find('.puzzle-section-content'));
             sectionCount++;
         });
         
@@ -119,7 +134,7 @@ function ppb_meta_box_options() {
             e.preventDefault();
             
             var $t = $(this),
-                markup = '',
+                $newColumn = '',
                 $thisSection = $t.parents('.puzzle-section'),
                 thisSectionCount = $thisSection.data('id'),
                 columnCount = $thisSection.find('.puzzle-page-builder-column').length,
@@ -127,11 +142,12 @@ function ppb_meta_box_options() {
                 insertLocation = $t.data('insert');
             
             switch (sectionType) {
-                <?php foreach ($puzzle_sections as $puzzle_section) :
+                <?php
+                foreach ($puzzle_sections as $puzzle_section) :
                     if ($puzzle_section->has_unlimited_columns()) :
                     ?>
                 case ('<?php echo $puzzle_section->slug(); ?>') :
-                    markup = '<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+thisSectionCount+\'', '\'+columnCount+\''); ?>';
+                    $newColumn = $('<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+thisSectionCount+\'', '\'+columnCount+\''); ?>');
                     break;
                     <?php
                     endif;
@@ -140,14 +156,15 @@ function ppb_meta_box_options() {
             }
             
             if (insertLocation === 'before') {
-                $t.closest('.puzzle-page-builder-column').before(markup);
+                $t.closest('.puzzle-page-builder-column').before($newColumn);
             } else if (insertLocation === 'end') {
-                $thisSection.find('.puzzle-columns-area').append(markup);
+                $thisSection.find('.puzzle-columns-area').append($newColumn);
             } else {
-                $t.closest('.puzzle-page-builder-column').after(markup);
+                $t.closest('.puzzle-page-builder-column').after($newColumn);
             }
             
             $('.puzzle-has-dropdown ul').removeClass('show');
+            highlightSection($newColumn.find('.column-inner'));
             
             $('.puzzle-color-field').wpColorPicker();
             return false;

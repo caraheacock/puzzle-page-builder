@@ -38,9 +38,16 @@ jQuery('document').ready(function($) {
     
     /* Allow user to sort sections and columns using jQuery UI sortable */
     $('.puzzle-sections').sortable({
-        items: '.puzzle-section'
+        distance: 10,
+        items: '.puzzle-section',
+        revert: 100,
+        tolerance: 'pointer'
     });
-    $('.puzzle-columns-area').sortable();
+    $('.puzzle-columns-area').sortable({
+        distance: 10,
+        revert: 100,
+        tolerance: 'pointer'
+    });
     
     /* Show and hide add section buttons */
     $document.on('click', '.puzzle-add-section-open-buttons', function(e) {
@@ -55,12 +62,54 @@ jQuery('document').ready(function($) {
     });
     
     /* Show and hide sections and columns */
-    $document.on('click', '.puzzle-edit', function(e) {
+    $document.on('click', '.puzzle-section-menu-title', function(e) {
         e.preventDefault();
         
-        var $t = $(this);
+        if ($(e.target).hasClass('.puzzle-collapse-all') || $(e.target).closest('.puzzle-collapse-all').length > 0) {
+            return false;
+        }
         
-        $t.closest('.puzzle-section-menu').siblings('.puzzle-collapsable-content').slideToggle();
+        var $t = $(this),
+            $menu = $t.closest('.puzzle-section-menu'),
+            $collapsableContent = $menu.siblings('.puzzle-collapsable-content'),
+            $allMenus = $t.closest('.puzzle-section').find('.puzzle-section-menu'),
+            $sectionMenu = $allMenus.first();
+        
+        if ($menu.hasClass('show')) {
+            $menu.removeClass('show');
+            $collapsableContent.slideUp();
+            
+            if ($sectionMenu.hasClass('show-all')) {
+                $sectionMenu.removeClass('show-all');
+            }
+        } else {
+            $menu.addClass('show');
+            $collapsableContent.slideDown();
+            
+            if ($allMenus.not('.show').length === 0) {
+                $sectionMenu.addClass('show-all');
+            }
+        }
+    });
+    
+    /* Show and hide all content in a section */
+    $document.on('click', '.puzzle-collapse-all', function(e) {
+        e.preventDefault();
+        
+        var $t = $(this),
+            $menu = $t.closest('.puzzle-section-menu'),
+            $collapsableContents = $t.closest('.puzzle-section').find('.puzzle-collapsable-content'),
+            $allMenus = $t.closest('.puzzle-section').find('.puzzle-section-menu');
+        
+        if ($menu.hasClass('show-all')) {
+            $menu.removeClass('show-all');
+            $allMenus.removeClass('show');
+            $collapsableContents.slideUp();
+        } else {
+            $menu.addClass('show-all');
+            $allMenus.addClass('show');
+            $collapsableContents.slideDown();
+        }
     });
     
     /* Remove a section or column */

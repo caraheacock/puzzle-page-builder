@@ -150,7 +150,7 @@ class PuzzlePageBuilder {
             $output .= '</div>';
         }
         
-        $output .= '<div class="row">';
+        $output .= '<div class="row puzzle-section-menu-title">';
         
         if ($is_section) {
             $output .= '<h3>' . $puzzle_section->name() . '</h3>';
@@ -158,7 +158,12 @@ class PuzzlePageBuilder {
             $output .= '<h4>' . $puzzle_section->single_name() . '</h4>';
         }
         
-        $output .= '<a class="puzzle-edit" href="#" title="Edit"><i class="fa fa-pencil"></i></a>';
+        $output .= '<a class="puzzle-collapse" href="#" title="Expand Content"><i class="fa"></i></a>';
+        
+        if ($is_section) {
+            $output .= '<a class="puzzle-collapse-all" href="#" title="Expand All Content"><i class="fa"></i></a>';
+        }
+        
         $output .= '</div>';
         $output .= '</div>';
         
