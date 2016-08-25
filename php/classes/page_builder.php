@@ -135,12 +135,12 @@ class PuzzlePageBuilder {
             $output .= '</a>';
             $output .= '</li>';
             $output .= '<li>';
-            $output .= '<a class="puzzle-copy-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before">';
+            $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before" data-copy="true">';
             $output .= '<i class="fa fa-copy"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
             $output .= '</a>';
             $output .= '</li>';
             $output .= '<li>';
-            $output .= '<a class="puzzle-copy-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after">';
+            $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after" data-copy="true">';
             $output .= '<i class="fa fa-copy"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
             $output .= '</a>';
             $output .= '</li>';
@@ -179,7 +179,7 @@ class PuzzlePageBuilder {
      * $column_data - array, the column's data
      */
     function column_markup($puzzle_section, $s, $c, $column_data = array()) {
-        $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '">';
+        $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '" data-id="' . $c . '">';
         $output .= '<div class="column-inner">';
         
         $output .= self::section_menu($puzzle_section, false);

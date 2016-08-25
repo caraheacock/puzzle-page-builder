@@ -61,21 +61,6 @@
         text-align: left;
     }
     
-    .puzzle-collapse {
-        i:before {
-            content: '\f107'; // angle-down
-        }
-    }
-    
-    .puzzle-collapse-all {
-        position: relative;
-        z-index: 1;
-        
-        i:before {
-            content: '\f103'; // angle-double-down
-        }
-    }
-    
     .puzzle-section-menu {
         text-align: center;
         
@@ -140,6 +125,25 @@
             }
         }
         
+        .puzzle-collapse, .puzzle-collapse-all {
+            font-size: 30px;
+        }
+        
+        .puzzle-collapse {
+            i:before {
+                content: '\f107'; // angle-down
+            }
+        }
+    
+        .puzzle-collapse-all {
+            position: relative;
+            z-index: 1;
+        
+            i:before {
+                content: '\f103'; // angle-double-down
+            }
+        }
+        
         .puzzle-remove-section {
             @extend %circle-button;
             border-color: $medium-gray;
@@ -154,7 +158,7 @@
             }
         }
         
-        &.show, &.show-all {
+        &.show {
             .puzzle-collapse {
                 i:before {
                     content: '\f106'; // angle-up

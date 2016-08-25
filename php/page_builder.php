@@ -100,33 +100,64 @@ function ppb_meta_box_options() {
             e.preventDefault();
             
             var $t = $(this),
+                $targetSection = $t.closest('.puzzle-section'),
                 $newSection = '',
                 sectionType = $t.data('type'),
-                insertLocation = $t.data('insert');
+                insertLocation = $t.data('insert'),
+                isCopy = $t.data('copy');
             
-            switch (sectionType) {
-                <?php foreach ($puzzle_sections as $puzzle_section) : ?>
-                case ('<?php echo $puzzle_section->slug(); ?>') :
-                    $newSection = $('<?php echo $puzzle_page_builder->admin_section_markup($puzzle_section, '\'+sectionCount+\'') ?>');
-                    break;
-                <?php endforeach; ?>
+            /* Set section markup */
+            
+            /*
+             * If the new section is a copy, clone the old section and update
+             * the section ID numbers in the input field names.
+             */
+            if (isCopy) {
+                $newSection = $targetSection.clone();
+                $newSection.attr('data-id', sectionCount);
+                $newSection.find('input, select, textarea').each(function() {
+                    var oldName = $(this).attr('name');
+                    var newName = oldName.replace(/([^\]]\[)(\d+)(\])/, '$1' + sectionCount + '$3');
+                    $(this).attr('name', newName);
+                });
+            /* Else use markup for a new section */
+            } else {
+                switch (sectionType) {
+                    <?php foreach ($puzzle_sections as $puzzle_section) : ?>
+                    case '<?php echo $puzzle_section->slug(); ?>':
+                        $newSection = $('<?php echo $puzzle_page_builder->admin_section_markup($puzzle_section, '\'+sectionCount+\'') ?>');
+                        break;
+                    <?php endforeach; ?>
+                }
             }
             
+            /* Insert in the desired location */
             if (insertLocation === 'before') {
-                $t.closest('.puzzle-section').before($newSection);
+                $targetSection.before($newSection);
             } else {
-                var $afterSection = $t.closest('.puzzle-section');
-                
-                if ($afterSection.length === 0) {
-                    $afterSection = $t.closest('.puzzle-add-section');
+                if ($targetSection.length === 0) {
+                    $targetSection = $t.closest('.puzzle-add-section');
                 }
                 
-                $afterSection.after($newSection);
+                $targetSection.after($newSection);
             }
             
+            /* Close dropdowns */
             $('.puzzle-add-section-buttons, .puzzle-has-dropdown ul').removeClass('show');
+            
+            /* Animate the new section */
             highlightSection($newSection.find('.puzzle-section-content'));
+            
+            /*
+             * Re-init WordPress color picker just in case color fields
+             * are present
+             */
+            $('.puzzle-color-field').wpColorPicker();
+            
+            /* Increment the section counter */
             sectionCount++;
+            
+            return false;
         });
         
         /* Add column */
@@ -134,39 +165,77 @@ function ppb_meta_box_options() {
             e.preventDefault();
             
             var $t = $(this),
+                $targetColumn = $t.closest('.puzzle-page-builder-column'),
                 $newColumn = '',
                 $thisSection = $t.parents('.puzzle-section'),
                 thisSectionCount = $thisSection.data('id'),
-                columnCount = $thisSection.find('.puzzle-page-builder-column').length,
                 sectionType = $t.data('type'),
-                insertLocation = $t.data('insert');
+                insertLocation = $t.data('insert'),
+                isCopy = $t.data('copy');
             
-            switch (sectionType) {
-                <?php
-                foreach ($puzzle_sections as $puzzle_section) :
-                    if ($puzzle_section->has_unlimited_columns()) :
-                    ?>
-                case ('<?php echo $puzzle_section->slug(); ?>') :
-                    $newColumn = $('<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+thisSectionCount+\'', '\'+columnCount+\''); ?>');
-                    break;
-                    <?php
-                    endif;
-                endforeach;
-                ?>
-            }
+            /* Get the next number for the column */
+            var columnIDs = $thisSection.find('.puzzle-page-builder-column').map(function() {
+                return $(this).data('id');
+            }).get();
+            var columnCount = Math.max.apply(null, columnIDs);
+            columnCount++;
             
-            if (insertLocation === 'before') {
-                $t.closest('.puzzle-page-builder-column').before($newColumn);
-            } else if (insertLocation === 'end') {
-                $thisSection.find('.puzzle-columns-area').append($newColumn);
+            /* Set column markup */
+            
+            /*
+             * If the new column is a copy, clone the old column and update
+             * the column ID numbers in the input field names.
+             */
+            if (isCopy) {
+                $newColumn = $targetColumn.clone();
+                $newColumn.attr('data-id', columnCount);
+                $newColumn.find('input, select, textarea').each(function() {
+                    var oldName = $(this).attr('name');
+                    var newName = oldName.replace(/(\]\[)(\d+)(\])/, '$1' + columnCount + '$3');
+                    $(this).attr('name', newName);
+                });
+            /* Else use markup for a new column */
             } else {
-                $t.closest('.puzzle-page-builder-column').after($newColumn);
+                switch (sectionType) {
+                    <?php
+                    foreach ($puzzle_sections as $puzzle_section) :
+                        if ($puzzle_section->has_unlimited_columns()) :
+                        ?>
+                    case '<?php echo $puzzle_section->slug(); ?>':
+                        $newColumn = $('<?php echo $puzzle_page_builder->column_markup($puzzle_section, '\'+thisSectionCount+\'', '\'+columnCount+\''); ?>');
+                        break;
+                        <?php
+                        endif;
+                    endforeach;
+                    ?>
+                }
             }
             
+            /* Insert in the desired location */
+            switch (insertLocation) {
+                case 'before':
+                    $targetColumn.before($newColumn);
+                    break;
+                case 'end':
+                    $thisSection.find('.puzzle-columns-area').append($newColumn);
+                    break;
+                default:
+                    $targetColumn.after($newColumn);
+                    break;
+            }
+            
+            /* Close dropdowns */
             $('.puzzle-has-dropdown ul').removeClass('show');
+            
+            /* Animate the new section */
             highlightSection($newColumn.find('.column-inner'));
             
+            /*
+             * Re-init WordPress color picker just in case color fields
+             * are present
+             */
             $('.puzzle-color-field').wpColorPicker();
+            
             return false;
         });
     </script>

@@ -79,7 +79,7 @@ jQuery('document').ready(function($) {
             $menu.removeClass('show');
             $collapsableContent.slideUp();
             
-            if ($sectionMenu.hasClass('show-all')) {
+            if ($allMenus.length === $allMenus.not('.show').length) {
                 $sectionMenu.removeClass('show-all');
             }
         } else {
