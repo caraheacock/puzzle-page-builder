@@ -3,3 +3,17 @@
 @import '_lib/_owl.carousel';
 @import '_lib/_owl.theme';
 @import '_lib/_owl.transitions';
+
+// Global
+@import '_global/_variables';
+@import '_global/_mixins';
+@import '_global/_utility';
+@import '_global/_grid';
+
+// Front end
+@import '_frontend/_sections';
+@import '_frontend/_accordions';
+@import '_frontend/_call-to-action';
+@import '_frontend/_carousel';
+@import '_frontend/_features';
+@import '_frontend/_team-members';

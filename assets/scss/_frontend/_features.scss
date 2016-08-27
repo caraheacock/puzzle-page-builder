@@ -1,0 +1,94 @@
+/*----------*/
+/* Features */
+/*----------*/
+
+.puzzle-features {
+    .puzzle-icon-link, .puzzle-main-icon {
+        display: block;
+        width: 6rem;
+        height: 6rem;
+        margin: 0 auto ($space-unit / 3) auto;
+    }
+    
+    .puzzle-main-icon {
+        font-size: 5rem;
+        line-height: 6rem;
+        text-align: center;
+    }
+    
+    .puzzle-icon-link {
+        text-decoration: none;
+    }
+    
+    .icon-column, .icon-row .puzzle-feature-column-content > h3:first-child {
+        text-align: center;
+    }
+    
+    .icon-column {
+        .column-inner {
+            @include display-flex;
+            @include flex-direction(column);
+            @include align-items(center);
+            padding-bottom: $space-unit / 2;
+            
+            > * {
+                @include flex(0 1 auto);
+            }
+            
+            .puzzle-feature-column-content {
+                @include flex-grow(1);
+                width: 100%;
+            }
+            
+            ul {
+                margin-left: 0;
+                padding: 0 $text-space-unit;
+                list-style: none;
+        
+                li {
+                    padding: $text-space-unit 0;
+                    border-top: solid 1px $medium-gray;
+                
+                    &:first-child {
+                        border-top: 0;
+                    }
+                }
+            }
+        
+            ol {
+                text-align: left;
+            }
+        }
+    
+        .puzzle-feature-main-button {
+            width: 80%;
+            margin-top: $space-unit;
+        }
+    }
+}
+
+.puzzle-features-content {
+    @include justify-content(center);
+}
+
+@include breakpoint($size-sm) {
+    .puzzle-features {
+        .icon-row {
+            .column-inner {
+                @include display-flex;
+            }
+            
+            .puzzle-main-icon, .puzzle-icon-link {
+                @include flex(0 0 #{$space-unit * 2});
+            }
+    
+            .puzzle-feature-column-content {
+                @include flex(1 1 100%);
+                
+                > h3:first-child {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
