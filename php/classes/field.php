@@ -92,15 +92,9 @@ class PuzzleField {
      * the end of the options array.
      */
     function add_option($option_key, $option_value, $index = false) {
-        array_splice($this->options, $place, 0, 'c');
-        
-        /*
-         * If index is set and it's less than the length of the options array,
-         * insert the option into that place, else add it to the end.
-         */
         if (isset($index) && $index < count($this->options)) {
-            $array_start = array_splice($this->options, 0, $index);
-            $array_end = array_splice($this->options, $index);
+            $array_start = array_slice($this->options, 0, $index);
+            $array_end = array_slice($this->options, $index);
             $this->options = array_merge($array_start, array($option_key => $option_value), $array_end);
         } else {
             $this->options[$option_key] = $option_value;

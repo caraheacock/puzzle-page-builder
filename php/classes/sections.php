@@ -6,10 +6,10 @@
  */
 
 class PuzzleSections {
-    // Static variable: array of PuzzleSection objects.
+    /* Static variable: array of PuzzleSection objects. */
     private static $Sections = array();
     
-    // Adds a section
+    /* Adds a section */
     function add_section($new_section) {
         self::$Sections[$new_section->slug()] = $new_section;
         
@@ -18,9 +18,28 @@ class PuzzleSections {
         });
     }
     
-    // Returns the sections
+    /* Returns the sections */
     function sections() {
         return self::$Sections;
+    }
+    
+    /* Returns a section by its slug */
+    function section($slug) {
+        return self::$Sections[$slug];
+    }
+    
+    /* Remove a section by its slug */
+    function remove_section($slug) {
+        if (array_key_exists($slug, self::$Sections)) {
+            unset(self::$Sections[$slug]);
+        }
+    }
+    
+    /* Remove multiple sections by their keys */
+    function remove_sections($slugs) {
+        foreach ($slugs as $slug) {
+            self::remove_section($slug);
+        }
     }
 }
 
