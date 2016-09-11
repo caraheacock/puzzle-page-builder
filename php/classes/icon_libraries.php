@@ -48,6 +48,16 @@ class PuzzleIconLibraries {
     }
     function default_icon() { return self::$DefaultIcon; }
     
+    /*
+     * Boolean: indicating if a "no icon" choice is available in the
+     * icon library.
+     */
+    private static $ChoiceNone = false;
+    function set_choice_none($boolean) {
+        self::$ChoiceNone = $boolean;
+    }
+    function has_choice_none() { return self::$ChoiceNone; }
+    
     /* Returns the markup for the libraries */
     function markup() {
         $output = '';

@@ -20,6 +20,7 @@ class PuzzleSettings {
     private static $Shortcodes = true;
     function set_shortcodes($boolean) {
         self::$Shortcodes = $boolean;
+        return $this;
     }
     function has_shortcodes() { return self::$Shortcodes; }
     
@@ -29,28 +30,9 @@ class PuzzleSettings {
     private static $IconLibrary = true;
     function set_icon_library($boolean) {
         self::$IconLibrary = $boolean;
+        return $this;
     }
     function has_icon_library() { return self::$IconLibrary; }
-    
-    /*
-     * Boolean: indicating if the Font Awesome icons are available in the icon
-     * library in the page builder.
-     */
-    private static $FontAwesomeLibrary = true;
-    function set_font_awesome_library($boolean) {
-        self::$FontAwesomeLibrary = $boolean;
-    }
-    function has_font_awesome_library() { return self::$FontAwesomeLibrary; }
-    
-    /*
-     * Boolean: indicating if a "no icon" choice is available in the page
-     * builder's icon library.
-     */
-    private static $IconLibraryChoiceNone = false;
-    function set_icon_library_choice_none($boolean) {
-        self::$IconLibraryChoiceNone = $boolean;
-    }
-    function has_icon_library_choice_none() { return self::$IconLibraryChoiceNone; }
     
     /*
      * Array: post types that the page builder is available for, or false if
@@ -59,6 +41,7 @@ class PuzzleSettings {
     private static $PageBuilderPostTypes = array('page');
     function set_page_builder_post_types($new_post_types) {
         self::$PageBuilderPostTypes = $new_post_types;
+        return $this;
     }
     function page_builder_post_types() { return self::$PageBuilderPostTypes; }
     
@@ -66,6 +49,7 @@ class PuzzleSettings {
     private static $OwlCarousel = true;
     function set_owl_carousel($boolean) {
         self::$OwlCarousel = $boolean;
+        return $this;
     }
     function has_owl_carousel() { return self::$OwlCarousel; }
     
@@ -78,6 +62,7 @@ class PuzzleSettings {
     private static $TemplatesDirectory = '';
     function set_templates_directory($new_templates_directory) {
         self::$TemplatesDirectory = $new_templates_directory;
+        return $this;
     }
     function templates_directory() { return self::$TemplatesDirectory; }
 }
