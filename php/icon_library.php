@@ -5,12 +5,7 @@
  * Icon Library
  */
 
-$puzzle_settings = new PuzzleSettings;
-
-if ($puzzle_settings->has_icon_library()) {
-    add_action('admin_init', 'ppb_admin_init_icon_library');
-}
-
+/* Construct the HTML for the icon choices */
 function ppb_icon_library($library) {
     $icon_list = '';
     foreach ($library['icons'] as $icon) {
@@ -20,9 +15,11 @@ function ppb_icon_library($library) {
     return $icon_list;
 }
 
-// Add hidden icon library
+/* Add hidden icon library */
 function ppb_admin_init_icon_library() {
     $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_icon_library()) return;
+    
     $puzzle_page_builder_post_types = $puzzle_settings->page_builder_post_types();
     
     if ($puzzle_page_builder_post_types) {
@@ -31,6 +28,7 @@ function ppb_admin_init_icon_library() {
         }
     }
 }
+add_action('admin_init', 'ppb_admin_init_icon_library');
 
 function ppb_meta_options_icon_library() {
     $puzzle_settings = new PuzzleSettings;

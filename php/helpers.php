@@ -20,7 +20,7 @@ foreach ($actions as $action) {
 }
 
 /*
- * Determines classes for a section. Can be edited on a theme-by-theme basis.
+ * Determines classes for a section
  *
  * $page_section - array of data pertaining to the section
  *
@@ -40,7 +40,7 @@ function ppb_section_classes($page_section) {
 }
 
 /*
- * Determines the ID for a section. Can be edited on a theme-by-theme basis.
+ * Determines the ID for a section
  *
  * $s - integer, the section number we are on
  * $page_section - array of data pertaining to the section

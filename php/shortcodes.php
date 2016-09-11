@@ -5,17 +5,11 @@
  * Shortcodes
  */
 
-$puzzle_settings = new PuzzleSettings;
-
-if ($puzzle_settings->has_shortcodes()) {
-    add_shortcode('puzzle_button', 'ppb_button_shortcode');
-    add_action('init', 'ppb_add_tinymce_buttons');
-    add_filter('tiny_mce_version', 'ppb_refresh_mce');
-    add_action('admin_init', 'ppb_admin_init_shortcode_meta_box');
-}
-
-// Add puzzle button shortcode
+/* Add puzzle button shortcode */
 function ppb_button_shortcode($atts) {
+    $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_shortcodes()) return;
+    
     $a = shortcode_atts(array(
         'color'                 => 'primary-color',
         'icon'                  => 'false',
@@ -23,29 +17,34 @@ function ppb_button_shortcode($atts) {
         'open_link_in_new_tab'  => 'false',
         'text'                  => 'Click Here'
     ), $atts);
+
+    $icon_class = ($a['icon'] == 'true' ? ' puzzle-button-has-icon' : '');
+
+    $open_link_in_new_tab = ($a['open_link_in_new_tab'] == 'true' ? ' target="_blank"' : '');
     
-    $icon_class = (($a['icon'] == 'true') ? ' puzzle-button-has-icon' : '');
-    
-    $open_link_in_new_tab = (($a['open_link_in_new_tab'] == 'true') ? ' target="_blank"' : '');
-        
     $output  = '<a class="puzzle-button puzzle-button-' . $a['color'] . $icon_class . '"';
     $output .= ' href="' . $a['link'] . '"';
     $output .= $open_link_in_new_tab . '>';
     $output .= $a['text'];
     $output .= '</a>';
-    
+
     return $output;
 }
+add_shortcode('puzzle_button', 'ppb_button_shortcode');
 
-// Add puzzle button shortcode button to WYSIWYG editor
+/* Add puzzle button shortcode button to WYSIWYG editor */
 function ppb_add_tinymce_buttons() {
     if (!current_user_can('edit_posts') && !current_user_can('edit_pages')) return;
+    
+    $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_shortcodes()) return;
     
     if (get_user_option('rich_editing') == 'true') {
         add_filter('mce_external_plugins', 'ppb_add_custom_tinymce_js');
         add_filter('mce_buttons', 'ppb_register_buttons');
     }
 }
+add_action('init', 'ppb_add_tinymce_buttons');
 
 function ppb_register_buttons($buttons) {
     array_push($buttons, "|", "puzzlebutton");
@@ -53,20 +52,28 @@ function ppb_register_buttons($buttons) {
 }
 
 function ppb_add_custom_tinymce_js($plugin_array) {
-    $plugin_array['puzzlebutton'] = plugin_dir_url(dirname(__FILE__)) . 'assets/js/custom-tinymce.js';
+    $plugin_array['puzzlebutton'] = PPB_PLUGIN_URL . 'assets/js/custom-tinymce.js';
     return $plugin_array;
 }
 
 function ppb_refresh_mce($ver) {
+    $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_shortcodes()) return $ver;
+    
     $ver += 3;
     return $ver;
 }
+add_filter('tiny_mce_version', 'ppb_refresh_mce');
 
-// Add hidden forms for WYSIWYG shortcode buttons
+/* Add hidden forms for WYSIWYG shortcode buttons */
 function ppb_admin_init_shortcode_meta_box() {
+    $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_shortcodes()) return;
+    
     add_meta_box('puzzle_shortcode_forms', 'Puzzle Shortcode Forms', 'ppb_shortcode_meta_box_options', 'page', 'normal', 'low');
     add_meta_box('puzzle_shortcode_forms', 'Puzzle Shortcode Forms', 'ppb_shortcode_meta_box_options', 'post', 'normal', 'low');
 }
+add_action('admin_init', 'ppb_admin_init_shortcode_meta_box');
 
 function ppb_shortcode_meta_box_options() { ?>
     <div id="puzzle-insert-button-shortcode-area" class="puzzle-pop-up-area">

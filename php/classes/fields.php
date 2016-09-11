@@ -15,7 +15,7 @@ class PuzzleFields {
     }
     
     /*
-     * Returns a field by its slug
+     * Returns a field by its id
      * By default this function returns a clone of the field so its properties
      * can be modified on a section by section basis, such as changing
      * the width.

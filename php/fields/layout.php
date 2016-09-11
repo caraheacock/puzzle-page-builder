@@ -8,6 +8,5 @@ $layout->set_name('Layout')
         'rows'      => 'Rows'
     ));
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($layout);
+$f->add_field($layout);
 ?>

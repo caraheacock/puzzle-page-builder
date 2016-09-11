@@ -18,6 +18,13 @@ class PuzzleIconLibrary {
     function name() { return $this->name; }
     
     /*
+     * Returns a slug of the section name, for referencing the icon library in
+     * an instance of PuzzleIconLibraries.
+     * e.g. 'font-awesome'
+     */
+    function slug() { return ppb_to_slug($this->name); }
+    
+    /*
      * Array: a list of all icons in the library
      * e.g. array('500px', 'adjust', 'adn', 'align-center', ...)
      */

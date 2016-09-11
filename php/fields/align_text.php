@@ -9,6 +9,5 @@ $align_text->set_name('Align Text')
         'right'     => 'Right'
     ));
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($align_text);
+$f->add_field($align_text);
 ?>

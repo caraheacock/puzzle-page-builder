@@ -6,6 +6,5 @@ $main_content->set_name('Main Content')
     ->set_rows(10)
     ->set_save_as('content');
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($main_content);
+$f->add_field($main_content);
 ?>

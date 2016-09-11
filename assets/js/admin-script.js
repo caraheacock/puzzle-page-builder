@@ -6,12 +6,12 @@ jQuery('document').ready(function($) {
     var templateCheck = function() {
         if ($('#page_template').val() === 'template_page_builder.php') {
             $('#postdivrich, #post-preview').hide();
-            $('#page_builder_options').show();
-            $('#using-page-builder').val(1);
+            $('#puzzle_page_builder_options').show();
+            $('#using-puzzle-page-builder').val(1);
         } else {
             $('#postdivrich, #post-preview').show();
-            $('#page_builder_options').hide();
-            $('#using-page-builder').val(0);
+            $('#puzzle_page_builder_options').hide();
+            $('#using-puzzle-page-builder').val(0);
         }
     };
     
@@ -20,14 +20,14 @@ jQuery('document').ready(function($) {
     
     /* Shows and hides areas depending on template for custom post types */
     var customTemplateCheck = function() {
-        if ($('#puzzle_custom_template_select').val() === 'page_builder') {
+        if ($('#puzzle_custom_template_select').val() === 'template_page_builder.php') {
             $('#postdivrich, #post-preview').hide();
-            $('#page_builder_options').show();
-            $('#using-page-builder').val(1);
+            $('#puzzle_page_builder_options').show();
+            $('#using-puzzle-page-builder').val(1);
         } else {
             $('#postdivrich, #post-preview').show();
-            $('#page_builder_options').hide();
-            $('#using-page-builder').val(0);
+            $('#puzzle_page_builder_options').hide();
+            $('#using-puzzle-page-builder').val(0);
         }
     };
     

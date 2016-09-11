@@ -5,6 +5,5 @@ $subhead->set_name('Subhead')
     ->set_input_type('text')
     ->set_save_as('h4');
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($subhead);
+$f->add_field($subhead);
 ?>

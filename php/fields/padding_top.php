@@ -10,6 +10,5 @@ $padding_top->set_name('Top Padding')
     ))
     ->set_selected('normal');
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($padding_top);
+$f->add_field($padding_top);
 ?>

@@ -78,21 +78,21 @@ class PuzzleField {
     }
     function options() { return $this->options; }
     
-    /* Remove an option by its key */
-    function remove_option($option_key) {
-        if (array_key_exists($option_key, $this->options)) {
-            unset($this->options[$option_key]);
-        }
-        return $this;
-    }
-    
     /*
      * Add an option. If $index is specified, the new option will be inserted
      * into that place in the array, else the new option will be added to
      * the end of the options array.
+     *
+     * $option_key - string, the option's key, how it will be saved to
+     *   the database
+     * $option_value - string, the option's value, how it will be displayed in
+     *   the select
+     * $index - integer, where to insert the new option, can be omitted
+     *
+     * Returns the PuzzleField object
      */
     function add_option($option_key, $option_value, $index = false) {
-        if (isset($index) && $index < count($this->options)) {
+        if (is_int($index) && $index < count($this->options)) {
             $array_start = array_slice($this->options, 0, $index);
             $array_end = array_slice($this->options, $index);
             $this->options = array_merge($array_start, array($option_key => $option_value), $array_end);
@@ -100,6 +100,14 @@ class PuzzleField {
             $this->options[$option_key] = $option_value;
         }
         
+        return $this;
+    }
+    
+    /* Remove an option by its key */
+    function remove_option($option_key) {
+        if (array_key_exists($option_key, $this->options)) {
+            unset($this->options[$option_key]);
+        }
         return $this;
     }
     

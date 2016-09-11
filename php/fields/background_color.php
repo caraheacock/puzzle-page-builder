@@ -10,6 +10,5 @@ $background_color->set_name('Background Color')
         'secondary' => 'Secondary Color'
     ));
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($background_color);
+$f->add_field($background_color);
 ?>

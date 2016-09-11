@@ -145,6 +145,5 @@
 //         )
 //     ));
 // 
-// $puzzle_sections = new PuzzleSections;
 // $puzzle_sections->add_section($team_members);
 ?>

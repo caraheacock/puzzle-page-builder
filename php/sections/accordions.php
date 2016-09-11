@@ -25,6 +25,5 @@ $accordions->set_name('Accordions')
         $f->field('main_content')
     ));
 
-$puzzle_sections = new PuzzleSections;
 $puzzle_sections->add_section($accordions);
 ?>

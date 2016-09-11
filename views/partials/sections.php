@@ -1,6 +1,6 @@
 <?php
 global $post;
-$page_sections = get_post_meta($post->ID, 'puzzle_page_sections', true);
+$page_sections = get_post_meta($post->ID, '_puzzle_page_sections', true);
 $puzzle_sections = (new PuzzleSections)->sections();
 
 if (!empty($page_sections)) :
@@ -88,7 +88,7 @@ if (!empty($page_sections)) :
             jQuery('#<?php echo $section_id; ?>-carousel-script').remove();
             </script>
         <?php
-    endif;
+        endif;
     endforeach;
 endif;
 ?>

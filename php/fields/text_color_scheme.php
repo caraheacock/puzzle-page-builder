@@ -8,6 +8,5 @@ $text_color_scheme->set_name('Text Color Scheme')
         'light' => 'Light'
     ));
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($text_color_scheme);
+$f->add_field($text_color_scheme);
 ?>

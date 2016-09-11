@@ -24,7 +24,7 @@ jQuery('document').ready(function($){
                     
                     $insertButtonArea.addClass('show');
                     
-                    $insertButtonSubmit.one('click', function(e) {
+                    $insertButtonSubmit.on('click', function(e) {
                         e.preventDefault();
                         
                         var $iconValue = 'false',
@@ -42,12 +42,18 @@ jQuery('document').ready(function($){
                         
                         $insertButtonArea.removeClass('show');
                         resetValues();
+                        
+                        $insertButtonSubmit.off('click');
+                        $insertButtonCancel.off('click');
                     });
                     
-                    $insertButtonCancel.one('click', function(e) {
+                    $insertButtonCancel.on('click', function(e) {
                         e.preventDefault();
                         resetValues();
                         $insertButtonArea.removeClass('show');
+                        
+                        $insertButtonSubmit.off('click');
+                        $insertButtonCancel.off('click');
                     });
                 }
             });

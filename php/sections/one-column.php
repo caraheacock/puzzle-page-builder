@@ -20,6 +20,5 @@ $one_column->set_name('One Column')
         $f->field('overlay')
     ));
 
-$puzzle_sections = new PuzzleSections;
 $puzzle_sections->add_section($one_column);
 ?>

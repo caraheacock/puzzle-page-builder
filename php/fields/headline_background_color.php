@@ -11,6 +11,5 @@ $headline_background_color->set_name('Headline BG Color')
         'none'      => 'Transparent'
     ));
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($headline_background_color);
+$f->add_field($headline_background_color);
 ?>

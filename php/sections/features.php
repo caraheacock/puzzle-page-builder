@@ -31,6 +31,5 @@ $features->set_name('Features')
         $f->field('main_content')
     ));
 
-$puzzle_sections = new PuzzleSections;
 $puzzle_sections->add_section($features);
 ?>

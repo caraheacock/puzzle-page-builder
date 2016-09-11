@@ -27,10 +27,10 @@ function ppb_meta_box_admin_init() {
  */
 function ppb_custom_post_type_template_meta_options() {
     global $post;
-    $template = get_post_meta($post->ID, 'puzzle_custom_template', true); ?>
-    <select id="puzzle_custom_template_select" name="puzzle_custom_template">
+    $template = get_post_meta($post->ID, '_puzzle_custom_template', true); ?>
+    <select id="puzzle_custom_template_select" name="_puzzle_custom_template">
         <option value="default"<?php if ($template == 'default') echo ' selected'; ?>>Default Template</option>
-        <option value="page_builder"<?php if ($template == 'page_builder') echo ' selected'; ?>>Page Builder</option>
+        <option value="template_page_builder.php"<?php if ($template == 'template_page_builder.php') echo ' selected'; ?>>Page Builder</option>
     </select>
     <?php
 }
@@ -44,7 +44,7 @@ function ppb_meta_box_options() {
     /* Use nonce for verification */
     wp_nonce_field(plugin_basename(__FILE__), 'puzzle_page_sections_meta');
     
-    $puzzle_sections_data = get_post_meta($post->ID, 'puzzle_page_sections', true);
+    $puzzle_sections_data = get_post_meta($post->ID, '_puzzle_page_sections', true);
     ?>
     <div id="puzzle-page-section-options" class="puzzle-page-section-options">
         <div class="puzzle-sections">
@@ -67,11 +67,14 @@ function ppb_meta_box_options() {
                 
                 echo $puzzle_page_builder->admin_section_markup($puzzle_section, $s, $puzzle_options_data, $puzzle_columns_data);
             }
+        } else {
+            $s = 0;
+            echo $puzzle_page_builder->add_new_section_buttons_markup();
         }
         ?>
         </div>
         
-        <input id="using-page-builder" name="using_page_builder" type="hidden" value="0" />
+        <input id="using-puzzle-page-builder" name="using_puzzle_page_builder" type="hidden" value="0" />
     </div>
     
     <div class="puzzle-text-editor-area puzzle-pop-up-area">
@@ -247,11 +250,11 @@ function ppb_save_options() {
     global $post;
     
     /* Saves the template for custom post types that enable the page builder */
-    if (!empty($post) && !empty($_POST['puzzle_custom_template'])) {
-        update_post_meta($post->ID, 'puzzle_custom_template', $_POST['puzzle_custom_template']);
+    if (!empty($post) && isset($_POST['_puzzle_custom_template'])) {
+        update_post_meta($post->ID, '_puzzle_custom_template', $_POST['_puzzle_custom_template']);
     }
     
-    if (!empty($post) && !empty($_POST['using_page_builder']) && $_POST['using_page_builder'] == 1) {
+    if (!empty($post) && !empty($_POST['using_puzzle_page_builder']) && $_POST['using_puzzle_page_builder'] == 1) {
         $post_id = $post->ID;
         
         /*
@@ -270,10 +273,14 @@ function ppb_save_options() {
         if (!wp_verify_nonce($_POST['puzzle_page_sections_meta'], plugin_basename(__FILE__))) return;
         
         /* Reset the section keys in case the user has rearranged them */
-        $puzzle_sections_data = array_values($_POST['puzzle_page_sections']);
+        $puzzle_sections_data = array();
+        
+        if (!empty($_POST['_puzzle_page_sections'])) {
+            $puzzle_sections_data = array_values($_POST['_puzzle_page_sections']);
+        }
         
         /* Save the page builder fields as post meta */
-        update_post_meta($post_id, 'puzzle_page_sections', $puzzle_sections_data);
+        update_post_meta($post_id, '_puzzle_page_sections', $puzzle_sections_data);
         
         /*
          * Save the content in the page builder to the actual post content.

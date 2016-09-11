@@ -10,6 +10,5 @@ $padding_bottom->set_name('Bottom Padding')
     ))
     ->set_selected('normal');
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($padding_bottom);
+$f->add_field($padding_bottom);
 ?>

@@ -11,6 +11,5 @@ $headline_color->set_name('Headline Color')
         'secondary' => 'Secondary Color'
     ));
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($headline_color);
+$f->add_field($headline_color);
 ?>

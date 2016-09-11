@@ -8,6 +8,7 @@
 class PuzzleSections {
     /* Static variable: array of PuzzleSection objects. */
     private static $Sections = array();
+    function sections() { return self::$Sections; }
     
     /* Adds a section */
     function add_section($new_section) {
@@ -16,11 +17,6 @@ class PuzzleSections {
         uasort(self::$Sections, function($a, $b) {
             return strnatcmp($a->order(), $b->order());
         });
-    }
-    
-    /* Returns the sections */
-    function sections() {
-        return self::$Sections;
     }
     
     /* Returns a section by its slug */
@@ -35,7 +31,10 @@ class PuzzleSections {
         }
     }
     
-    /* Remove multiple sections by their keys */
+    /*
+     * Remove multiple sections by their slugs
+     * $slugs - array, a list of slugs of sections to remove
+     */
     function remove_sections($slugs) {
         foreach ($slugs as $slug) {
             self::remove_section($slug);

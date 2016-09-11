@@ -160,7 +160,7 @@ class PuzzlePageBuilder {
         
         $output .= '<a class="puzzle-collapse" href="#" title="Expand Content"><i class="fa"></i></a>';
         
-        if ($is_section) {
+        if ($is_section && $puzzle_section->columns_num() !== 0) {
             $output .= '<a class="puzzle-collapse-all" href="#" title="Expand All Content"><i class="fa"></i></a>';
         }
         
@@ -186,7 +186,7 @@ class PuzzlePageBuilder {
         $output .= '<div class="puzzle-collapsable-content">';
         
         $output .= '<div class="row">';
-        $output .= $this->fields_markup($column_data, $puzzle_section->column_fields(), 'puzzle_page_sections[' . $s . '][columns][' . $c . ']');
+        $output .= $this->fields_markup($column_data, $puzzle_section->column_fields(), '_puzzle_page_sections[' . $s . '][columns][' . $c . ']');
         $output .= '</div>';
         
         $output .= '</div>';
@@ -205,7 +205,7 @@ class PuzzlePageBuilder {
      * $puzzle_options_data - array, the section's options data
      */
     function options_markup($puzzle_section, $s, $options_data = array()) {
-        $output = self::fields_markup($options_data, $puzzle_section->option_fields(), 'puzzle_page_sections[' . $s . '][options]');
+        $output = self::fields_markup($options_data, $puzzle_section->option_fields(), '_puzzle_page_sections[' . $s . '][options]');
         return $output;
     }
     
@@ -278,7 +278,7 @@ class PuzzlePageBuilder {
             $output .= '</div>';
         }
         
-        $output .= '<input class="puzzle-section-type-field" name="puzzle_page_sections[' . $s . '][type]" type="hidden" value="' . $puzzle_section->slug() . '" />';
+        $output .= '<input class="puzzle-section-type-field" name="_puzzle_page_sections[' . $s . '][type]" type="hidden" value="' . $puzzle_section->slug() . '" />';
         $output .= '</div>';
         
         $output .= self::add_new_section_buttons_markup();
@@ -360,7 +360,7 @@ class PuzzlePageBuilder {
              * the post content.
              */
             if ($option_fields) {
-                $content .= self::get_saveable_data($option_fields, $option_data);
+                $content .= self::get_saveable_data($option_fields, $options_data);
             }
             
             /*

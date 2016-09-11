@@ -4,6 +4,5 @@ $open_link_in_new_tab->set_name('Open link in new tab')
     ->set_id('open_link_in_new_tab')
     ->set_input_type('checkbox');
 
-$puzzle_fields = new PuzzleFields;
-$puzzle_fields->add_field($open_link_in_new_tab);
+$f->add_field($open_link_in_new_tab);
 ?>

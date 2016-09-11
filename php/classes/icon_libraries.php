@@ -6,35 +6,47 @@
  */
 
 class PuzzleIconLibraries {
-    // Static variable: an array of icon libraries
+    /* Array: the icon libraries */
     private static $Libraries = array();
+    function libraries() { return self::$Libraries; }
     
-    // Returns the icon libraries
-    function libraries() {
-        return self::$Libraries;
-    }
-    
-    // Adds an icon library
+    /* Adds an icon library */
     function add_library($new_library) {
-        self::$Libraries[$new_library->name()] = $new_library;
+        self::$Libraries[$new_library->slug()] = $new_library;
         
         uasort(self::$Libraries, function($a, $b) {
             return strnatcmp($a->order(), $b->order());
         });
     }
     
-    // Static variable: a string of the default icon in the page builder
-    private static $DefaultIcon = 'fa fa-star';
+    /* Returns an icon library by its slug */
+    function library($slug) {
+        return self::$Libraries[$slug];
+    }
     
-    // Sets the default icon
+    /* Remove an icon library by its slug */
+    function remove_library($slug) {
+        if (array_key_exists($slug, self::$Libraries)) {
+            unset(self::$Libraries[$slug]);
+        }
+    }
+    
+    /*
+     * Remove multiple libraries by their keys
+     * $slugs - array, a list of slugs of icon libraries to remove
+     */
+    function remove_libraries($slugs) {
+        foreach ($slugs as $slug) {
+            self::remove_library($slug);
+        }
+    }
+    
+    /* String: the default icon in the page builder */
+    private static $DefaultIcon = 'fa fa-star';
     function set_default_icon($new_icon) {
         self::$DefaultIcon = $new_icon;
     }
-    
-    // Returns the default icon
-    function default_icon() {
-        return self::$DefaultIcon;
-    }
+    function default_icon() { return self::$DefaultIcon; }
     
     /* Returns the markup for the libraries */
     function markup() {

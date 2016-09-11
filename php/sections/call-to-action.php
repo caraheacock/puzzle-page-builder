@@ -23,6 +23,5 @@ $call_to_action->set_name('Call to Action')
         $f->field('overlay')
     ));
 
-$puzzle_sections = new PuzzleSections;
 $puzzle_sections->add_section($call_to_action);
 ?>

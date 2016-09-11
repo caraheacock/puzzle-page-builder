@@ -17,7 +17,10 @@ class PuzzleSection {
     }
     function name() { return $this->name; }
     
-    /* Returns a CSS-friendly slug of the section name */
+    /*
+     * Returns a CSS-friendly slug of the section name
+     * e.g. 'team-members'
+     */
     function slug() { return ppb_to_slug($this->name); }
     
     /*
@@ -91,17 +94,61 @@ class PuzzleSection {
     function order() { return $this->order; }
     
     /*
+     * Add a PuzzleField. If $index is specified, the new PuzzleField will be
+     * inserted into that place in the array, else the new field will be added
+     * to the end of the array.
+     *
+     * $new_field - the new PuzzleField object to add to the array
+     * $fields - array of PuzzleField objects
+     * $index - integer, where to insert the new field, can be omitted
+     *
+     * Returns the modified $fields array
+     */
+    private function add_field($new_field, $fields, $index = false) {
+        if (is_int($index) && $index < count($fields)) {
+            $array_start = array_slice($fields, 0, $index);
+            $array_end = array_slice($fields, $index);
+            $fields = array_merge($array_start, array($new_field->id() => $new_field), $array_end);
+        } else {
+            $fields[$new_field->id()] = $new_field;
+        }
+        
+        return $fields;
+    }
+    
+    /*
      * Array: PuzzleField objects, needed for admin column fields and
      * front-end markup
      */
     private $column_fields;
+    
     function set_column_fields($new_column_fields) {
         foreach ($new_column_fields as $field) {
             $this->column_fields[$field->id()] = $field;
         }
         return $this;
     }
+    
     function column_fields() { return $this->column_fields; }
+    
+    /* Returns a column field by its ID */
+    function column_field($id) {
+        return $this->column_fields[$id];
+    }
+    
+    /* Adds a column field */
+    function add_column_field($new_column_field, $index = false) {
+        $this->column_fields = self::add_field($new_column_field, $this->column_fields, $index);
+        return $this;
+    }
+    
+    /* Remove a column field by its ID */
+    function remove_column_field($field_id) {
+        if (array_key_exists($field_id, $this->column_fields)) {
+            unset($this->column_fields[$field_id]);
+        }
+        return $this;
+    }
     
     /*
      * Array: PuzzleField objects for the option fields. Setting this variable
@@ -109,13 +156,34 @@ class PuzzleSection {
      * main content, top and bottom padding, etc.
      */
     private $option_fields;
+    
     function set_option_fields($new_option_fields) {
         foreach ($new_option_fields as $field) {
             $this->option_fields[$field->id()] = $field;
         }
         return $this;
     }
+    
     function option_fields() { return $this->option_fields; }
+    
+    /* Returns an option field by its ID */
+    function option_field($id) {
+        return $this->option_fields[$id];
+    }
+    
+    /* Adds an option field */
+    function add_option_field($new_option_field, $index = false) {
+        $this->option_fields = self::add_field($new_option_field, $this->option_fields, $index);
+        return $this;
+    }
+    
+    /* Remove an option field by its ID */
+    function remove_option_field($field_id) {
+        if (array_key_exists($field_id, $this->option_fields)) {
+            unset($this->option_fields[$field_id]);
+        }
+        return $this;
+    }
 }
 
 ?>

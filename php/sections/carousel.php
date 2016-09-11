@@ -41,6 +41,5 @@ $carousel->set_name('Carousel')
             ->set_width(6)
     ));
 
-$puzzle_sections = new PuzzleSections;
 $puzzle_sections->add_section($carousel);
 ?>
