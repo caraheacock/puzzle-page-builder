@@ -15,12 +15,12 @@ define('PPB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PPB_PLUGIN_URL', plugins_url('/', __FILE__));
 
 /* Helper functions */
-foreach (glob(PPB_PLUGIN_DIR . 'php/helpers/*.php') as $filename) {
+foreach (glob(PPB_PLUGIN_DIR . 'includes/helpers/*.php') as $filename) {
     include $filename;
 }
 
 /* Classes */
-foreach (glob(PPB_PLUGIN_DIR . 'php/classes/*.php') as $filename) {
+foreach (glob(PPB_PLUGIN_DIR . 'includes/classes/*.php') as $filename) {
     include $filename;
 }
 
@@ -35,7 +35,7 @@ function ppb_init_objects() {
     $puzzle_sections = new PuzzleSections;
     
     /* Include fields */
-    foreach (glob(PPB_PLUGIN_DIR . 'php/fields/*.php') as $filename) {
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/fields/*.php') as $filename) {
         include $filename;
     }
     
@@ -46,7 +46,7 @@ function ppb_init_objects() {
     do_action('ppb_modify_fields', $f);
     
     /* Include icon libraries */
-    foreach (glob(PPB_PLUGIN_DIR . 'php/icon_libraries/*.php') as $filename) {
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/icon_libraries/*.php') as $filename) {
         include $filename;
     }
     
@@ -54,7 +54,7 @@ function ppb_init_objects() {
     do_action('ppb_modify_icon_libraries', $puzzle_icon_libraries);
     
     /* Include sections */
-    foreach (glob(PPB_PLUGIN_DIR . 'php/sections/*.php') as $filename) {
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/sections/*.php') as $filename) {
         include $filename;
     }
     
@@ -64,7 +64,7 @@ function ppb_init_objects() {
 add_action('init', 'ppb_init_objects', 11);
 
 /* Setup assets, page builder, etc. */
-foreach (glob(PPB_PLUGIN_DIR . 'php/setup/*.php') as $filename) {
+foreach (glob(PPB_PLUGIN_DIR . 'includes/setup/*.php') as $filename) {
     include $filename;
 }
 
