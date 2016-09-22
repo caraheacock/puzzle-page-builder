@@ -11,17 +11,15 @@ $carousel->set_name('Carousel')
         $f->field('background_image'),
         $f->field('background_color'),
         $f->field('overlay'),
-        $f->field('align_text'),
+        $f->field('align_text')
+            ->set_name('Align Content')
+            ->set_id('align_content'),
         $f->field('headline'),
-        $f->field('headline_color')->set_width(6),
-        $f->field('headline_background_color')->set_width(6),
+        $f->field('headline_color'),
         $f->field('tagline'),
         $f->field('headline_color')->set_name('Tagline Color')
-            ->set_id('tagline_color')
-            ->set_width(6),
-        $f->field('headline_background_color')->set_name('Tagline BG Color')
-            ->set_id('tagline_background_color')
-            ->set_width(6),
+            ->set_id('tagline_color'),
+        $f->field('text_color_scheme')->set_name('Content Color Scheme'),
         $f->field('content')
     ))
     ->set_option_fields(array(

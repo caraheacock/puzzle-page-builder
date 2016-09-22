@@ -41,7 +41,7 @@ add_action('wp_enqueue_scripts', 'ppb_scripts');
 function ppb_admin_styles() {
     wp_enqueue_style('wp-color-picker');
     
-    wp_enqueue_style('puzzle-page-builder-google-fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800');
+    wp_enqueue_style('puzzle-page-builder-google-fonts', '//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800');
     
     $ppb_admin_styles_location = 'assets/css/admin-styles.css';
     wp_enqueue_style(

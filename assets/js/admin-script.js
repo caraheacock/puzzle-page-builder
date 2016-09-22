@@ -209,7 +209,7 @@ jQuery('document').ready(function($) {
     
     /* Add icon */
     var $iconLibrary = $('.puzzle-icon-library'),
-        $iconMolecules = $('.icon-molecule'),
+        $iconChoices = $('.puzzle-icon-choice'),
         $cancelIconButton = $('.puzzle-cancel-icon');
     
     $document.on('click', '.puzzle-add-icon', function(e) {
@@ -220,7 +220,7 @@ jQuery('document').ready(function($) {
         $iconLibrary.addClass('show');
         $body.addClass('modal-open');
         
-        $iconMolecules.click(function(e) {
+        $iconChoices.click(function(e) {
             e.preventDefault();
             $iconLibrary.removeClass('show');
             iconValue = $(this).children('i').attr('class');
@@ -228,12 +228,18 @@ jQuery('document').ready(function($) {
             $iconInput.val(iconValue);
             $iconDisplay.attr('class', iconValue);
             $body.removeClass('modal-open');
+            
+            $iconChoices.off('click');
+            $cancelIconButton.off('click');
         })
         
         $cancelIconButton.click(function(e) {
             e.preventDefault();
             $iconLibrary.removeClass('show');
             $body.removeClass('modal-open');
+            
+            $iconChoices.off('click');
+            $cancelIconButton.off('click');
         })
     });
     
@@ -241,8 +247,8 @@ jQuery('document').ready(function($) {
     $document.on('keyup', '.puzzle-icon-library-search', function() {
         var searchValue = $(this).val();
         
-        $('.puzzle-icon-library .icon-molecule').hide();
-        $('.puzzle-icon-library .icon-molecule').filter(function() {
+        $('.puzzle-icon-library .puzzle-icon-choice').hide();
+        $('.puzzle-icon-library .puzzle-icon-choice').filter(function() {
             return $(this).text().indexOf(searchValue) !== -1;
         }).show();
     });

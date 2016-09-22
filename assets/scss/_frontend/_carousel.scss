@@ -5,11 +5,14 @@
 .puzzle-carousel {
     padding: 0;
     
-    .row {
+    > .row {
         max-width: 100%;
     }
     
-    .carousel-content {
+    .puzzle-carousel-slide {
+        @include display-flex;
+        @include align-items(center);
+        @include justify-content(center);
         height: 400px;
         padding-top: 50px;
         background-position: center;
@@ -17,35 +20,29 @@
         background-size: cover;
         text-align: center;
         
-        .carousel-content-inner {
-            @extend %page-max-width;
-            @include vertical-center-fix;
-            padding: 0 30px;
+        &.puzzle-align-carousel-slide-left {
+            text-align: left;
+        }
+    
+        &.puzzle-align-carousel-slide-right {
+            text-align: right;
+        }
+    
+        &.puzzle-align-carousel-slide-center {
+            text-align: center;
         }
         
-        @include breakpoint($size-md) {
-            height: 600px;
-            
-            .carousel-content-inner {
-                padding: 0 50px;
-            }
+        .row {
+            position: relative;
+            @include flex(0 1 100%);
         }
     }
     
-    .puzzle-carousel-text-background-white {
-        background-color: rgba(#fff, 0.8);
-        
-        // Makes sure that even if the text wraps, the area still looks "padded"
-        @include box-shadow(10px 0 0 rgba(#fff, 0.8), -10px 0 0 rgba(#fff, 0.8));
+    .puzzle-carousel-slide-inner {
+        @include flex(0 1 100%);
+        padding: 0 30px;
     }
-        
-    .puzzle-carousel-text-background-black {
-        background-color: rgba(#000, 0.7);
-        
-        // Makes sure that even if the text wraps, the area still looks "padded"
-        @include box-shadow(10px 0 0 rgba(#000, 0.7), -10px 0 0 rgba(#000, 0.7));
-    }
-        
+    
     .puzzle-carousel-text-white {
         color: #fff;
     }
@@ -54,16 +51,48 @@
         color: #000;
     }
     
-    .align-text-left {
-        text-align: left;
+    @include breakpoint($size-md) {
+        .puzzle-carousel-slide {
+            height: 600px;
+            
+            &.puzzle-align-carousel-slide-left {
+                .row {
+                    @include justify-content(flex-start);
+                }
+            }
+            
+            &.puzzle-align-carousel-slide-right {
+                .row {
+                    @include justify-content(flex-end);
+                }
+            }
+            
+            &.puzzle-align-carousel-slide-center {
+                .row {
+                    @include justify-content(center);
+                }
+            }
+        }
+        
+        .puzzle-carousel-slide-inner {
+            @include flex-basis(75%);
+            width: 75%;
+            padding: 0 50px;
+        }
     }
     
-    .align-text-right {
-        text-align: right;
+    @include breakpoint($size-lg) {
+        .puzzle-carousel-slide-inner {
+            @include flex-basis(60%);
+            width: 60%;
+        }
     }
     
-    .align-text-center {
-        text-align: center;
+    @include breakpoint($size-xl) {
+        .puzzle-carousel-slide-inner {
+            @include flex-basis(50%);
+            width: 50%;
+        }
     }
 }
 

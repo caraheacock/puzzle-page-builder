@@ -35,7 +35,6 @@
             height: auto;
             padding: 3px 15px;
             color: $body-color;
-            text-decoration: none;
       
             &:hover {
                 background-color: lighten($primary-color, 40%);
@@ -43,7 +42,9 @@
             }
             
             i {
-                width: 15px;
+                vertical-align: middle;
+                width: 20px;
+                font-size: 15px;
             }
         }
     }

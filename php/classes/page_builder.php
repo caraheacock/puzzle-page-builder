@@ -67,8 +67,8 @@ class PuzzlePageBuilder {
                     $output .= '<div class="puzzle-image-container">';
                     $output .= $image;
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $image_id . '" readonly />';
-                    $output .= '<a class="puzzle-add-image-button" data-editor="content" href="#"><i class="fa fa-plus"></i><span>Add Image</span></a> ';
-                    $output .= '<a class="puzzle-remove-image-button" href="#"><i class="fa fa-close"></i><span>Remove Image</span></a>';
+                    $output .= '<a class="puzzle-add-image-button" data-editor="content" href="#"><i class="ei ei-plus-alt2"></i><span>Add Image</span></a> ';
+                    $output .= '<a class="puzzle-remove-image-button" href="#"><i class="ei ei-close-alt"></i><span>Remove Image</span></a>';
                     $output .= '</div>';
                     break;
                 case 'color':
@@ -94,7 +94,7 @@ class PuzzlePageBuilder {
         
         $output  = '<div class="puzzle-add-section">';
         $output .= '<a class="puzzle-add-section-open-buttons" href="#">';
-        $output .= '<i class="fa fa-plus"></i>';
+        $output .= '<i class="ei ei-plus-alt"></i>';
         $output .= '</a>';
         $output .= '<div class="puzzle-add-section-buttons">';
         $output .= '<h4>Add Section</h4>';
@@ -122,31 +122,31 @@ class PuzzlePageBuilder {
         if ($is_section || $puzzle_section->has_unlimited_columns()) {
             $output .= '<div class="row puzzle-section-menu-top">';
             $output .= '<div class="puzzle-has-dropdown">';
-            $output .= '<a class="puzzle-dropdown-trigger" href="#" title="Add"><i class="fa fa-plus"></i></a>';
+            $output .= '<a class="puzzle-dropdown-trigger" href="#" title="Add"><i class="ei ei-plus"></i></a>';
             $output .= '<ul>';
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before">';
-            $output .= '<i class="fa fa-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
+            $output .= '<i class="ei ei-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
             $output .= '</a>';
             $output .= '</li>';
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after">';
-            $output .= '<i class="fa fa-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
+            $output .= '<i class="ei ei-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
             $output .= '</a>';
             $output .= '</li>';
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before" data-copy="true">';
-            $output .= '<i class="fa fa-copy"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
+            $output .= '<i class="ei ei-documents-alt"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
             $output .= '</a>';
             $output .= '</li>';
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after" data-copy="true">';
-            $output .= '<i class="fa fa-copy"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
+            $output .= '<i class="ei ei-documents-alt"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
             $output .= '</a>';
             $output .= '</li>';
             $output .= '</ul>';
             $output .= '</div>';
-            $output .= '<a class="puzzle-remove-section" href="#" title="Delete"><i class="fa fa-close"></i></a>';
+            $output .= '<a class="puzzle-remove-section" href="#" title="Delete"><i class="ei ei-close-alt2"></i></a>';
             $output .= '</div>';
         }
         
@@ -158,10 +158,10 @@ class PuzzlePageBuilder {
             $output .= '<h4>' . $puzzle_section->single_name() . '</h4>';
         }
         
-        $output .= '<a class="puzzle-collapse" href="#" title="Expand Content"><i class="fa"></i></a>';
+        $output .= '<a class="puzzle-collapse" href="#" title="Expand Content"><i class="ei"></i></a>';
         
         if ($is_section && $puzzle_section->columns_num() !== 0) {
-            $output .= '<a class="puzzle-collapse-all" href="#" title="Expand All Content"><i class="fa"></i></a>';
+            $output .= '<a class="puzzle-collapse-all" href="#" title="Expand All Content"><i class="ei"></i></a>';
         }
         
         $output .= '</div>';

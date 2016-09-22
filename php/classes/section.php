@@ -21,7 +21,7 @@ class PuzzleSection {
      * Returns a CSS-friendly slug of the section name
      * e.g. 'team-members'
      */
-    function slug() { return ppb_to_slug($this->name); }
+    function slug() { return ppb_parameterize($this->name); }
     
     /*
      * String: the user-friendly name of a single column in the section

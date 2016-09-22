@@ -10,16 +10,15 @@ if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])
 ?>
 <div class="column <?php echo $span_classes; echo ($puzzle_options_data['layout'] == 'rows' ? ' icon-row' : ' icon-column'); if (!empty($puzzle_column['button_text'])) echo ' has-button'; ?>">
     <div class="column-inner">
-        <?php echo $icon_link_start; ?><i class="puzzle-main-icon <?php echo $puzzle_column['icon']; ?>"></i><?php echo $icon_link_end; ?>
+        <?php echo $icon_link_start; ?><i class="puzzle-main-icon <?php echo $puzzle_column['icon']; ?>" aria-hidden="true"></i><?php echo $icon_link_end; ?>
         <div class="puzzle-feature-column-content">
             <?php
             if (!empty($puzzle_column['subhead'])) {
                 $headline_tag = ($puzzle_options_data['layout'] == 'columns' ? 'h4' : 'h3');
                 echo '<' . $headline_tag . '>' . $puzzle_column['subhead'] . '</' . $headline_tag . '>';
             }
-            ?>
             
-            <?php echo apply_filters('the_content', $puzzle_column['content']); ?>
+            echo apply_filters('the_content', $puzzle_column['content']); ?>
         </div>
         <?php if (!empty($puzzle_column['button_text'])) : ?>
         <a class="puzzle-button puzzle-feature-main-button" href="<?php echo $puzzle_column['button_link']; ?>"<?php echo $link_target; ?>><?php echo $puzzle_column['button_text']; ?></a>

@@ -5,16 +5,6 @@
  * Icon Library
  */
 
-/* Construct the HTML for the icon choices */
-function ppb_icon_library($library) {
-    $icon_list = '';
-    foreach ($library['icons'] as $icon) {
-        $icon_list .= '<div class="icon-molecule"><i class="' . $library['icon_class'] . ' ' . $library['icon_prefix'] . $icon . '"></i> <span class="icon-description">' . $icon . '</span></div>';
-    }
-    
-    return $icon_list;
-}
-
 /* Add hidden icon library */
 function ppb_admin_init_icon_library() {
     $puzzle_settings = new PuzzleSettings;
@@ -46,7 +36,7 @@ function ppb_meta_options_icon_library() {
             <?php echo $puzzle_icon_libraries->markup(); ?>
         </div>
         <div class="puzzle-pop-up-controls">
-            <a class="puzzle-button puzzle-cancel-icon" href="#">Cancel <i class="fa fa-close"></i></a>
+            <button class="puzzle-button puzzle-cancel-icon" href="#">Cancel <i class="ei ei-close-alt"></i></button>
         </div>
     </div>
 <?php } ?>

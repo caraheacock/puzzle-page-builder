@@ -29,10 +29,6 @@ h1, h2, h3, h4, h5, h6 {
     + h1, + h2, + h3, + h4, + h5, + h6 {
         margin-top: $text-space-unit;
     }
-    
-    a {
-        text-decoration: none;
-    }
 }
 
 h1, h2, h3, h4 {
@@ -42,6 +38,7 @@ h1, h2, h3, h4 {
 
 h1 {
     font-size: 50px;
+    font-weight: $light;
 }
 
 h2, h3 {
@@ -90,5 +87,6 @@ hr {
 }
 
 a {
+    text-decoration: none;
     @include transition(all 0.4s ease);
 }

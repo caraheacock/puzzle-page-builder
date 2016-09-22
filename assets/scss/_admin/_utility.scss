@@ -11,7 +11,6 @@
     color: $body-color;
     line-height: 1.5;
     text-align: center;
-    text-decoration: none;
     @include transition (all 0.4s ease);
     
     &:hover, &:focus, &:active, &.puzzle-button-primary {
@@ -60,34 +59,6 @@
     }
 }
 
-%circle-button {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border: solid 2px $primary-color;
-    border-radius: 50%;
-    color: $primary-color;
-    font-size: 20px;
-    line-height: 26px;
-    text-align: center;
-    
-    &:hover, &:focus {
-        border-color: transparent;
-        background-color: $primary-color;
-        color: #fff;
-    }
-    
-    &:active {
-        border-color: transparent;
-        background-color: $primary-color-dark;
-        color: #fff;
-    }
-}
-
 .puzzle-button {
     @extend %admin-button;
-}
-
-.puzzle-circle-button {
-    @extend %circle-button;
 }

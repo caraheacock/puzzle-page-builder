@@ -105,6 +105,8 @@ class PuzzlePageBuilderTemplate {
     public function view_puzzle_page_builder_template($template) {
         global $post;
         
+        if (!is_singular()) return $template;
+        
         /* Get the name of the post's template */
         if ($post->post_type == 'page') {
             $active_template = get_post_meta($post->ID, '_wp_page_template', true);

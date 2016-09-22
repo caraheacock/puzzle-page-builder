@@ -111,7 +111,7 @@
             width: 30px;
             height: 30px;
             color: $medium-gray;
-            font-size: 20px;
+            font-size: 30px;
             line-height: 30px;
             cursor: pointer;
             @include transition(all 0.4s ease);
@@ -131,7 +131,7 @@
         
         .puzzle-collapse {
             i:before {
-                content: '\f107'; // angle-down
+                content: '\33'; // Elegant Icon, arrow-caret-down
             }
         }
     
@@ -140,28 +140,24 @@
             z-index: 1;
         
             i:before {
-                content: '\f103'; // angle-double-down
+                content: '\37'; // Elegant Icon, arrow-caret-2down
             }
         }
         
         .puzzle-remove-section {
-            @extend %circle-button;
-            border-color: $medium-gray;
-            color: $medium-gray;
-            
             &:hover, &:focus {
-                background-color: $alert-color;
+                color: $alert-color;
             }
             
             &:active {
-                background-color: $alert-color-dark;
+                color: $alert-color-dark;
             }
         }
         
         &.show {
             .puzzle-collapse {
                 i:before {
-                    content: '\f106'; // angle-up
+                    content: '\32'; // Elegant Icon, arrow-caret-up
                 }
             }
         }
@@ -172,7 +168,7 @@
                 z-index: 1;
         
                 i:before {
-                    content: '\f102'; // angle-double-up
+                    content: '\36'; // Elegant Icon, arrow-caret-2up
                 }
             }
         }
@@ -216,8 +212,9 @@
     }
 
     .puzzle-add-section-open-buttons {
-        background-color: #fff;
-        @extend %circle-button;
+        display: inline-block;
+        font-size: 30px;
+        line-height: 1;
     }
 
     .puzzle-add-section-buttons {
@@ -280,26 +277,30 @@
     }
     
     .puzzle-add-image-button {
-        @extend %circle-button;
         top: 50%;
         left: 50%;
-        border-color: rgba(#fff, 0.85);
         color: rgba(#fff, 0.85);
-        @include box-shadow(0 0 2px rgba(#000, 0.5));
+        font-size: 30px;
         text-shadow: 0 0 2px rgba(#000, 0.5);
         @include transform(translate(-50%, -50%));
+        
+        &:hover, &:focus, &:active {
+            color: #fff;
+        }
     }
     
     img[src=''] {
         ~ .puzzle-add-image-button {
-            border-color: $medium-gray;
             color: $medium-gray;
-            @include box-shadow(none);
             text-shadow: none;
+            @include box-shadow(none);
         
-            &:hover, &:focus, &:active {
-                border-color: transparent;
-                color: #fff;
+            &:hover, &:focus {
+                color: $primary-color;
+            }
+            
+            &:active {
+                color: $primary-color-dark;
             }
         }
         

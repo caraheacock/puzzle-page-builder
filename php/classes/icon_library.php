@@ -22,7 +22,7 @@ class PuzzleIconLibrary {
      * an instance of PuzzleIconLibraries.
      * e.g. 'font-awesome'
      */
-    function slug() { return ppb_to_slug($this->name); }
+    function slug() { return ppb_parameterize($this->name); }
     
     /*
      * Array: a list of all icons in the library
@@ -70,8 +70,19 @@ class PuzzleIconLibrary {
     function prefix() { return $prefix; }
     
     /*
+     * String: the icon CSS postfix
+     * e.g. '-icon'
+     */
+    private $postfix;
+    function set_postfix($new_postfix) {
+        $this->postfix = $new_postfix;
+        return $this;
+    }
+    function postfix() { return $postfix; }
+    
+    /*
      * Integer: the order in which this library will appear in the page builder
-     *          relative to other libraries
+     * relative to other libraries
      */
     private $order = 100;
     function set_order($new_order) {
@@ -80,15 +91,33 @@ class PuzzleIconLibrary {
     }
     function order() { return $this->order; }
     
+    /*
+     * Returns the full string for the icon's class, including the general
+     * icon class, prefix, icon name, and postfix.
+     * e.g. 'fa fa-star'
+     */
+    function full_icon_class($icon) {
+        $output = '';
+        if (isset($this->icon_class)) $output .= $this->icon_class . ' ';
+        if (isset($this->prefix)) $output .= $this->prefix;
+        $output .= $icon;
+        if (isset($this->postfix)) $output .= $this->postfix;
+        
+        return $output;
+    }
+    
     /* Returns the markup for the icon library */
     function markup() {
         $output = '<hr />';
-        $output .= '<h3><i class="' . $this->icon_class . ' ' . $this->prefix . $this->example_icon . '"></i> ' . $this->name . ' Icons</h3>';
+        $output .= '<h3><i class="' . $this->full_icon_class($this->example_icon) . '"></i> ' . $this->name . '</h3>';
+        $output .= '<div class="puzzle-icon-choices-container">';
         
         foreach ($this->icons as $icon) {
-            $output .= '<div class="icon-molecule"><i class="' . $this->icon_class . ' ' . $this->prefix . $icon . '"></i> <span class="icon-description">' . $icon . '</span></div>';
+            $output .= '<button class="puzzle-icon-choice"><i class="' . $this->full_icon_class($icon) . '"></i>' . ppb_humanize($icon) . '</button>';
         }
-    
+        
+        $output .= '</div>';
+        
         return $output;
     }
 }

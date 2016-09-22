@@ -80,8 +80,8 @@ function ppb_meta_box_options() {
     <div class="puzzle-text-editor-area puzzle-pop-up-area">
         <?php wp_editor('', 'puzzlecustomeditor'); ?>
         <div class="puzzle-pop-up-controls">
-            <button class="puzzle-button" id="puzzle-update-content">Update and Close <i class="fa fa-save"></i></button>
-            <button class="puzzle-button" id="puzzle-cancel-editor">Cancel <i class="fa fa-close"></i></button>
+            <button class="puzzle-button" id="puzzle-update-content">Update and Close <i class="ei ei-floppy"></i></button>
+            <button class="puzzle-button" id="puzzle-cancel-editor">Cancel <i class="ei ei-close-alt"></i></button>
         </div>
     </div>
     

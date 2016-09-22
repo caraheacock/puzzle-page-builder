@@ -2,22 +2,8 @@
 
 /*
  * Puzzle Page Builder
- * Helper functions
+ * Views helpers
  */
-
-/*
- * Add ppb_like_the_content filter
- *
- * Has the same actions as the_content but for times when running
- * the_content filter conflicts with plugins.
- * 
- * The only action this does not have is 'prepend_attachment' because
- * it causes attachment pages to show attachments in weird places.
- */
-$actions = array('wptexturize', 'convert_smilies', 'convert_chars', 'wpautop', 'shortcode_unautop');
-foreach ($actions as $action) {
-    add_filter('ppb_like_the_content', $action);
-}
 
 /*
  * Determines classes for a section
@@ -52,9 +38,9 @@ function ppb_section_id($s, $page_section) {
     
     $section_id = 'section-' . ($s + 1);
     if (!empty($puzzle_options_data['id'])) {
-        $section_id = ppb_to_slug($puzzle_options_data['id']);
+        $section_id = ppb_parameterize($puzzle_options_data['id']);
     } else if (!empty($puzzle_options_data['headline'])) {
-        $section_id = ppb_to_slug($puzzle_options_data['headline']);
+        $section_id = ppb_parameterize($puzzle_options_data['headline']);
     }
     
     return $section_id;
@@ -188,25 +174,6 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
     }
     
     return $span_classes;
-}
-
-/*
- * Converts a string to a slug with dashes. Removes special characters and
- * replaces spaces with dashes.
- *
- * $string - the string to be converted
- *
- * Returns the slug as a string
- */
-function ppb_to_slug($string){
-    $slug = $string;
-    
-    $slug = strtolower($slug);
-    $slug = preg_replace('/[^a-z0-9\-\_\s]+/', '', $slug);
-    $slug = trim($slug);
-    $slug = preg_replace('/\s+/', '-', $slug);
-    
-    return $slug;
 }
 
 ?>
