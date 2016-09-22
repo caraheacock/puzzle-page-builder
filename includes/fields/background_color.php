@@ -4,10 +4,12 @@ $background_color->set_name('Background Color')
     ->set_id('background_color')
     ->set_input_type('select')
     ->set_options(array(
-        'white'     => 'White',
-        'gray'      => 'Gray',
-        'primary'   => 'Primary Color',
-        'secondary' => 'Secondary Color'
+        'white'         => 'White',
+        'light-gray'    => 'Light Gray',
+        'dark-gray'     => 'Dark Gray',
+        'black'         => 'Black',
+        'primary'       => 'Primary Color',
+        'secondary'     => 'Secondary Color'
     ));
 
 $f->add_field($background_color);

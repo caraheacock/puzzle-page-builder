@@ -19,6 +19,25 @@
     }
 }
 
+.puzzle-button {
+    @extend %button;
+    
+    &.puzzle-button-white, &.puzzle-button-transparent:hover {
+        background-color: #fff;
+        border-color: #fff;
+    }
+    
+    &.puzzle-button-black {
+        background-color: #000;
+        border-color: #000;
+    }
+    
+    &.puzzle-button-transparent {
+        background-color: transparent;
+        border-color: #fff;
+    }
+}
+
 %default-border-radius {
     border-radius: 3px;
 }

@@ -9,12 +9,12 @@
 function ppb_scripts() {
     $puzzle_settings = new PuzzleSettings;
     
-    $ppb_frontend_styles_location = 'assets/css/frontend-styles.css';
+    $ppb_frontend_style_location = 'assets/css/frontend-style.css';
     wp_enqueue_style(
-        'puzzle-page-builder-frontend-styles',
-        PPB_PLUGIN_URL . $ppb_frontend_styles_location,
+        'puzzle-page-builder-frontend-style',
+        PPB_PLUGIN_URL . $ppb_frontend_style_location,
         array(),
-        filemtime(PPB_PLUGIN_DIR . $ppb_frontend_styles_location)
+        filemtime(PPB_PLUGIN_DIR . $ppb_frontend_style_location)
     );
     
     if ($puzzle_settings->has_owl_carousel()) {
@@ -43,12 +43,12 @@ function ppb_admin_styles() {
     
     wp_enqueue_style('puzzle-page-builder-google-fonts', '//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i');
     
-    $ppb_admin_styles_location = 'assets/css/admin-styles.css';
+    $ppb_admin_style_location = 'assets/css/admin-style.css';
     wp_enqueue_style(
-        'puzzle-page-builder-admin-styles',
-        PPB_PLUGIN_URL . $ppb_admin_styles_location,
+        'puzzle-page-builder-admin-style',
+        PPB_PLUGIN_URL . $ppb_admin_style_location,
         array(),
-        filemtime(PPB_PLUGIN_DIR . $ppb_admin_styles_location)
+        filemtime(PPB_PLUGIN_DIR . $ppb_admin_style_location)
     );
 }
 add_action('admin_print_styles', 'ppb_admin_styles');
@@ -67,5 +67,13 @@ function ppb_admin_scripts() {
     );
 }
 add_action('admin_print_scripts', 'ppb_admin_scripts');
+
+/* Add editor stylesheets */
+function ppb_editor_style($stylesheets) {
+    $stylesheets .= !empty($stylesheets) ? ',' : '';
+    $stylesheets .= PPB_PLUGIN_URL . 'assets/css/editor-style.css';
+    return $stylesheets;
+}
+add_filter('mce_css', 'ppb_editor_style');
 
 ?>

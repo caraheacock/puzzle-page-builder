@@ -8,8 +8,16 @@
     background-color: #fff;
 }
 
-.gray-background {
+.light-gray-background {
     background-color: $light-gray;
+}
+
+.dark-gray-background {
+    background-color: $dark-gray;
+}
+
+.black-background {
+    background-color: #000;
 }
 
 /* Subsections inside each section */
