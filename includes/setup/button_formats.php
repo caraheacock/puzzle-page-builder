@@ -7,7 +7,9 @@
 
 /* Insert WordPress Format dropdown */
 function ppb_mce_buttons($buttons) {
-    if (!in_array('styleselect', $buttons)) {
+    $puzzle_settings = new PuzzleSettings;
+    
+    if ($puzzle_settings->has_button_formats() && !in_array('styleselect', $buttons)) {
         array_unshift($buttons, 'styleselect');
     }
     return $buttons;
@@ -16,6 +18,9 @@ add_filter('mce_buttons_2', 'ppb_mce_buttons', 11);
 
 /* Add button style options */
 function ppb_insert_button_formats($init_array) {
+    $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_button_formats()) return $init_array;
+    
     $style_formats = array(
         array(
             'title'     => 'Default Button',

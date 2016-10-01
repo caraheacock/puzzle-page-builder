@@ -70,10 +70,13 @@ add_action('admin_print_scripts', 'ppb_admin_scripts');
 
 /* Add editor stylesheets */
 function ppb_editor_style($stylesheets) {
+    $puzzle_settings = new PuzzleSettings;
+    if (!$puzzle_settings->has_button_formats()) return $stylesheets;
+    
     $stylesheets .= !empty($stylesheets) ? ',' : '';
     $stylesheets .= PPB_PLUGIN_URL . 'assets/css/editor-style.css';
     return $stylesheets;
 }
-add_filter('mce_css', 'ppb_editor_style');
+add_filter('mce_css', 'ppb_editor_style', 9);
 
 ?>

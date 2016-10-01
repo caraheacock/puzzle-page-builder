@@ -14,15 +14,15 @@ class PuzzleSettings {
     }
     
     /*
-     * Boolean: indicating if shortcode buttons are available in the
-     * WYSIWYG editor
+     * Boolean: indicating if button formats are available in the formats
+     * dropdown in the WYSIWYG editor
      */
-    private static $Shortcodes = true;
-    function set_shortcodes($boolean) {
-        self::$Shortcodes = $boolean;
+    private static $ButtonFormats = true;
+    function set_button_formats($boolean) {
+        self::$ButtonFormats = $boolean;
         return $this;
     }
-    function has_shortcodes() { return self::$Shortcodes; }
+    function has_button_formats() { return self::$ButtonFormats; }
     
     /*
      * Boolean: indicating if the icon library is available in the page builder
