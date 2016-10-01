@@ -40,6 +40,11 @@ class PuzzleSections {
             self::remove_section($slug);
         }
     }
+    
+    /* Removes all sections */
+    function reset_sections() {
+        self::$Sections = array();
+    }
 }
 
 ?>

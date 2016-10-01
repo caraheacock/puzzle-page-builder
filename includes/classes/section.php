@@ -120,12 +120,17 @@ class PuzzleSection {
      * Array: PuzzleField objects, needed for admin column fields and
      * front-end markup
      */
-    private $column_fields;
+    private $column_fields = array();
     
     function set_column_fields($new_column_fields) {
+        /* Reset the column fields */
+        $this->column_fields = array();
+        
+        /* Set the new column fields */
         foreach ($new_column_fields as $field) {
             $this->column_fields[$field->id()] = $field;
         }
+        
         return $this;
     }
     
@@ -151,16 +156,32 @@ class PuzzleSection {
     }
     
     /*
+     * Remove multiple column fields by their IDs
+     * $field_ids - array, a list of IDs of fields to remove
+     */
+    function remove_column_fields($field_ids) {
+        foreach ($field_ids as $field_id) {
+            self::remove_column_field($field_id);
+        }
+        return $this;
+    }
+    
+    /*
      * Array: PuzzleField objects for the option fields. Setting this variable
      * is optional. Use if a section needs general options, such as a headline,
      * main content, top and bottom padding, etc.
      */
-    private $option_fields;
+    private $option_fields = array();
     
     function set_option_fields($new_option_fields) {
+        /* Reset the option fields */
+        $this->option_fields = array();
+        
+        /* Set the new option fields */
         foreach ($new_option_fields as $field) {
             $this->option_fields[$field->id()] = $field;
         }
+        
         return $this;
     }
     
@@ -181,6 +202,17 @@ class PuzzleSection {
     function remove_option_field($field_id) {
         if (array_key_exists($field_id, $this->option_fields)) {
             unset($this->option_fields[$field_id]);
+        }
+        return $this;
+    }
+    
+    /*
+     * Remove multiple option fields by their IDs
+     * $field_ids - array, a list of IDs of fields to remove
+     */
+    function remove_option_fields($field_ids) {
+        foreach ($field_ids as $field_id) {
+            self::remove_option_field($field_id);
         }
         return $this;
     }
