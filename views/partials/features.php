@@ -18,7 +18,8 @@ if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])
                 echo '<' . $headline_tag . '>' . $puzzle_column['subhead'] . '</' . $headline_tag . '>';
             }
             
-            echo apply_filters('the_content', $puzzle_column['content']); ?>
+            echo apply_filters('the_content', $puzzle_column['content']);
+            ?>
         </div>
         <?php if (!empty($puzzle_column['button_text'])) : ?>
         <a class="puzzle-button puzzle-feature-main-button" href="<?php echo $puzzle_column['button_link']; ?>"<?php echo $link_target; ?>><?php echo $puzzle_column['button_text']; ?></a>

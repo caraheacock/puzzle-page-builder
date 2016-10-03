@@ -1,80 +1,84 @@
-<div class="column <?php echo $span_classes; ?> puzzle-team-member-<? echo ($puzzle_options_data['layout'] == 'columns' ? 'column' : 'row'); ?>">
-
-<?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-<div class="row">
-<div class="column xs-span12 md-span3">
-<?php endif; ?>
-
-<div class="column-inner">
-
 <?php
+$image = null;
 if (!empty($puzzle_column['image'])) {
     $image_args = array(
         'class' => 'puzzle-team-member-picture'
     );
-    echo wp_get_attachment_image($puzzle_column['image'], 'full', false, $image_args);
-}
-?>
-
-<?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-</div>
-</div>
-<?php endif; ?>
-
-<div class="<?php if ($puzzle_options_data['layout'] == 'rows') echo 'column xs-span12 md-span9 '; ?>puzzle-team-member-content">
-
-<?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-<div class="column-inner">
-<?php endif; ?>
-
-<?php
-if (!empty($puzzle_column['name'])) {
-    $headline_tag = ($puzzle_options_data['layout'] == 'columns' ? 'h4' : 'h3');
-    echo '<' . $headline_tag . '>' . $puzzle_column['name'] . '</' . $headline_tag . '>';
+    $image = wp_get_attachment_image($puzzle_column['image'], 'full', false, $image_args);
 }
 
-if (!empty($puzzle_column['title'])) {
-    $title_tag = ($puzzle_options_data['layout'] == 'columns' ? 'h5' : 'h4');
-    echo '<' . $title_tag . '>' . $puzzle_column['title'] . '</' . $title_tag . '>';
+$name = (!empty($puzzle_column['name']) ? $puzzle_column['name'] : null);
+$title = (!empty($puzzle_column['title']) ? $puzzle_column['title'] : null);
+$content = apply_filters('the_content', $puzzle_column['content']);
+
+$contact_info = '';
+
+if (!empty($puzzle_column['phone']) || !empty($puzzle_column['email'])) {
+    $contact_info .= '<div class="puzzle-team-member-contact-info">';
+    $contact_info .= (!empty($puzzle_column['phone']) ? '<p><i class="fa fa-phone"></i>' . $puzzle_column['phone']. '</p>' : '');
+    
+    if (!empty($puzzle_column['email'])) {
+        $contact_info .= '<p><i class="fa fa-envelope-o"></i>';
+        $contact_info .= '<a href="mailto:' . $puzzle_column['email'] . '">';
+        $contact_info .= $puzzle_column['email']; 
+        $contact_info .= '</a>';
+        $contact_info .= '</p>';
+    }
+    
+    $contact_info .= '</div>';
 }
 
-echo apply_filters('the_content', $puzzle_column['content']);
-?>
+$social_media = '';
 
-<?php if (!empty($puzzle_column['phone']) || !empty($puzzle_column['email'])) : ?>
-    <div class="puzzle-team-member-contact-info">
-    
-        <?php if (!empty($puzzle_column['phone'])) : ?>
-        <p><i class="fa fa-phone"></i><?php echo $puzzle_column['phone']; ?></p>
-        <?php endif; ?>
-    
-        <?php if (!empty($puzzle_column['email'])) : ?>
-        <p><i class="fa fa-envelope-o"></i><a href="mailto:<?php echo $puzzle_column['email']; ?>"><?php echo $puzzle_column['email']; ?></a></p>
-        <?php endif; ?>
-    
-    </div>
-<?php endif; ?>
-
-<?php
-$social_media = array_filter(array(
-    'facebook'      => $puzzle_column['facebook'],
-    'twitter'       => $puzzle_column['twitter'],
-    'linkedin'      => $puzzle_column['linkedin'],
-    'google-plus'   => $puzzle_column['google-plus']
+$social_links = array_filter(array(
+    'facebook'      => (!empty($puzzle_column['facebook']) ? $puzzle_column['facebook'] : ''),
+    'twitter'       => (!empty($puzzle_column['twitter']) ? $puzzle_column['twitter'] : ''),
+    'linkedin'      => (!empty($puzzle_column['linkedin']) ? $puzzle_column['linkedin'] : '')
 ));
 
-if (!empty($social_media)) : ?>
-    <div class="puzzle-social-links">
-        <?php foreach($social_media as $key => $value) : ?>
-        <a href="<?php echo $value; ?>" target="_blank"><i class="fa fa-<?php echo $key; ?>-square"></i></a>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
+if (!empty($social_links)) {
+    $social_media .= '<div class="puzzle-social-links">';
+    
+    foreach($social_links as $soc => $link) {
+        $social_media .= '<a href="' . $link . '" target="_blank"><i class="fa fa-' . $soc . '-square"></i></a>';
+    }
+    
+    $social_media .= '</div>';
+}
+
+?>
 
 <?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-</div>
+    <div class="column xs-span12 puzzle-team-member-row">
+        <?php if (!empty($image)) : ?>
+        <div class="column xs-span12 sm-span5 md-span4 lg-span3">
+            <div class="column-inner">
+                <?php echo $image; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <div class="column xs-span12<?php if ($image) echo ' sm-span7 md-span8 lg-span9'; ?> puzzle-team-member-content">
+            <div class="column-inner">
+                <?php
+                if ($name) echo '<h3>' . $name . '</h3>';
+                if ($title) echo '<h4>' . $title . '</h4>';
+                echo $content . $contact_info . $social_media;
+                ?>
+            </div>
+        </div>
+    </div>
+<?php else : ?>
+    <div class="column <?php echo ppb_span_classes($puzzle_columns_num); ?> puzzle-team-member-columns">
+        <div class="column-inner">
+            <?php if (!empty($image)) echo $image; ?>
+            <div class="puzzle-team-member-content">
+                <?php
+                if ($name) echo '<h4>' . $name . '</h4>';
+                if ($title) echo '<h5>' . $title . '</h5>';
+                echo $content . $contact_info . $social_media;
+                ?>
+            </div>
+        </div>
+    </div>
 <?php endif; ?>
-
-</div>
-</div>
-</div>

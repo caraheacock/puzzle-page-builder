@@ -1,6 +1,4 @@
 <?php
-$f = new PuzzleFields;
-
 $two_column = new PuzzleSection;
 $two_column->set_name('Two Column')
     ->set_single_name('Column')

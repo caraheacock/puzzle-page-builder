@@ -1,149 +1,57 @@
 <?php
-// $f = new PuzzleFields;
-//
-// $team_members = new PuzzleSection;
-// $team_members->set_name('Team Members')
-//     ->set_single_name('Team Member')
-//     ->set_columns_num(-1)
-//     ->set_admin_column_width(4)
-//     ->set_order(50)
-//     ->set_column_fields(array(
-//         'name'              => array(
-//             'name'          => 'Name',
-//             'input_type'    => 'text',
-//             'save_as'       => 'h4'
-//         ),
-//         'title'             => array(
-//             'name'          => 'Title',
-//             'input_type'    => 'text',
-//             'save_as'       => 'h5'
-//         ),
-//         'image'             => array(
-//             'name'          => 'Image',
-//             'input_type'    => 'image'
-//         ),
-//         'content'           => array(
-//             'name'          => 'Content',
-//             'input_type'    => 'textarea',
-//             'rows'          => 5,
-//             'save_as'       => 'content'
-//         ),
-//         'phone'             => array(
-//             'name'          => 'Phone Number',
-//             'input_type'    => 'text',
-//             'save_as'       => 'content'
-//         ),
-//         'email'             => array(
-//             'name'          => 'Email Address',
-//             'input_type'    => 'text',
-//             'placeholder'   => 'person@email.com',
-//             'save_as'       => 'content'
-//         ),
-//         'facebook'          => array(
-//             'name'          => 'Facebook Link',
-//             'input_type'    => 'text',
-//             'placeholder'   => 'http://facebook.com/johndoe',
-//             'save_as'       => 'link'
-//         ),
-//         'twitter'           => array(
-//             'name'          => 'Twitter Link',
-//             'input_type'    => 'text',
-//             'placeholder'   => 'http://twitter.com/johndoe',
-//             'save_as'       => 'link'
-//         ),
-//         'linkedin'          => array(
-//             'name'          => 'LinkedIn Link',
-//             'input_type'    => 'text',
-//             'placeholder'   => 'http://www.linkedin.com/pub/john-doe/...',
-//             'save_as'       => 'link'
-//         ),
-//         'google-plus'       => array(
-//             'name'          => 'Google Plus Link',
-//             'input_type'    => 'text',
-//             'placeholder'   => 'http://plus.google.com/...',
-//             'save_as'       => 'link'
-//         )
-//     ))
-//     ->set_option_fields(array(
-//         'headline'          => array(
-//             'name'          => 'Headline',
-//             'width'         => 'xs-span12 sm-span6',
-//             'input_type'    => 'text',
-//             'save_as'       => 'h2'
-//         ),
-//         'id'                => array(
-//             'name'          => 'Section Slug',
-//             'width'         => 'xs-span12 sm-span6',
-//             'tip'           => '<strong>Use this for linking directly to a section. Lowercase letters, numbers, dashes, and underscores only.</strong> If left blank, the section slug will be the headline lowercase with words separated by dashes (symbols will be deleted). If both the section slug and headline are blank, the section slug will be "section-n" where "n" is the place that the section is in on the page (e.g. the 4th section on the page will be "section-4").',
-//             'input_type'    => 'text'
-//         ),
-//         'layout'            => array(
-//             'name'          => 'Layout',
-//             'width'         => 'xs-span12 sm-span2',
-//             'input_type'    => 'select',
-//             'options'       => array(
-//                 'Columns'   => 'columns',
-//                 'Rows'      => 'rows'
-//             )
-//         ),
-//         'padding_top'       => array(
-//             'name'          => 'Top Padding',
-//             'width'         => 'xs-span12 sm-span2',
-//             'input_type'    => 'select',
-//             'options'       => array(
-//                 'Large'     => 'large',
-//                 'Normal'    => 'normal',
-//                 'None'      => 'no'
-//             ),
-//             'selected'      => 'normal'
-//         ),
-//         'padding_bottom'    => array(
-//             'name'          => 'Bottom Padding',
-//             'width'         => 'xs-span12 sm-span2',
-//             'input_type'    => 'select',
-//             'options'       => array(
-//                 'Large'     => 'large',
-//                 'Normal'    => 'normal',
-//                 'None'      => 'no'
-//             ),
-//             'selected'      => 'normal'
-//         ),
-//         'text_color_scheme' => array(
-//             'name'          => 'Text Color Scheme',
-//             'width'         => 'xs-span12 sm-span6',
-//             'input_type'    => 'select',
-//             'options'       => array(
-//                 'Dark'      => 'dark',
-//                 'Light'     => 'light'
-//             )
-//         ),
-//         'background_image'  => array(
-//             'name'          => 'Background Image',
-//             'width'         => 'xs-span12 sm-span6',
-//             'input_type'    => 'image'
-//         ),
-//         'background_color'        => array(
-//             'name'          => 'Background Color',
-//             'width'         => 'xs-span12 sm-span6',
-//             'input_type'    => 'select',
-//             'options'       => array(
-//                 'White'             => 'white',
-//                 'Gray'              => 'gray',
-//                 'Primary Color'     => 'primary',
-//                 'Secondary Color'   => 'secondary'
-//             )
-//         ),
-//         'overlay'           => array(
-//             'name'          => 'Overlay background color on background image',
-//             'input_type'    => 'checkbox'
-//         ),
-//         'main_content'      => array(
-//             'name'          => 'Main Content',
-//             'input_type'    => 'textarea',
-//             'rows'          => 10,
-//             'save_as'       => 'content'
-//         )
-//     ));
-// 
-// $puzzle_sections->add_section($team_members);
+$team_members = new PuzzleSection;
+$team_members->set_name('Team Members')
+    ->set_single_name('Team Member')
+    ->set_columns_num(-1)
+    ->set_admin_column_width(4)
+    ->set_order(50)
+    ->set_column_fields(array(
+        $f->field('subhead')
+            ->set_name('Name')
+            ->set_id('name'),
+        (new PuzzleField)->set_name('Title')
+            ->set_id('title')
+            ->set_input_type('text')
+            ->set_save_as('h5'),
+        $f->field('image'),
+        $f->field('content'),
+        (new PuzzleField)->set_name('Phone')
+            ->set_id('phone')
+            ->set_input_type('text')
+            ->set_save_as('content'),
+        (new PuzzleField)->set_name('Email Address')
+            ->set_id('email')
+            ->set_input_type('text')
+            ->set_placeholder('person@example.com')
+            ->set_save_as('content'),
+        (new PuzzleField)->set_name('Facebook Link')
+            ->set_id('facebook')
+            ->set_input_type('text')
+            ->set_placeholder('https://www.facebook.com/johndoe')
+            ->set_save_as('link'),
+        (new PuzzleField)->set_name('Twitter Link')
+            ->set_id('twitter')
+            ->set_input_type('text')
+            ->set_placeholder('https://twitter.com/johndoe')
+            ->set_save_as('link'),
+        (new PuzzleField)->set_name('LinkedIn Link')
+            ->set_id('linkedin')
+            ->set_input_type('text')
+            ->set_placeholder('https://www.linkedin.com/in/johndoe')
+            ->set_save_as('link')
+    ))
+    ->set_option_fields(array(
+        $f->field('headline')->set_width(6),
+        $f->field('id')->set_width(6),
+        $f->field('layout')->set_width(3),
+        $f->field('padding_top')->set_width(3),
+        $f->field('padding_bottom')->set_width(3),
+        $f->field('text_color_scheme')->set_width(3),
+        $f->field('background_image')->set_width(6),
+        $f->field('background_color')->set_width(6),
+        $f->field('overlay'),
+        $f->field('main_content')
+    ));
+
+$puzzle_sections->add_section($team_members);
 ?>

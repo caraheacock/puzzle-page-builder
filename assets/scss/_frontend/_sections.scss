@@ -42,12 +42,17 @@
 .puzzle-features-content, .puzzle-team-members-content {
     > .column {
         @include display-flex;
+        @include flex-wrap(wrap);
     }
     
     .column-inner {
-        @include flex(1 1 auto);
+        @include flex(1 1 calc(100% - #{$space-unit / 6}));
         min-width: 0;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+        
+        @include breakpoint($size-md) {
+            @include flex-basis(calc(100% - #{$space-unit / 2}));
+        }
     }
 }

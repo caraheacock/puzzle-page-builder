@@ -1,6 +1,4 @@
 <?php
-$f = new PuzzleFields;
-
 $call_to_action = new PuzzleSection;
 $call_to_action->set_name('Call to Action')
     ->set_single_name('Call to Action')

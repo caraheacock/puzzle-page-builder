@@ -128,19 +128,23 @@ jQuery('document').ready(function($) {
     
     $document.on('click', '.puzzle-add-image-button', function(e) {
         e.preventDefault();
-        var $button = $(this);
-
-        /* If the uploader object has already been created, reopen the dialog */
-        if (custom_uploader) {
-            custom_uploader.open();
-            return;
-        }
-
-        /* Extend the wp.media object */
+        var $button = $(this),
+            $input = $button.siblings('input'),
+            $image = $button.siblings('img');
+        
+        /*
+         * Extend the wp.media object
+         * WordPress recommends that you reopen the wp.media object you already
+         * created, but this was causing bugs where only the first field you
+         * set an image to would update.
+         */
         custom_uploader = wp.media.frames.file_frame = wp.media({
             title: 'Choose File',
             button: {
                 text: 'Choose File'
+            },
+            library: {
+                type: 'image'
             },
             multiple: false
         });
@@ -154,8 +158,8 @@ jQuery('document').ready(function($) {
          */
         custom_uploader.on('select', function() {
             attachment = custom_uploader.state().get('selection').first().toJSON();
-            $button.siblings('input').val(attachment.id);
-            $button.siblings('img').replaceWith('<img width="' + attachment.sizes.full.width + '" height="' + attachment.sizes.full.height + '" src="' + attachment.url + '" alt="' + attachment.alt + '" />');
+            $input.val(attachment.id);
+            $image.replaceWith('<img width="' + attachment.sizes.full.width + '" height="' + attachment.sizes.full.height + '" src="' + attachment.url + '" alt="' + attachment.alt + '" />');
         });
 
         /* Open the uploader dialog */

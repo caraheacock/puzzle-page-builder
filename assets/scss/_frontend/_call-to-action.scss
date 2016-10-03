@@ -2,7 +2,8 @@
 /* Call to Action */
 /*----------------*/
 
-.puzzle-call-to-action {
+.puzzle-call-to-action-content {
+    @include align-items(center);
     text-align: center;
     
     .puzzle-button {

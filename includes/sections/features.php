@@ -1,6 +1,4 @@
 <?php
-$f = new PuzzleFields;
-
 $features = new PuzzleSection;
 $features->set_name('Features')
     ->set_single_name('Feature')

@@ -1,6 +1,4 @@
 <?php
-$f = new PuzzleFields;
-
 $accordions = new PuzzleSection;
 $accordions->set_name('Accordions')
     ->set_single_name('Accordion')

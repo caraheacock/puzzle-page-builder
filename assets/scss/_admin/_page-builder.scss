@@ -219,10 +219,10 @@
 
     .puzzle-add-section-buttons {
         position: absolute;
-        right: -45%;
+        right: -40%;
         bottom: calc(100% - 5px);
         left: 50%;
-        padding: 10px;
+        padding: 15px;
         @extend %default-border-radius;
         background-color: rgba($dark-gray, 0.95);
         @include transform(translate(-50%, 0));

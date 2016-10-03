@@ -1,6 +1,4 @@
 <?php
-$f = new PuzzleFields;
-
 $carousel = new PuzzleSection;
 $carousel->set_name('Carousel')
     ->set_single_name('Slide')

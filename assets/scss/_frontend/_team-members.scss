@@ -13,21 +13,23 @@
         line-height: 1;
         
         i {
-            margin-right: 10px;
-            font-size: 2.5rem;
+            margin-right: 1rem;
+            font-size: 3rem;
             vertical-align: middle;
         }
     }
     
     .puzzle-social-links {
+        margin: 0 -0.4rem;
+        
         a {
             display: inline-block;
-            margin: 4px;
+            margin: 0.4rem;
             text-align: center;
         
-            .fa {
-                font-size: 30px;
-                line-height: 30px;
+            i {
+                font-size: 4rem;
+                line-height: 4rem;
             }
         }
     }
