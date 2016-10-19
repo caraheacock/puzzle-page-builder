@@ -2,15 +2,13 @@
 /* Call to Action */
 /*----------------*/
 
-.puzzle-call-to-action-content {
+.#{$prefix}call-to-action-content {
     @include align-items(center);
     text-align: center;
     
-    .puzzle-button {
+    .#{$prefix}button {
         width: 80%;
         margin: 0 10%;
-        font-size: 2rem;
-        text-transform: uppercase;
     }
     
     @include breakpoint($size-md) {
@@ -18,7 +16,7 @@
     }
     
     @include breakpoint ($size-lg) {
-        .puzzle-button {
+        .#{$prefix}button {
             width: 100%;
             margin: 0;
         }

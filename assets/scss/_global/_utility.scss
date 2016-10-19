@@ -4,7 +4,8 @@
 
 %button {
     display: inline-block;
-    padding: 10px 15px;
+    margin: 2px 0;
+    padding: 10px 20px;
     border: solid 1px $medium-gray;
     @extend %default-border-radius;
     background-color: $medium-gray;
@@ -19,22 +20,108 @@
     }
 }
 
-.puzzle-button {
+.#{$prefix}button {
     @extend %button;
     
-    &.puzzle-button-white, &.puzzle-button-transparent:hover {
+    &.#{$prefix}button-white {
+        border-color: #fff;
         background-color: #fff;
-        border-color: #fff;
+        
+        &.#{$prefix}button-outline {
+            border-color: #fff;
+            background-color: transparent;
+            color: #fff;
+            
+            &:hover, &:focus {
+                border-color: #fff;
+                background-color: #fff;
+            }
+        }
+        
+        &:hover, &:focus {
+            color: #fff;
+        }
     }
     
-    &.puzzle-button-black {
-        background-color: #000;
+    &.#{$prefix}button-light-gray {
+        border-color: $light-gray;
+        background-color: $light-gray;
+        
+        &.#{$prefix}button-outline {
+            border-color: $light-gray;
+            background-color: transparent;
+            color: $light-gray;
+            
+            &:hover, &:focus {
+                border-color: $light-gray;
+                background-color: $light-gray;
+            }
+        }
+        
+        &:hover, &:focus {
+            color: #fff;
+        }
+    }
+    
+    &.#{$prefix}button-medium-gray {
+        border-color: $medium-gray;
+        background-color: $medium-gray;
+        
+        &.#{$prefix}button-outline {
+            border-color: $medium-gray;
+            background-color: transparent;
+            color: $medium-gray;
+            
+            &:hover, &:focus {
+                border-color: $medium-gray;
+                background-color: $medium-gray;
+                color: #fff;
+            }
+        }
+    }
+    
+    &.#{$prefix}button-dark-gray {
+        border-color: $dark-gray;
+        background-color: $dark-gray;
+        
+        &.#{$prefix}button-outline {
+            border-color: $dark-gray;
+            background-color: transparent;
+            color: $dark-gray;
+            
+            &:hover, &:focus {
+                border-color: $dark-gray;
+                background-color: $dark-gray;
+                color: #fff;
+            }
+        }
+    }
+    
+    &.#{$prefix}button-black {
         border-color: #000;
+        background-color: #000;
+        
+        &.#{$prefix}button-outline {
+            border-color: #000;
+            background-color: transparent;
+            color: #000;
+            
+            &:hover, &:focus {
+                border-color: #000;
+                background-color: #000;
+                color: #fff;
+            }
+        }
     }
     
-    &.puzzle-button-transparent {
-        background-color: transparent;
-        border-color: #fff;
+    &.#{$prefix}button-small {
+        padding: 7px 15px;
+        font-size: 80%;
+    }
+    
+    &.#{$prefix}button-large {
+        padding: 15px 30px;
+        font-size: 120%;
     }
 }
 
@@ -55,4 +142,57 @@
     width: 1px;
     height: 1px;
     overflow: hidden;
+}
+
+/* Section backgrounds */
+
+.#{$prefix}white-background {
+    background-color: #fff;
+}
+
+.#{$prefix}light-gray-background {
+    background-color: $light-gray;
+}
+
+.#{$prefix}medium-gray-background {
+    background-color: $medium-gray;
+}
+
+.#{$prefix}dark-gray-background {
+    background-color: $dark-gray;
+}
+
+.#{$prefix}black-background {
+    background-color: #000;
+}
+
+.#{$prefix}background-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+}
+
+/* Text colors */
+
+.#{$prefix}white-text {
+    color: #fff;
+}
+
+.#{$prefix}light-gray-text {
+    color: $light-gray;
+}
+
+.#{$prefix}medium-gray-text {
+    color: $medium-gray;
+}
+
+.#{$prefix}dark-gray-text {
+    color: $dark-gray;
+}
+    
+.#{$prefix}black-text {
+    color: #000;
 }

@@ -9,7 +9,9 @@ $call_to_action->set_name('Call to Action')
         $f->field('content'),
         $f->field('button_text'),
         $f->field('button_link'),
-        $f->field('open_link_in_new_tab')
+        $f->field('open_link_in_new_tab'),
+        $f->field('button_color')->set_width(6),
+        $f->field('button_style')->set_width(6)
     ))
     ->set_option_fields(array(
         $f->field('id'),

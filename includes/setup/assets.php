@@ -9,6 +9,7 @@
 function ppb_scripts() {
     $puzzle_settings = new PuzzleSettings;
     
+    /* Main style */
     $ppb_frontend_style_location = 'assets/css/frontend-style.css';
     wp_enqueue_style(
         'puzzle-page-builder-frontend-style',
@@ -17,6 +18,17 @@ function ppb_scripts() {
         filemtime(PPB_PLUGIN_DIR . $ppb_frontend_style_location)
     );
     
+    /* Custom style generated from user options */
+    $puzzle_custom_style_location = 'assets/css/custom.css';
+    ppb_check_if_custom_style_exists();
+    wp_enqueue_style(
+        'puzzle-page-builder-custom-style',
+        PPB_PLUGIN_URL . $puzzle_custom_style_location,
+        array(),
+        filemtime(PPB_PLUGIN_DIR . $puzzle_custom_style_location)
+    );
+    
+    /* Owl Carousel script */
     if ($puzzle_settings->has_owl_carousel()) {
         $owl_carousel_script_location = 'assets/js/lib/owl.carousel.min.js';
         wp_enqueue_script(
@@ -27,6 +39,7 @@ function ppb_scripts() {
         );
     }
     
+    /* Main script */
     $ppb_frontend_script_location = 'assets/js/frontend-script.js';
     wp_enqueue_script(
         'puzzle-page-builder-frontend-script',

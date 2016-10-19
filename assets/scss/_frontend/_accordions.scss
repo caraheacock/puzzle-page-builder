@@ -2,7 +2,7 @@
 /* Accordions */
 /*------------*/
 
-.puzzle-accordions-content {
+.#{$prefix}accordions-content {
     padding: ($space-unit / 2) 0;
     
     > .column {
@@ -20,12 +20,12 @@
         background-color: rgba(#fff, 0.5);
         @include transition(all 0.4s ease);
         
-        &:hover, &:active, &.active-accordion {
+        &:hover, &:active, &.#{$prefix}active-accordion {
             background-color: #fff;
         }
         
-        &.active-accordion {
-            .puzzle-accordion-headline {
+        &.#{$prefix}active-accordion {
+            .#{$prefix}accordion-headline {
                 .fa:before {
                     content: '\f056';
                 }
@@ -33,7 +33,7 @@
         }
     }
     
-    .puzzle-accordion-headline {
+    .#{$prefix}accordion-headline {
         @include display-flex;
         @include align-items(center);
         margin: 0;
@@ -55,17 +55,17 @@
         }
     }
     
-    .puzzle-accordion-content {
+    .#{$prefix}accordion-content {
         display: none;
         padding: 1rem 0;
     }
 }
 
-.white-background .puzzle-accordions-content .column-inner {
+.#{$prefix}white-background .#{$prefix}accordions-content .column-inner {
     background-color: $light-gray;
     background-color: rgba($light-gray, 0.5);
     
-    &:hover, &:active, &.active-accordion {
+    &:hover, &:active, &.#{$prefix}active-accordion {
         background-color: $light-gray;
     }
 }

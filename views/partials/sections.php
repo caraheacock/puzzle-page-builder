@@ -25,11 +25,11 @@ if (!empty($page_sections)) :
         
         <section id="<?php echo $section_id; ?>" class="<?php echo ppb_section_classes($page_section); ?>"<?php if ($background_image) echo ' style="background-image: url(' . $background_image . ');"'; ?>>
             <?php if (!empty($puzzle_options_data['overlay'])) : ?>
-            <div class="puzzle-background-overlay <?php echo $puzzle_options_data['background_color']; ?>-background"></div>
+            <div class="pz-background-overlay <?php echo $puzzle_options_data['background_color']; ?>-background"></div>
             <?php endif; ?>
             
             <?php if (!empty($puzzle_options_data['headline'])) : ?>
-            <div class="row puzzle-section-headline">
+            <div class="row pz-section-headline">
                 <div class="column xs-span12">
                     <div class="column-inner">
                         <h2><?php echo $puzzle_options_data['headline']; ?></h2>
@@ -39,7 +39,7 @@ if (!empty($page_sections)) :
             <?php endif; ?>
             
             <?php if (!empty($main_content)) : ?>
-            <div class="row puzzle-main-content">
+            <div class="row pz-main-content">
                 <div class="column xs-span12">
                     <div class="column-inner">
                         <?php echo apply_filters('the_content', $main_content); ?>
@@ -58,7 +58,7 @@ if (!empty($page_sections)) :
                     }
                 }
                 ?>
-            <div class="row puzzle-<?php echo $puzzle_section_type; ?>-content">
+            <div class="row pz-<?php echo $puzzle_section_type; ?>-content">
                 <?php
                 $loop_file = 'theme/loops/' . $puzzle_section_type . '.php';
         
@@ -76,7 +76,7 @@ if (!empty($page_sections)) :
             $owl_pagination = (!empty($puzzle_options_data['hide_pagination']) ? 'false' : 'true');
             ?>
             <script id="<?php echo $section_id; ?>-carousel-script">
-            jQuery('#<?php echo $section_id; ?> .puzzle-carousel-content').owlCarousel({
+            jQuery('#<?php echo $section_id; ?> .pz-carousel-content').owlCarousel({
                 items: 1,
                 singleItem: true,
                 autoPlay: <?php echo $owl_autoplay; ?>,

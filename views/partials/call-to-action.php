@@ -8,6 +8,6 @@
 </div>
 <div class="column xs-span12 md-span6 lg-span4 xl-span3">
     <div class="column-inner">
-        <a class="puzzle-button" href="<?php echo $puzzle_column['link']; ?>"<?php if (!empty($puzzle_column['open_link_in_new_tab'])) echo ' target="_blank"'; ?>><?php echo $puzzle_column['button_text']; ?></a>
+        <a class="pz-button pz-button-large pz-button-<?php echo $puzzle_column['button_color']; if ($puzzle_column['button_style'] == 'outline') echo ' pz-button-outline'; ?> " href="<?php echo $puzzle_column['button_link']; ?>"<?php if (!empty($puzzle_column['open_link_in_new_tab'])) echo ' target="_blank"'; ?>><?php echo $puzzle_column['button_text']; ?></a>
     </div>
 </div>

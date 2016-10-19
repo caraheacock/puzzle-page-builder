@@ -26,6 +26,23 @@ $features->set_name('Features')
         $f->field('background_image')->set_width(6),
         $f->field('background_color')->set_width(6),
         $f->field('overlay'),
+        (new PuzzleField)->set_name('Icon Color')
+            ->set_id('icon_color')
+            ->set_input_type('select')
+            ->set_options(array(
+                'primary'           => 'Primary Color',
+                'secondary'         => 'Secondary Color',
+                'text-color'        => 'Text Color',
+                'headline-color'    => 'Headline Color',
+                'white'             => 'White',
+                'light-gray'        => 'Light Gray',
+                'medium-gray'       => 'Medium Gray',
+                'dark-gray'         => 'Dark Gray',
+                'black'             => 'Black'
+            ))
+            ->set_width(4),
+        $f->field('button_color')->set_width(4),
+        $f->field('button_style')->set_width(4),
         $f->field('main_content')
     ));
 

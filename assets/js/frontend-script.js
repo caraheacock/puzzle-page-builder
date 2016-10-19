@@ -11,7 +11,7 @@ jQuery('document').ready(function($) {
     }
     
     // Accordion hide and reveal
-    var $accordionHeadlines = $('.puzzle-accordion-headline'),
+    var $accordionHeadlines = $('.pz-accordion-headline'),
         $accordionButtons = $accordionHeadlines.find('.fa');
 
     var scrollToContent = function($content, time) {
@@ -48,24 +48,24 @@ jQuery('document').ready(function($) {
     };
 
     $accordionHeadlines.click(function() {
-        var $area = $(this).parents('.puzzle-accordions-content > .column > div'),
-            $content = $area.find('.puzzle-accordion-content'),
-            $siblingAccordionAreas = $area.parents('.puzzle-accordions-content').find('.column > div').not($area),
-            $siblingAccordionContents = $area.parents('.puzzle-accordions-content').find('.puzzle-accordion-content').not($content),
+        var $area = $(this).parents('.pz-accordions-content > .column > div'),
+            $content = $area.find('.pz-accordion-content'),
+            $siblingAccordionAreas = $area.parents('.pz-accordions-content').find('.column > div').not($area),
+            $siblingAccordionContents = $area.parents('.pz-accordions-content').find('.pz-accordion-content').not($content),
             duration = 500;
             
-        if ($siblingAccordionContents.filter(':visible').length > 0 && $content.parents('.puzzle-accordions-one-open').length > 0) {
+        if ($siblingAccordionContents.filter(':visible').length > 0 && $content.parents('.pz-accordions-one-open').length > 0) {
             $siblingAccordionContents.slideUp(duration);
-            $siblingAccordionAreas.removeClass('active-accordion');
+            $siblingAccordionAreas.removeClass('pz-active-accordion');
             
             setTimeout(function() {
                 $content.slideToggle(duration);
-                $area.toggleClass('active-accordion');
+                $area.toggleClass('pz-active-accordion');
                 scrollToContent($area, duration);
             }, duration);
         } else {
             $content.slideToggle(duration);
-            $area.toggleClass('active-accordion');
+            $area.toggleClass('pz-active-accordion');
             scrollToContent($area, duration);
         }
     });

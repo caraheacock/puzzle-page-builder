@@ -2,29 +2,30 @@
 /* Features */
 /*----------*/
 
-.puzzle-features {
-    .puzzle-icon-link, .puzzle-main-icon {
+.#{$prefix}features {
+    .#{$prefix}icon-link, .#{$prefix}main-icon {
         display: block;
         width: 6rem;
         height: 6rem;
         margin: 0 auto ($space-unit / 3) auto;
     }
     
-    .puzzle-main-icon {
+    .#{$prefix}main-icon {
         font-size: 5rem;
         line-height: 6rem;
         text-align: center;
+        @include transition(all 0.4s ease);
     }
     
-    .puzzle-icon-link {
+    .#{$prefix}icon-link {
         text-decoration: none;
     }
     
-    .icon-column, .icon-row .puzzle-feature-column-content > h3:first-child {
+    .#{$prefix}icon-column, .#{$prefix}icon-row .#{$prefix}feature-column-content > h3:first-child {
         text-align: center;
     }
     
-    .icon-column {
+    .#{$prefix}icon-column {
         .column-inner {
             @include display-flex;
             @include flex-direction(column);
@@ -35,7 +36,7 @@
                 @include flex(0 1 auto);
             }
             
-            .puzzle-feature-column-content {
+            .#{$prefix}feature-column-content {
                 @include flex-grow(1);
                 width: 100%;
             }
@@ -60,29 +61,29 @@
             }
         }
     
-        .puzzle-feature-main-button {
+        .#{$prefix}feature-main-button {
             width: 80%;
             margin-top: $space-unit;
         }
     }
 }
 
-.puzzle-features-content {
+.#{$prefix}features-content {
     @include justify-content(center);
 }
 
 @include breakpoint($size-sm) {
-    .puzzle-features {
-        .icon-row {
+    .#{$prefix}features {
+        .#{$prefix}icon-row {
             .column-inner {
                 @include display-flex;
             }
             
-            .puzzle-main-icon, .puzzle-icon-link {
+            .#{$prefix}main-icon, .#{$prefix}icon-link {
                 @include flex(0 0 #{$space-unit * 2});
             }
     
-            .puzzle-feature-column-content {
+            .#{$prefix}feature-column-content {
                 @include flex(1 1 100%);
                 
                 > h3:first-child {

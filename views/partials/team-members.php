@@ -2,7 +2,7 @@
 $image = null;
 if (!empty($puzzle_column['image'])) {
     $image_args = array(
-        'class' => 'puzzle-team-member-picture'
+        'class' => 'pz-team-member-picture'
     );
     $image = wp_get_attachment_image($puzzle_column['image'], 'full', false, $image_args);
 }
@@ -14,7 +14,7 @@ $content = apply_filters('the_content', $puzzle_column['content']);
 $contact_info = '';
 
 if (!empty($puzzle_column['phone']) || !empty($puzzle_column['email'])) {
-    $contact_info .= '<div class="puzzle-team-member-contact-info">';
+    $contact_info .= '<div class="pz-team-member-contact-info">';
     $contact_info .= (!empty($puzzle_column['phone']) ? '<p><i class="fa fa-phone"></i>' . $puzzle_column['phone']. '</p>' : '');
     
     if (!empty($puzzle_column['email'])) {
@@ -37,7 +37,7 @@ $social_links = array_filter(array(
 ));
 
 if (!empty($social_links)) {
-    $social_media .= '<div class="puzzle-social-links">';
+    $social_media .= '<div class="pz-social-links">';
     
     foreach($social_links as $soc => $link) {
         $social_media .= '<a href="' . $link . '" target="_blank"><i class="fa fa-' . $soc . '-square"></i></a>';
@@ -49,7 +49,7 @@ if (!empty($social_links)) {
 ?>
 
 <?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-    <div class="column xs-span12 puzzle-team-member-row">
+    <div class="column xs-span12 pz-team-member-row">
         <?php if (!empty($image)) : ?>
         <div class="column xs-span12 sm-span5 md-span4 lg-span3">
             <div class="column-inner">
@@ -58,7 +58,7 @@ if (!empty($social_links)) {
         </div>
         <?php endif; ?>
         
-        <div class="column xs-span12<?php if ($image) echo ' sm-span7 md-span8 lg-span9'; ?> puzzle-team-member-content">
+        <div class="column xs-span12<?php if ($image) echo ' sm-span7 md-span8 lg-span9'; ?> pz-team-member-content">
             <div class="column-inner">
                 <?php
                 if ($name) echo '<h3>' . $name . '</h3>';
@@ -69,10 +69,10 @@ if (!empty($social_links)) {
         </div>
     </div>
 <?php else : ?>
-    <div class="column <?php echo ppb_span_classes($puzzle_columns_num); ?> puzzle-team-member-columns">
+    <div class="column <?php echo ppb_span_classes($puzzle_columns_num); ?> pz-team-member-columns">
         <div class="column-inner">
             <?php if (!empty($image)) echo $image; ?>
-            <div class="puzzle-team-member-content">
+            <div class="pz-team-member-content">
                 <?php
                 if ($name) echo '<h4>' . $name . '</h4>';
                 if ($title) echo '<h5>' . $title . '</h5>';

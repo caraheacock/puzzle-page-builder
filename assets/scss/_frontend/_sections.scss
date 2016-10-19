@@ -2,44 +2,15 @@
 /* Sections */
 /*----------*/
 
-/* Section backgrounds */
-
-.white-background {
-    background-color: #fff;
-}
-
-.light-gray-background {
-    background-color: $light-gray;
-}
-
-.dark-gray-background {
-    background-color: $dark-gray;
-}
-
-.black-background {
-    background-color: #000;
-}
-
-/* Subsections inside each section */
-
-.puzzle-section-headline {
+.#{$prefix}section-headline {
     text-align: center;
-}
-
-.puzzle-background-overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0.5;
 }
 
 /*
  * The sections
  */
 
-.puzzle-features-content, .puzzle-team-members-content {
+.#{$prefix}features-content, .#{$prefix}team-members-content {
     > .column {
         @include display-flex;
         @include flex-wrap(wrap);

@@ -26,31 +26,61 @@ function ppb_insert_button_formats($init_array) {
             'title'     => 'Default Button',
             'inline'    => 'a',
             'selector'  => 'a',
-            'classes'   => 'puzzle-button'
+            'classes'   => 'pz-button'
         ),
         array(
             'title'     => 'Secondary Color Button',
             'inline'    => 'a',
             'selector'  => 'a',
-            'classes'   => 'puzzle-button puzzle-button-secondary'
+            'classes'   => 'pz-button pz-button-secondary'
         ),
         array(
             'title'     => 'White Button',
             'inline'    => 'a',
             'selector'  => 'a',
-            'classes'   => 'puzzle-button puzzle-button-white'
+            'classes'   => 'pz-button pz-button-white'
+        ),
+        array(
+            'title'     => 'Light Gray Button',
+            'inline'    => 'a',
+            'selector'  => 'a',
+            'classes'   => 'pz-button pz-button-light-gray'
+        ),
+        array(
+            'title'     => 'Medium Gray Button',
+            'inline'    => 'a',
+            'selector'  => 'a',
+            'classes'   => 'pz-button pz-button-medium-gray'
+        ),
+        array(
+            'title'     => 'Dark Gray Button',
+            'inline'    => 'a',
+            'selector'  => 'a',
+            'classes'   => 'pz-button pz-button-dark-gray'
         ),
         array(
             'title'     => 'Black Button',
             'inline'    => 'a',
             'selector'  => 'a',
-            'classes'   => 'puzzle-button puzzle-button-black'
+            'classes'   => 'pz-button pz-button-black'
         ),
         array(
-            'title'     => 'Transparent Button',
+            'title'     => 'Outline Only Button',
             'inline'    => 'a',
             'selector'  => 'a',
-            'classes'   => 'puzzle-button puzzle-button-transparent'
+            'classes'   => 'pz-button pz-button-outline'
+        ),
+        array(
+            'title'     => 'Small Button',
+            'inline'    => 'a',
+            'selector'  => 'a',
+            'classes'   => 'pz-button pz-button-small'
+        ),
+        array(
+            'title'     => 'Large Button',
+            'inline'    => 'a',
+            'selector'  => 'a',
+            'classes'   => 'pz-button pz-button-large'
         )
     );
     

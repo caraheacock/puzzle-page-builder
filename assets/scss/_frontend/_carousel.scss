@@ -2,14 +2,16 @@
 /* Carousel */
 /*----------*/
 
-.puzzle-carousel {
-    padding: 0;
+.#{$prefix}carousel {
+    &.#{$prefix}section {
+        padding: 0;
+    }
     
     > .row {
         max-width: 100%;
     }
     
-    .puzzle-carousel-slide {
+    .#{$prefix}carousel-slide {
         @include display-flex;
         @include align-items(center);
         @include justify-content(center);
@@ -20,15 +22,15 @@
         background-size: cover;
         text-align: center;
         
-        &.puzzle-align-carousel-slide-left {
+        &.#{$prefix}align-carousel-slide-left {
             text-align: left;
         }
     
-        &.puzzle-align-carousel-slide-right {
+        &.#{$prefix}align-carousel-slide-right {
             text-align: right;
         }
     
-        &.puzzle-align-carousel-slide-center {
+        &.#{$prefix}align-carousel-slide-center {
             text-align: center;
         }
         
@@ -38,43 +40,35 @@
         }
     }
     
-    .puzzle-carousel-slide-inner {
+    .#{$prefix}carousel-slide-inner {
         @include flex(0 1 100%);
         padding: 0 30px;
     }
     
-    .puzzle-carousel-text-white {
-        color: #fff;
-    }
-        
-    .puzzle-carousel-text-black {
-        color: #000;
-    }
-    
     @include breakpoint($size-md) {
-        .puzzle-carousel-slide {
+        .#{$prefix}carousel-slide {
             height: 600px;
             
-            &.puzzle-align-carousel-slide-left {
+            &.#{$prefix}align-carousel-slide-left {
                 .row {
                     @include justify-content(flex-start);
                 }
             }
             
-            &.puzzle-align-carousel-slide-right {
+            &.#{$prefix}align-carousel-slide-right {
                 .row {
                     @include justify-content(flex-end);
                 }
             }
             
-            &.puzzle-align-carousel-slide-center {
+            &.#{$prefix}align-carousel-slide-center {
                 .row {
                     @include justify-content(center);
                 }
             }
         }
         
-        .puzzle-carousel-slide-inner {
+        .#{$prefix}carousel-slide-inner {
             @include flex-basis(75%);
             width: 75%;
             padding: 0 50px;
@@ -82,14 +76,14 @@
     }
     
     @include breakpoint($size-lg) {
-        .puzzle-carousel-slide-inner {
+        .#{$prefix}carousel-slide-inner {
             @include flex-basis(60%);
             width: 60%;
         }
     }
     
     @include breakpoint($size-xl) {
-        .puzzle-carousel-slide-inner {
+        .#{$prefix}carousel-slide-inner {
             @include flex-basis(50%);
             width: 50%;
         }

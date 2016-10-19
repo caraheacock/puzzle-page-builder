@@ -15,12 +15,25 @@
 function ppb_section_classes($page_section) {
     $puzzle_options_data = $page_section['options'];
     
-    $section_classes  = 'puzzle-' . $page_section['type'];
-    $section_classes .= (!empty($puzzle_options_data['background_color']) ? ' ' . $puzzle_options_data['background_color'] . '-background' : '');
-    $section_classes .= (!empty($puzzle_options_data['text_color_scheme']) ? ' ' . $puzzle_options_data['text_color_scheme'] . '-text-color-scheme' : '');
-    $section_classes .= (!empty($puzzle_options_data['padding_top']) ? ' ' . $puzzle_options_data['padding_top'] . '-padding-top' : '');
-    $section_classes .= (!empty($puzzle_options_data['padding_bottom']) ? ' ' . $puzzle_options_data['padding_bottom'] . '-padding-bottom' : '');
-    $section_classes .= (!empty($puzzle_options_data['open_one_at_a_time']) ? ' puzzle-accordions-one-open' : '');
+    $section_classes = 'pz-section pz-' . $page_section['type'];
+    
+    if (!empty($puzzle_options_data['background_color'])) {
+        $section_classes .= ' pz-' . $puzzle_options_data['background_color'] . '-background';
+    }
+    
+    if (!empty($puzzle_options_data['text_color_scheme'])) {
+        $section_classes .= ' pz-' . $puzzle_options_data['text_color_scheme'] . '-text';
+    }
+    
+    if (!empty($puzzle_options_data['padding_top'])) {
+        $section_classes .= ' pz-section-' . $puzzle_options_data['padding_top'] . '-padding-top';
+    }
+    
+    if (!empty($puzzle_options_data['padding_bottom'])) {
+        $section_classes .= ' pz-section-' . $puzzle_options_data['padding_top'] . '-padding-bottom';
+    }
+    
+    $section_classes .= (!empty($puzzle_options_data['open_one_at_a_time']) ? ' pz-accordions-one-open' : '');
     
     return $section_classes;
 }

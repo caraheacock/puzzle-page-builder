@@ -4,14 +4,14 @@ $link_target = (!empty($puzzle_column['open_link_in_new_tab']) ? ' target="_blan
 $icon_link_start = '';
 $icon_link_end = '';
 if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])) {
-    $icon_link_start = '<a class="puzzle-icon-link" href="' . $puzzle_column['button_link'] . '"' . $link_target . '>';
+    $icon_link_start = '<a class="pz-icon-link" href="' . $puzzle_column['button_link'] . '"' . $link_target . '>';
     $icon_link_end = '</a>';
 }
 ?>
-<div class="column <?php echo $span_classes; echo ($puzzle_options_data['layout'] == 'rows' ? ' icon-row' : ' icon-column'); if (!empty($puzzle_column['button_text'])) echo ' has-button'; ?>">
+<div class="column <?php echo $span_classes; echo ($puzzle_options_data['layout'] == 'rows' ? ' pz-icon-row' : ' pz-icon-column'); if (!empty($puzzle_column['button_text'])) echo ' pz-has-button'; ?>">
     <div class="column-inner">
-        <?php echo $icon_link_start; ?><i class="puzzle-main-icon <?php echo $puzzle_column['icon']; ?>" aria-hidden="true"></i><?php echo $icon_link_end; ?>
-        <div class="puzzle-feature-column-content">
+        <?php echo $icon_link_start; ?><i class="pz-main-icon <?php echo $puzzle_column['icon']; ?>" aria-hidden="true"></i><?php echo $icon_link_end; ?>
+        <div class="pz-feature-column-content">
             <?php
             if (!empty($puzzle_column['subhead'])) {
                 $headline_tag = ($puzzle_options_data['layout'] == 'columns' ? 'h4' : 'h3');
@@ -22,7 +22,7 @@ if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])
             ?>
         </div>
         <?php if (!empty($puzzle_column['button_text'])) : ?>
-        <a class="puzzle-button puzzle-feature-main-button" href="<?php echo $puzzle_column['button_link']; ?>"<?php echo $link_target; ?>><?php echo $puzzle_column['button_text']; ?></a>
+        <a class="pz-button pz-feature-main-button" href="<?php echo $puzzle_column['button_link']; ?>"<?php echo $link_target; ?>><?php echo $puzzle_column['button_text']; ?></a>
         <?php endif; ?>
     </div>
 </div>

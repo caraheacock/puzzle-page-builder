@@ -25,6 +25,27 @@ class PuzzleSettings {
     function has_button_formats() { return self::$ButtonFormats; }
     
     /*
+     * Array: list of colors to use 
+     */
+    private static $Colors = array(
+        'primary_color'     => '#3b54a5',
+        'secondary_color'   => '#2cb799',
+        'headline_dark'     => '#333',
+        'text_dark'         => '#555',
+        'headline_light'    => '#fff',
+        'text_light'        => '#fff'
+    );
+    function set_colors($new_colors) {
+        foreach ($new_colors as $id => $hex) {
+            if (array_key_exists($id, self::$Colors)) {
+                self::$Colors[$id] = $hex;
+            }
+        }
+        return $this;
+    }
+    function colors() { return self::$Colors; }
+    
+    /*
      * Boolean: indicating if the icon library is available in the page builder
      */
     private static $IconLibrary = true;
@@ -33,6 +54,14 @@ class PuzzleSettings {
         return $this;
     }
     function has_icon_library() { return self::$IconLibrary; }
+    
+    /* Boolean: indicating if Owl Carousel is available. */
+    private static $OwlCarousel = true;
+    function set_owl_carousel($boolean) {
+        self::$OwlCarousel = $boolean;
+        return $this;
+    }
+    function has_owl_carousel() { return self::$OwlCarousel; }
     
     /*
      * Array: post types that the page builder is available for, or false if
@@ -44,14 +73,6 @@ class PuzzleSettings {
         return $this;
     }
     function page_builder_post_types() { return self::$PageBuilderPostTypes; }
-    
-    /* Boolean: indicating if Owl Carousel is available. */
-    private static $OwlCarousel = true;
-    function set_owl_carousel($boolean) {
-        self::$OwlCarousel = $boolean;
-        return $this;
-    }
-    function has_owl_carousel() { return self::$OwlCarousel; }
     
     /*
      * String: the theme's directory where custom template partials are kept

@@ -2,13 +2,13 @@
 /* Puzzle Team Members Section */
 /*-----------------------------*/
 
-.puzzle-team-members {
-    .puzzle-team-member-picture {
+.#{$prefix}team-members {
+    .#{$prefix}team-member-picture {
         display: block;
         margin: $text-space-unit auto;
     }
     
-    .puzzle-team-member-contact-info p {
+    .#{$prefix}team-member-contact-info p {
         margin: $text-space-unit 0;
         line-height: 1;
         
@@ -19,7 +19,7 @@
         }
     }
     
-    .puzzle-social-links {
+    .#{$prefix}social-links {
         margin: 0 -0.4rem;
         
         a {
