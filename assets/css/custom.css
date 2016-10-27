@@ -85,22 +85,12 @@
     background-color: #2cb799;
 }
 
-.pz-features .pz-main-icon,
 .pz-accordion-headline i {
     color: #3b54a5;
 }
 
-.pz-features .pz-icon-link:hover .pz-main-icon,
 .pz-accordion-headline:hover .fa {
     color: #2cb799;
-}
-
-.pz-features.pz-light-text .pz-main-icon {
-    color: #fff;
-}
-
-.pz-features.pz-light-text .pz-icon-link:hover .pz-main-icon {
-    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Buttons */

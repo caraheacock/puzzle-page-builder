@@ -63,9 +63,10 @@ class PuzzleSettings {
      * - 'plugin_template' - sections will be displayed in the plugin's
      *   template, which just includes the theme header, sections, and
      *   theme footer
-     * - 'the_content' - sections will replace the main content of a page
-     * - 'custom' - the user can set one of their theme's templates, and
-     *   sections will replace the content
+     * - 'the_content' - sections will replace the main content of a page,
+     *   using the theme's templates
+     * - 'custom' - the user can set a specific one of their theme's templates,
+     *   and sections will replace the content
      */
     private static $DisplaySectionsIn = 'plugin_template';
     function set_display_sections_in($new_display) {

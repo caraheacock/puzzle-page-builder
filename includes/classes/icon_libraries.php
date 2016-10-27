@@ -42,7 +42,7 @@ class PuzzleIconLibraries {
     }
     
     /* String: the default icon in the page builder */
-    private static $DefaultIcon = 'fa fa-star';
+    private static $DefaultIcon = 'ei ei-star-alt';
     function set_default_icon($new_icon) {
         self::$DefaultIcon = $new_icon;
     }

@@ -19,6 +19,12 @@
     
     .#{$prefix}icon-link {
         text-decoration: none;
+        
+        &:hover {
+            i {
+                @include transform(scale(1.2));
+            }
+        }
     }
     
     .#{$prefix}icon-column, .#{$prefix}icon-row .#{$prefix}feature-column-content > h3:first-child {

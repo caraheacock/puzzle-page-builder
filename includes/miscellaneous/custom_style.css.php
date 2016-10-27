@@ -112,22 +112,12 @@ $column_space_unit = 'px';
     background-color: <?php echo $secondary_color; ?>;
 }
 
-.pz-features .pz-main-icon,
 .pz-accordion-headline i {
     color: <?php echo $primary_color; ?>;
 }
 
-.pz-features .pz-icon-link:hover .pz-main-icon,
 .pz-accordion-headline:hover .fa {
     color: <?php echo $secondary_color; ?>;
-}
-
-.pz-features.pz-light-text .pz-main-icon {
-    color: <?php echo $headline_light; ?>;
-}
-
-.pz-features.pz-light-text .pz-icon-link:hover .pz-main-icon {
-    color: rgba(<?php echo ppb_hex2rgb($headline_light); ?>, 0.7);
 }
 
 /* Buttons */
