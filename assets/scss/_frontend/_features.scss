@@ -5,14 +5,14 @@
 .#{$prefix}features {
     .#{$prefix}icon-link, .#{$prefix}main-icon {
         display: block;
-        width: 6rem;
-        height: 6rem;
+        width: 60px;
+        height: 60px;
         margin: 0 auto ($space-unit / 3) auto;
     }
     
     .#{$prefix}main-icon {
-        font-size: 5rem;
-        line-height: 6rem;
+        font-size: 50px;
+        line-height: 60px;
         text-align: center;
         @include transition(all 0.4s ease);
     }
@@ -26,7 +26,7 @@
     }
     
     .#{$prefix}icon-column {
-        .column-inner {
+        .col-inner {
             @include display-flex;
             @include flex-direction(column);
             @include align-items(center);
@@ -75,7 +75,7 @@
 @include breakpoint($size-sm) {
     .#{$prefix}features {
         .#{$prefix}icon-row {
-            .column-inner {
+            .col-inner {
                 @include display-flex;
             }
             

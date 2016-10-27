@@ -9,7 +9,7 @@ if (!empty($puzzle_column['image'])) {
 
 $name = (!empty($puzzle_column['name']) ? $puzzle_column['name'] : null);
 $title = (!empty($puzzle_column['title']) ? $puzzle_column['title'] : null);
-$content = apply_filters('the_content', $puzzle_column['content']);
+$content = apply_filters('ppb_like_the_content', $puzzle_column['content']);
 
 $contact_info = '';
 
@@ -49,17 +49,17 @@ if (!empty($social_links)) {
 ?>
 
 <?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-    <div class="column xs-span12 pz-team-member-row">
+    <div class="column xs-12 pz-team-member-row">
         <?php if (!empty($image)) : ?>
-        <div class="column xs-span12 sm-span5 md-span4 lg-span3">
-            <div class="column-inner">
+        <div class="column xs-12 sm-5 md-4 lg-3">
+            <div class="col-inner">
                 <?php echo $image; ?>
             </div>
         </div>
         <?php endif; ?>
         
-        <div class="column xs-span12<?php if ($image) echo ' sm-span7 md-span8 lg-span9'; ?> pz-team-member-content">
-            <div class="column-inner">
+        <div class="column xs-12<?php if ($image) echo ' sm-7 md-8 lg-9'; ?> pz-team-member-content">
+            <div class="col-inner">
                 <?php
                 if ($name) echo '<h3>' . $name . '</h3>';
                 if ($title) echo '<h4>' . $title . '</h4>';
@@ -70,7 +70,7 @@ if (!empty($social_links)) {
     </div>
 <?php else : ?>
     <div class="column <?php echo ppb_span_classes($puzzle_columns_num); ?> pz-team-member-columns">
-        <div class="column-inner">
+        <div class="col-inner">
             <?php if (!empty($image)) echo $image; ?>
             <div class="pz-team-member-content">
                 <?php

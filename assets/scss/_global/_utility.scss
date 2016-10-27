@@ -9,13 +9,12 @@
     border: solid 1px $medium-gray;
     @extend %default-border-radius;
     background-color: $medium-gray;
-    color: #fff;
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
     @include transition (all 0.4s ease);
     
-    &:hover {
+    &, &:hover, &:focus, &:visited {
         color: #fff;
     }
 }
@@ -30,7 +29,10 @@
         &.#{$prefix}button-outline {
             border-color: #fff;
             background-color: transparent;
-            color: #fff;
+            
+            &, &:visited {
+                color: #fff;
+            }
             
             &:hover, &:focus {
                 border-color: #fff;
@@ -38,7 +40,7 @@
             }
         }
         
-        &:hover, &:focus {
+        &:hover, &:focus, &:visited {
             color: #fff;
         }
     }
@@ -50,7 +52,10 @@
         &.#{$prefix}button-outline {
             border-color: $light-gray;
             background-color: transparent;
-            color: $light-gray;
+            
+            &, &:visited {
+                color: $light-gray;
+            }
             
             &:hover, &:focus {
                 border-color: $light-gray;
@@ -58,7 +63,7 @@
             }
         }
         
-        &:hover, &:focus {
+        &:hover, &:focus, &:visited {
             color: #fff;
         }
     }
@@ -70,7 +75,10 @@
         &.#{$prefix}button-outline {
             border-color: $medium-gray;
             background-color: transparent;
-            color: $medium-gray;
+            
+            &, &:visited {
+                color: $medium-gray;
+            }
             
             &:hover, &:focus {
                 border-color: $medium-gray;
@@ -87,7 +95,10 @@
         &.#{$prefix}button-outline {
             border-color: $dark-gray;
             background-color: transparent;
-            color: $dark-gray;
+            
+            &, &:visited {
+                color: $dark-gray;
+            }
             
             &:hover, &:focus {
                 border-color: $dark-gray;
@@ -104,7 +115,10 @@
         &.#{$prefix}button-outline {
             border-color: #000;
             background-color: transparent;
-            color: #000;
+            
+            &, &:visited {
+                color: #000;
+            }
             
             &:hover, &:focus {
                 border-color: #000;

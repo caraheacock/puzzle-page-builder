@@ -4,7 +4,7 @@
     <?php endif; ?>
     
     <?php if (!empty($puzzle_column['headline']) || !empty($puzzle_column['tagline']) || !empty($puzzle_column['content'])) : ?>
-    <div class="row">
+    <div class="pz-row">
         <div class="column pz-carousel-slide-inner">
             <?php if (!empty($puzzle_column['headline'])) : ?>
             <h1><span class="pz-<?php echo $puzzle_column['headline_color']; ?>-text"><?php echo $puzzle_column['headline']; ?></span></h1>
@@ -16,7 +16,7 @@
         
             <?php if (!empty($puzzle_column['content'])) : ?>
             <div class="pz-carousel-slide-inner-content">
-                <?php echo apply_filters('the_content', $puzzle_column['content']); ?>
+                <?php echo apply_filters('ppb_like_the_content', $puzzle_column['content']); ?>
             </div>
             <?php endif; ?>
         </div>

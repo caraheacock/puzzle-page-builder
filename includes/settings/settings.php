@@ -46,6 +46,37 @@ class PuzzleSettings {
     function colors() { return self::$Colors; }
     
     /*
+     * String: a user-set custom template to display page builder sections
+     * in on the front-end.
+     */
+    private static $CustomTemplate = '';
+    function set_custom_template($new_template) {
+        self::$CustomTemplate = $new_template;
+        return $this;
+    }
+    function custom_template() { return self::$CustomTemplate; }
+    
+    /*
+     * String: how to display sections.
+     *
+     * Currently accepts these options
+     * - 'plugin_template' - sections will be displayed in the plugin's
+     *   template, which just includes the theme header, sections, and
+     *   theme footer
+     * - 'the_content' - sections will replace the main content of a page
+     * - 'custom' - the user can set one of their theme's templates, and
+     *   sections will replace the content
+     */
+    private static $DisplaySectionsIn = 'plugin_template';
+    function set_display_sections_in($new_display) {
+        if (array_key_exists($new_display, ['plugin_template', 'the_content', 'custom'])) {
+            self::$DisplaySectionsIn = $new_display;
+        }
+        return $this;
+    }
+    function display_sections_in() { return self::$DisplaySectionsIn; }
+    
+    /*
      * Boolean: indicating if the icon library is available in the page builder
      */
     private static $IconLibrary = true;

@@ -36,24 +36,23 @@ class PuzzlePageBuilderTemplate {
     /*
      * Initializes the class by setting filters and administration functions.
      */
-    private function __construct() {
+    public function __construct() {
         $this->templates = array();
+        $this->settings = new PuzzleSettings;
 
         /*
-         * Add a filter to the attributes metabox to inject template into
-         * the cache.
+         * Add a filter to insert template into the attributes metabox.
          */
         add_filter('page_attributes_dropdown_pages_args', array($this, 'register_puzzle_page_builder_template'));
         
         /*
-         * Add a filter to the save post to inject out template into the
-         * page cache
+         * Add a filter to insert our template into the post data.
          */
         add_filter('wp_insert_post_data', array($this, 'register_puzzle_page_builder_template'));
         
         /*
          * Add a filter to the template include to determine if the page has our
-         * template assigned and return its path
+         * template assigned and return its path.
          */
         add_filter('template_include', array($this, 'view_puzzle_page_builder_template'));
 
@@ -120,15 +119,34 @@ class PuzzlePageBuilderTemplate {
          */
         if (!isset($this->templates[$active_template])) return $template;
         
-        /* Check that the template file exists. If it does, use it. */
-        $file = plugin_dir_path(dirname(dirname(__FILE__))) . 'views/' . $active_template;
-        if (file_exists($file)) return $file;
+        /*
+         * Either hook into 'the_content' if the user wants to use their
+         * theme's templates, use a specific template that the user set, or
+         * use our own.
+         */
+        switch ($this->settings->display_sections_in()) {
+            case 'plugin_template':
+                return PPB_PLUGIN_DIR . '/views/' . $active_template;
+                break;
+            case 'custom' :
+                return get_theme_directory_uri() . $this->settings->custom_template();
+                break;
+            default:
+                add_filter('the_content', 'ppb_the_content');
+                return $template;
+        }
         
-        /* If all else fails, return the template without altering it. */
-        return $template;
     }
 }
 
-add_action('plugins_loaded', array('PuzzlePageBuilderTemplate', 'get_instance'));
+$puzzle_page_builder_template = new PuzzlePageBuilderTemplate;
+
+function ppb_the_content($content) {
+    ob_start();
+    require(PPB_PLUGIN_DIR . '/views/partials/sections.php');
+    $content = ob_get_clean();
+    
+    return $content;
+}
 
 ?>

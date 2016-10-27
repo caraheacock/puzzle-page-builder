@@ -4,7 +4,7 @@
  * Plugin Name: Puzzle Page Builder
  * Plugin URI: https://github.com/caraheacock/puzzle-page-builder
  * Description: Create pages using custom sections.
- * Version: 0.12.0
+ * Version: 0.13.0
  * Author: Cara Heacock
  * Author URI: http://caraheacock.com
  * License: GPL2
@@ -14,15 +14,23 @@
 define('PPB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PPB_PLUGIN_URL', plugins_url('/', __FILE__));
 
-/* Helper functions */
-foreach (glob(PPB_PLUGIN_DIR . 'includes/helpers/*.php') as $filename) {
-    include $filename;
+function ppb_init_settings() {
+    include(PPB_PLUGIN_DIR . 'includes/settings/settings.php');
 }
+add_action('plugins_loaded', 'ppb_init_settings', 8);
 
-/* Classes */
-foreach (glob(PPB_PLUGIN_DIR . 'includes/classes/*.php') as $filename) {
-    include $filename;
+function ppb_init_classes() {
+    /* Helper functions */
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/helpers/*.php') as $filename) {
+        include $filename;
+    }
+
+    /* Classes */
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/classes/*.php') as $filename) {
+        include $filename;
+    }
 }
+add_action('plugins_loaded', 'ppb_init_classes', 9);
 
 /* Objects */
 function ppb_init_objects() {
@@ -61,7 +69,7 @@ function ppb_init_objects() {
     /* Hook to allow developers to modify the sections */
     do_action('ppb_modify_sections', $puzzle_sections, $f);
 }
-add_action('init', 'ppb_init_objects', 11);
+add_action('plugins_loaded', 'ppb_init_objects', 10);
 
 /* Setup assets, page builder, etc. */
 foreach (glob(PPB_PLUGIN_DIR . 'includes/setup/*.php') as $filename) {

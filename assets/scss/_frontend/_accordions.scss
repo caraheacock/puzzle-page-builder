@@ -6,15 +6,10 @@
     padding: ($space-unit / 2) 0;
     
     > .column {
-        margin-top: 1rem;
         padding: 0 ($space-unit / 2);
-        
-        &:first-child {
-            margin-top: 0;
-        }
     }
     
-    .column-inner {
+    .col-inner {
         padding: ($space-unit / 4) ($space-unit / 3);
         @extend %default-border-radius;
         background-color: rgba(#fff, 0.5);
@@ -46,7 +41,7 @@
     
         .fa {
             @include flex(0 0 auto);
-            font-size: 4rem;
+            font-size: 220%;
             @include transition(all 0.4s ease);
             
             &:before {
@@ -57,11 +52,11 @@
     
     .#{$prefix}accordion-content {
         display: none;
-        padding: 1rem 0;
+        padding: 10px 0;
     }
 }
 
-.#{$prefix}white-background .#{$prefix}accordions-content .column-inner {
+.#{$prefix}white-background .#{$prefix}accordions-content .col-inner {
     background-color: $light-gray;
     background-color: rgba($light-gray, 0.5);
     

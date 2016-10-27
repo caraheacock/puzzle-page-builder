@@ -7,7 +7,7 @@
         padding: 0;
     }
     
-    > .row {
+    > .#{$prefix}row {
         max-width: 100%;
     }
     
@@ -34,7 +34,7 @@
             text-align: center;
         }
         
-        .row {
+        .#{$prefix}row {
             position: relative;
             @include flex(0 1 100%);
         }
@@ -50,19 +50,19 @@
             height: 600px;
             
             &.#{$prefix}align-carousel-slide-left {
-                .row {
+                .#{$prefix}row {
                     @include justify-content(flex-start);
                 }
             }
             
             &.#{$prefix}align-carousel-slide-right {
-                .row {
+                .#{$prefix}row {
                     @include justify-content(flex-end);
                 }
             }
             
             &.#{$prefix}align-carousel-slide-center {
-                .row {
+                .#{$prefix}row {
                     @include justify-content(center);
                 }
             }

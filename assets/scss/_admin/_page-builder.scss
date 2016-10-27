@@ -46,7 +46,7 @@
         }
     }
     
-    .puzzle-section-content, .puzzle-columns-area .column-inner {
+    .puzzle-section-content, .puzzle-columns-area .col-inner {
         &.new {
             @include animation(new-section 1s ease);
         }
@@ -64,7 +64,7 @@
     .puzzle-section-menu {
         text-align: center;
         
-        .row {
+        .#{$prefix}row {
             @include align-items(center);
             @include justify-content(space-between);
             padding: 5px 10px;
@@ -189,7 +189,7 @@
     }
     
     .puzzle-columns-area {
-        .column-inner {
+        .col-inner {
             width: calc(100% - 10px);
             margin: 5px;
             padding: 0;

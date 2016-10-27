@@ -21,7 +21,7 @@ class PuzzlePageBuilder {
         foreach($fields as $field) {
             $id = $field->id();
             $input_name = $input_name_prefix . '[' . $id . ']';
-            $input_width = 'xs-span12 sm-span' . ($field->width());
+            $input_width = 'xs-12 sm-' . ($field->width());
             
             $tip = '';
             if (!empty($field->tip())) {
@@ -120,7 +120,7 @@ class PuzzlePageBuilder {
         $output  = '<div class="puzzle-section-menu">';
         
         if ($is_section || $puzzle_section->has_unlimited_columns()) {
-            $output .= '<div class="row puzzle-section-menu-top">';
+            $output .= '<div class="pz-row puzzle-section-menu-top">';
             $output .= '<div class="puzzle-has-dropdown">';
             $output .= '<a class="puzzle-dropdown-trigger" href="#" title="Add"><i class="ei ei-plus"></i></a>';
             $output .= '<ul>';
@@ -150,7 +150,7 @@ class PuzzlePageBuilder {
             $output .= '</div>';
         }
         
-        $output .= '<div class="row puzzle-section-menu-title">';
+        $output .= '<div class="pz-row puzzle-section-menu-title">';
         
         if ($is_section) {
             $output .= '<h3>' . $puzzle_section->name() . '</h3>';
@@ -180,12 +180,12 @@ class PuzzlePageBuilder {
      */
     function column_markup($puzzle_section, $s, $c, $column_data = array()) {
         $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '" data-id="' . $c . '">';
-        $output .= '<div class="column-inner">';
+        $output .= '<div class="col-inner">';
         
         $output .= self::section_menu($puzzle_section, false);
         $output .= '<div class="puzzle-collapsable-content">';
         
-        $output .= '<div class="row">';
+        $output .= '<div class="pz-row">';
         $output .= $this->fields_markup($column_data, $puzzle_section->column_fields(), '_puzzle_page_sections[' . $s . '][columns][' . $c . ']');
         $output .= '</div>';
         
@@ -233,14 +233,14 @@ class PuzzlePageBuilder {
         $output .= '<div class="puzzle-collapsable-content">';
         
         if ($puzzle_section->option_fields()) {
-            $output .= '<div class="row puzzle-general-options-area">';
+            $output .= '<div class="pz-row puzzle-general-options-area">';
             $output .= self::options_markup($puzzle_section, $s, $options_data);
             $output .= '</div>';
         }
         
         $output .= '</div>';
         
-        $output .= '<div class="row puzzle-columns-area ' . ($puzzle_section->has_unlimited_columns() ? 'puzzle-unlimited-columns' : 'puzzle-fixed-columns') . '">';
+        $output .= '<div class="pz-row puzzle-columns-area ' . ($puzzle_section->has_unlimited_columns() ? 'puzzle-unlimited-columns' : 'puzzle-fixed-columns') . '">';
 
         /* Gets the max number of columns. */
         $max_columns = $puzzle_section->columns_num();
@@ -308,7 +308,7 @@ class PuzzlePageBuilder {
                 $tag = $fields[$key]->save_as();
             
                 if ($tag == 'content') {
-                    $content .= apply_filters('the_content', $value);
+                    $content .= apply_filters('ppb_like_the_content', $value);
                 } elseif ($tag == 'link') {
                     $link_text = $fields[$key]->name();
                     $open_link_in_new_tab = '';

@@ -29,9 +29,9 @@ if (!empty($page_sections)) :
             <?php endif; ?>
             
             <?php if (!empty($puzzle_options_data['headline'])) : ?>
-            <div class="row pz-section-headline">
-                <div class="column xs-span12">
-                    <div class="column-inner">
+            <div class="pz-row pz-section-headline">
+                <div class="column xs-12">
+                    <div class="col-inner">
                         <h2><?php echo $puzzle_options_data['headline']; ?></h2>
                     </div>
                 </div>
@@ -39,10 +39,10 @@ if (!empty($page_sections)) :
             <?php endif; ?>
             
             <?php if (!empty($main_content)) : ?>
-            <div class="row pz-main-content">
-                <div class="column xs-span12">
-                    <div class="column-inner">
-                        <?php echo apply_filters('the_content', $main_content); ?>
+            <div class="pz-row pz-main-content">
+                <div class="column xs-12">
+                    <div class="col-inner">
+                        <?php echo apply_filters('ppb_like_the_content', $main_content); ?>
                     </div>
                 </div>
             </div>
@@ -54,11 +54,11 @@ if (!empty($page_sections)) :
                     if ($puzzle_options_data['layout'] == 'columns') {
                         $span_classes = ppb_span_classes($puzzle_columns_num);
                     } else {
-                        $span_classes = 'xs-span12';
+                        $span_classes = 'xs-12';
                     }
                 }
                 ?>
-            <div class="row pz-<?php echo $puzzle_section_type; ?>-content">
+            <div class="pz-row pz-<?php echo $puzzle_section_type; ?>-content">
                 <?php
                 $loop_file = 'theme/loops/' . $puzzle_section_type . '.php';
         

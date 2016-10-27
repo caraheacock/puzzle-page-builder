@@ -140,9 +140,14 @@ $column_space_unit = 'px';
     color: #fff;
 }
 
+.pz-button:visited {
+    color: #fff;
+}
+
 .pz-button:hover,
 .pz-button:focus,
-.pz-button.pz-button-secondary {
+.pz-button.pz-button-secondary,
+.pz-button.pz-button-secondary:visited {
     background-color: <?php echo $secondary_color; ?>;
     border-color: <?php echo $secondary_color; ?>;
     color: #fff;
@@ -161,6 +166,10 @@ $column_space_unit = 'px';
     color: <?php echo $primary_color; ?>;
 }
 
+.pz-button.pz-button-outline:visited {
+    color: <?php echo $primary_color; ?>;
+}
+
 .pz-button.pz-button-outline:hover,
 .pz-button.pz-button-outline:focus {
     border-color: <?php echo $primary_color; ?>;
@@ -168,7 +177,8 @@ $column_space_unit = 'px';
     color: #fff;
 }
 
-.pz-button.pz-button-secondary.pz-button-outline {
+.pz-button.pz-button-secondary.pz-button-outline,
+.pz-button.pz-button-secondary.pz-button-outline:visited {
     border-color: <?php echo $secondary_color; ?>;
     background-color: transparent;
     color: <?php echo $secondary_color; ?>;
@@ -181,7 +191,9 @@ $column_space_unit = 'px';
 }
 
 .pz-button.pz-button-white,
-.pz-button.pz-button-light-gray {
+.pz-button.pz-button-white:visited,
+.pz-button.pz-button-light-gray,
+.pz-button.pz-button-light-gray:visited {
     color: <?php echo $text_dark; ?>;
 }
 

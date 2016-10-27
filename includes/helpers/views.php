@@ -79,7 +79,7 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
      * full width.
      */
     if ($size1 != 'xs') {
-        $span_classes .= 'xs-span12';
+        $span_classes .= 'xs-12';
     
         // If the max columns per row is 1, we're done
         if ($max <= 1) return $span_classes;
@@ -105,9 +105,9 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
      * half width.
      */
     if ($max >= 3 && $total % 3 == 0) {
-        $span_classes .= $size1 . '-span4';
+        $span_classes .= $size1 . '-4';
     } else {
-        $span_classes .= $size1 . '-span6';
+        $span_classes .= $size1 . '-6';
     }
     
     /* If the max columns per row is 2, we're done */
@@ -175,10 +175,10 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
                 /*
                  * $col is the number for the class name.
                  * For example, for $n = 4 (4 items per row), the class for an item
-                 * is "lg-span3" (the item spans 3 columns in a 12 column layout).
+                 * is "lg-3" (the item spans 3 columns in a 12 column layout).
                  */
                 $col = (!empty($special_columns[$n]) ? $special_columns[$n] : 12 / $n);
-                $span_classes .= ' ' . $size2 . '-span' . $col;
+                $span_classes .= ' ' . $size2 . '-' . $col;
                 
                 /* Break out of the 2 for loops. */
                 break 2;

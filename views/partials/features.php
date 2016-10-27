@@ -9,7 +9,7 @@ if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])
 }
 ?>
 <div class="column <?php echo $span_classes; echo ($puzzle_options_data['layout'] == 'rows' ? ' pz-icon-row' : ' pz-icon-column'); if (!empty($puzzle_column['button_text'])) echo ' pz-has-button'; ?>">
-    <div class="column-inner">
+    <div class="col-inner">
         <?php echo $icon_link_start; ?><i class="pz-main-icon <?php echo $puzzle_column['icon']; ?>" aria-hidden="true"></i><?php echo $icon_link_end; ?>
         <div class="pz-feature-column-content">
             <?php
@@ -18,7 +18,7 @@ if (!empty($puzzle_column['button_link']) && !empty($puzzle_column['icon_link'])
                 echo '<' . $headline_tag . '>' . $puzzle_column['subhead'] . '</' . $headline_tag . '>';
             }
             
-            echo apply_filters('the_content', $puzzle_column['content']);
+            echo apply_filters('ppb_like_the_content', $puzzle_column['content']);
             ?>
         </div>
         <?php if (!empty($puzzle_column['button_text'])) : ?>
