@@ -11,7 +11,7 @@
     color: $body-color;
     line-height: 1.5;
     text-align: center;
-    @include transition (all 0.4s ease);
+    @extend %default-transition;
     
     &:hover, &:focus, &:active, &.puzzle-button-primary {
         color: #fff;
@@ -25,7 +25,7 @@
     &:active {
         border-color: transparent;
         background-color: $primary-color-dark;
-        @include transition(none);
+        transition: none;
     }
     
     &.puzzle-button-primary:hover, &.puzzle-button-primary:focus {

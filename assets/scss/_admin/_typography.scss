@@ -88,5 +88,5 @@ hr {
 
 a {
     text-decoration: none;
-    @include transition(all 0.4s ease);
+    @extend %default-transition;
 }

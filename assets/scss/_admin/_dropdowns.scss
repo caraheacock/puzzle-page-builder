@@ -17,7 +17,7 @@
         background-color: #fff;
         text-align: left;
         @include box-shadow(1px 1px 3px rgba(#000, 0.1));
-        @include transition(all 0.4s ease);
+        @extend %default-transition;
         opacity: 0;
   
         &.show {

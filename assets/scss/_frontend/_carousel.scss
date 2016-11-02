@@ -112,11 +112,11 @@
             border-radius: 0;
             filter: Alpha(Opacity=100);
             opacity: 1;
-            @include transition(all 0.4s ease);
+            @extend %default-transition;
         }
         
         .owl-buttons div {
-            @include transition(all 0.4s ease);
+            @extend %default-transition;
             display: none;
             position: absolute;
             top: 45%;

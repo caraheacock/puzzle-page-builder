@@ -14,7 +14,7 @@
         font-size: 50px;
         line-height: 60px;
         text-align: center;
-        @include transition(all 0.4s ease);
+        @extend %default-transition;
     }
     
     .#{$prefix}icon-link {

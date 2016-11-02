@@ -114,7 +114,7 @@
             font-size: 30px;
             line-height: 30px;
             cursor: pointer;
-            @include transition(all 0.4s ease);
+            @extend %default-transition;
             
             &:hover, &:focus {
                 color: $primary-color;
@@ -226,7 +226,7 @@
         @extend %default-border-radius;
         background-color: rgba($dark-gray, 0.95);
         @include transform(translate(-50%, 0));
-        @include transition(all 0.4s ease);
+        @extend %default-transition;
         visibility: hidden;
         opacity: 0;
     
@@ -330,7 +330,7 @@
 /* Tips */
 .puzzle-field-tip-button {
     @include transform(scale(1.3));
-    @include transition(all 0.4s ease);
+    @extend %default-transition;
     vertical-align: middle;
     margin-left: 5px;
     color: $medium-gray;

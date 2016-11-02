@@ -13,7 +13,7 @@
         padding: ($space-unit / 4) ($space-unit / 3);
         @extend %default-border-radius;
         background-color: rgba(#fff, 0.5);
-        @include transition(all 0.4s ease);
+        @extend %default-transition;
         
         &:hover, &:active, &.#{$prefix}active-accordion {
             background-color: #fff;
@@ -42,7 +42,7 @@
         .fa {
             @include flex(0 0 auto);
             font-size: 220%;
-            @include transition(all 0.4s ease);
+            @extend %default-transition;
             
             &:before {
                 content: '\f055';
