@@ -36,9 +36,15 @@ class PuzzleSections {
      * $slugs - array, a list of slugs of sections to remove
      */
     function remove_sections($slugs) {
-        foreach ($slugs as $slug) {
-            self::remove_section($slug);
-        }
+        self::$Sections = array_diff_key(self::$Sections, array_flip($slugs));
+    }
+    
+    /*
+     * Keeps only white-listed sections by their slugs
+     * $slugs - array, a white list of sections to keep
+     */
+    function keep_sections($slugs) {
+        self::$Sections = array_intersect_key(self::$Sections, array_flip($slugs));
     }
     
     /* Removes all sections */
