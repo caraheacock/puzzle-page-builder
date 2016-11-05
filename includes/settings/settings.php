@@ -28,8 +28,8 @@ class PuzzleSettings {
      * Array: list of colors to use 
      */
     private static $Colors = array(
-        'primary_color'     => '#3b54a5',
-        'secondary_color'   => '#2cb799',
+        'primary'           => '#3b54a5',
+        'secondary'         => '#2cb799',
         'headline_dark'     => '#333',
         'text_dark'         => '#555',
         'headline_light'    => '#fff',

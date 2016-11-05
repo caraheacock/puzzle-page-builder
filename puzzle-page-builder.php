@@ -4,7 +4,7 @@
  * Plugin Name: Puzzle Page Builder
  * Plugin URI: https://github.com/caraheacock/puzzle-page-builder
  * Description: Create pages using custom sections.
- * Version: 0.13.3
+ * Version: 0.13.4
  * Author: Cara Heacock
  * Author URI: http://caraheacock.com
  * License: GPL2

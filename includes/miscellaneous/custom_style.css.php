@@ -12,8 +12,8 @@
 $puzzle_settings = new PuzzleSettings;
 $puzzle_colors = $puzzle_settings->colors();
 
-$primary_color = $puzzle_colors['primary_color'];
-$secondary_color = $puzzle_colors['secondary_color'];
+$primary_color = $puzzle_colors['primary'];
+$secondary_color = $puzzle_colors['secondary'];
 $headline_dark = $puzzle_colors['headline_dark'];
 $text_dark = $puzzle_colors['text_dark'];
 $headline_light = $puzzle_colors['headline_light'];
@@ -24,6 +24,7 @@ $section_space = 60;
 $section_space_unit = 'px';
 $column_space = 15;
 $column_space_unit = 'px';
+
 ?>
 /* Global */
 .pz-section {
@@ -57,15 +58,6 @@ $column_space_unit = 'px';
     color: <?php echo $text_dark; ?>;
 }
 
-.pz-dark-text a:not(.pz-button) {
-    color: <?php echo $primary_color; ?>;
-}
-
-.pz-dark-text a:not(.pz-button):hover,
-.pz-dark-text a:not(.pz-button):active {
-    color: <?php echo $secondary_color; ?>;
-}
-
 .pz-light-text h1,
 .pz-light-text h2,
 .pz-light-text h3,
@@ -79,8 +71,7 @@ $column_space_unit = 'px';
 .pz-light-text,
 .pz-light-text p,
 .pz-light-text li,
-.pz-light-text td,
-.pz-light-text a:not(.pz-button) {
+.pz-light-text td {
     color: <?php echo $text_light; ?>;
 }
 
