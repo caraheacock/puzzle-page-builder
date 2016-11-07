@@ -2,7 +2,7 @@
 
 /*
  * Puzzle Page Builder
- * Field
+ * Field Class
  */
 
 class PuzzleField {

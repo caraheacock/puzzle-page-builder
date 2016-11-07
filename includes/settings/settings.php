@@ -25,27 +25,6 @@ class PuzzleSettings {
     function has_button_formats() { return self::$ButtonFormats; }
     
     /*
-     * Array: list of colors to use 
-     */
-    private static $Colors = array(
-        'primary'           => '#3b54a5',
-        'secondary'         => '#2cb799',
-        'headline_dark'     => '#333',
-        'text_dark'         => '#555',
-        'headline_light'    => '#fff',
-        'text_light'        => '#fff'
-    );
-    function set_colors($new_colors) {
-        foreach ($new_colors as $id => $hex) {
-            if (array_key_exists($id, self::$Colors)) {
-                self::$Colors[$id] = $hex;
-            }
-        }
-        return $this;
-    }
-    function colors() { return self::$Colors; }
-    
-    /*
      * String: a user-set custom template to display page builder sections
      * in on the front-end.
      */

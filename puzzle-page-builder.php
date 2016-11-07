@@ -4,7 +4,7 @@
  * Plugin Name: Puzzle Page Builder
  * Plugin URI: https://github.com/caraheacock/puzzle-page-builder
  * Description: Create pages using custom sections.
- * Version: 0.13.5
+ * Version: 0.14.0
  * Author: Cara Heacock
  * Author URI: http://caraheacock.com
  * License: GPL2
@@ -38,9 +38,16 @@ function ppb_init_objects() {
      * Instances of classes that are used throughout the included files
      * and actions
      */
+    $puzzle_colors = new PuzzleColors;
     $f = new PuzzleFields;
     $puzzle_icon_libraries = new PuzzleIconLibraries;
     $puzzle_sections = new PuzzleSections;
+    
+    /* Include colors */
+    include(PPB_PLUGIN_DIR . 'includes/colors/colors.php');
+    
+    /* Hook to allow developers to modify colors */
+    do_action('ppb_modify_colors', $puzzle_colors);
     
     /* Include fields */
     foreach (glob(PPB_PLUGIN_DIR . 'includes/fields/*.php') as $filename) {

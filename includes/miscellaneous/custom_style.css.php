@@ -9,15 +9,12 @@
  * plugin options.
  */
 
-$puzzle_settings = new PuzzleSettings;
-$puzzle_colors = $puzzle_settings->colors();
+$puzzle_colors = new PuzzleColors;
+$puzzle_theme_colors = $puzzle_colors->theme_colors();
+$puzzle_text_colors = $puzzle_colors->text_colors();
 
-$primary_color = $puzzle_colors['primary'];
-$secondary_color = $puzzle_colors['secondary'];
-$headline_dark = $puzzle_colors['headline_dark'];
-$text_dark = $puzzle_colors['text_dark'];
-$headline_light = $puzzle_colors['headline_light'];
-$text_light = $puzzle_colors['text_light'];
+$primary_color = $puzzle_colors->theme_color('primary')->color();
+$secondary_color = $puzzle_colors->theme_color('secondary')->color();
 
 // Temporary values
 $section_space = 60;
@@ -48,14 +45,14 @@ $column_space_unit = 'px';
 .pz-dark-text h5,
 .pz-dark-text h6,
 .pz-dark-text th {
-    color: <?php echo $headline_dark; ?>;
+    color: <?php echo $puzzle_text_colors['headline_dark']; ?>;
 }
 
 .pz-dark-text,
 .pz-dark-text p,
 .pz-dark-text li,
 .pz-dark-text td {
-    color: <?php echo $text_dark; ?>;
+    color: <?php echo $puzzle_text_colors['text_dark']; ?>;
 }
 
 .pz-light-text h1,
@@ -65,33 +62,28 @@ $column_space_unit = 'px';
 .pz-light-text h5,
 .pz-light-text h6,
 .pz-light-text th {
-    color: <?php echo $headline_light; ?>;
+    color: <?php echo $puzzle_text_colors['headline_light']; ?>;
 }
 
 .pz-light-text,
 .pz-light-text p,
 .pz-light-text li,
 .pz-light-text td {
-    color: <?php echo $text_light; ?>;
+    color: <?php echo $puzzle_text_colors['text_light']; ?>;
 }
 
 /* Utility */
 
-.pz-primary-background {
-    background-color: <?php echo $primary_color; ?>;
+<?php foreach($puzzle_theme_colors as $id => $color) : ?>
+.pz-<?php echo $id; ?>-background {
+    background-color: <?php echo $color->color(); ?>;
 }
 
-.pz-secondary-background {
-    background-color: <?php echo $secondary_color; ?>;
+.pz-<?php echo $id; ?>-text {
+    color: <?php echo $color->color(); ?>;
 }
 
-.pz-primary-text {
-    color: <?php echo $primary_color; ?>;
-}
-
-.pz-secondary-text {
-    color: <?php echo $secondary_color; ?>;
-}
+<?php endforeach; ?>
 
 /* Sections */
 
@@ -138,7 +130,7 @@ $column_space_unit = 'px';
 .pz-secondary-background .pz-button:focus {
     background-color: #fff;
     border-color: #fff;
-    color: <?php echo $text_dark; ?>;
+    color: <?php echo $puzzle_text_colors['text_dark']; ?>;
 }
 
 .pz-button.pz-button-outline {
@@ -175,7 +167,7 @@ $column_space_unit = 'px';
 .pz-button.pz-button-white:visited,
 .pz-button.pz-button-light-gray,
 .pz-button.pz-button-light-gray:visited {
-    color: <?php echo $text_dark; ?>;
+    color: <?php echo $puzzle_text_colors['text_dark']; ?>;
 }
 
 .pz-secondary-background .pz-button.pz-button-white:hover,
@@ -191,5 +183,5 @@ $column_space_unit = 'px';
 .pz-button.pz-button-white.pz-button-outline:focus,
 .pz-button.pz-button-light-gray.pz-button-outline:hover,
 .pz-button.pz-button-light-gray.pz-button-outline:focus {
-    color: <?php echo $text_dark; ?>;
+    color: <?php echo $puzzle_text_colors['text_dark']; ?>;
 }
