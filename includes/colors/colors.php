@@ -19,19 +19,19 @@ $white->set_name('White')
 
 $light_gray = new PuzzleColor;
 $light_gray->set_name('Light Gray')
-    ->set_id('light_gray')
+    ->set_id('light-gray')
     ->set_color('#eee')
     ->set_text_color_scheme('dark');
 
 $medium_gray = new PuzzleColor;
 $medium_gray->set_name('Medium Gray')
-    ->set_id('medium_gray')
+    ->set_id('medium-gray')
     ->set_color('#aaa')
     ->set_text_color_scheme('light');
 
 $dark_gray = new PuzzleColor;
 $dark_gray->set_name('Dark Gray')
-    ->set_id('dark_gray')
+    ->set_id('dark-gray')
     ->set_color('#444')
     ->set_text_color_scheme('light');
 
