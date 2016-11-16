@@ -1,6 +1,6 @@
 <?php
 $background_image = new PuzzleField;
-$background_image->set_name('Background Image')
+$background_image->set_name(__('Background Image', 'puzzle-page-builder'))
     ->set_id('background_image')
     ->set_input_type('image');
 

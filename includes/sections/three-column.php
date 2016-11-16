@@ -1,7 +1,7 @@
 <?php
 $three_column = new PuzzleSection;
-$three_column->set_name('Three Column')
-    ->set_single_name('Column')
+$three_column->set_name(__('Three Column', 'puzzle-page-builder'))
+    ->set_single_name(__('Column', 'puzzle-page-builder'))
     ->set_columns_num(3)
     ->set_admin_column_width(4)
     ->set_order(30)
@@ -11,7 +11,7 @@ $three_column->set_name('Three Column')
     ->set_option_fields(array(
         $f->field('headline')->set_width(6),
         $f->field('id')->set_width(6),
-        (new PuzzleField)->set_name('Column Widths')
+        (new PuzzleField)->set_name(__('Column Widths', 'puzzle-page-builder'))
             ->set_id('column_widths')
             ->set_input_type('select')
             ->set_options(array(

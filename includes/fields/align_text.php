@@ -1,12 +1,12 @@
 <?php
 $align_text = new PuzzleField;
-$align_text->set_name('Align Text')
+$align_text->set_name(__('Align Text', 'puzzle-page-builder'))
     ->set_id('align_text')
     ->set_input_type('select')
     ->set_options(array(
-        'center'    => 'Center',
-        'left'      => 'Left',
-        'right'     => 'Right'
+        'center'    => __('Center', 'puzzle-page-builder'),
+        'left'      => __('Left', 'puzzle-page-builder'),
+        'right'     => __('Right', 'puzzle-page-builder')
     ));
 
 $f->add_field($align_text);

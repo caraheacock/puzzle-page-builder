@@ -25,18 +25,18 @@ function ppb_meta_options_icon_library() {
     ?>
     <div class="puzzle-icon-library puzzle-pop-up-area">
         <div class="puzzle-icon-library-inner">
-            <h1>Icon Library</h1>
-            <input class="puzzle-icon-library-search" placeholder="Search icons" />
+            <h1><?php _e('Icon Library', 'puzzle-page-builder'); ?></h1>
+            <input class="puzzle-icon-library-search" placeholder="<?php _e('Search icons', 'puzzle-page-builder'); ?>" />
             
             <?php if ($puzzle_icon_libraries->has_choice_none()) : ?>
             <hr />
-            <div class="icon-molecule"><i class="no-icon"></i><strong>x</strong> <span class="icon-description">No Icon</span></div>
+            <div class="icon-molecule"><i class="no-icon"></i><strong>x</strong> <span class="icon-description"><?php _e('No Icon', 'puzzle-page-builder'); ?></span></div>
             <?php endif; ?>
             
             <?php echo $puzzle_icon_libraries->markup(); ?>
         </div>
         <div class="puzzle-pop-up-controls">
-            <button class="puzzle-button puzzle-cancel-icon" href="#">Cancel <i class="ei ei-close-alt"></i></button>
+            <button class="puzzle-button puzzle-cancel-icon" href="#"><?php _e('Cancel', 'puzzle-page-builder'); ?> <i class="ei ei-close-alt" aria-hidden="true"></i></button>
         </div>
     </div>
 <?php } ?>

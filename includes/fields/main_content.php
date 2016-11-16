@@ -1,6 +1,6 @@
 <?php
 $main_content = new PuzzleField;
-$main_content->set_name('Main Content')
+$main_content->set_name(__('Main Content', 'puzzle-page-builder'))
     ->set_id('main_content')
     ->set_input_type('textarea')
     ->set_rows(10)

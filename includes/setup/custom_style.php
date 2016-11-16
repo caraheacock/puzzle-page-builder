@@ -25,9 +25,9 @@ function ppb_save_custom_style() {
 
 /* Checks if the custom CSS exists. If it does not, create it. */
 function ppb_check_if_custom_style_exists() {
-    if (!file_exists(PPB_PLUGIN_DIR . '/assets/css/custom.css')) {
+    // if (!file_exists(PPB_PLUGIN_DIR . '/assets/css/custom.css')) {
         ppb_save_custom_style();
-    }
+    // }
 }
 
 ?>

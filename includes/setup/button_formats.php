@@ -23,61 +23,61 @@ function ppb_insert_button_formats($init_array) {
     
     $style_formats = array(
         array(
-            'title'     => 'Default Button',
+            'title'     => __('Default Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button'
         ),
         array(
-            'title'     => 'Secondary Color Button',
+            'title'     => __('Secondary Color Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-secondary'
         ),
         array(
-            'title'     => 'White Button',
+            'title'     => __('White Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-white'
         ),
         array(
-            'title'     => 'Light Gray Button',
+            'title'     => __('Light Gray Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-light-gray'
         ),
         array(
-            'title'     => 'Medium Gray Button',
+            'title'     => __('Medium Gray Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-medium-gray'
         ),
         array(
-            'title'     => 'Dark Gray Button',
+            'title'     => __('Dark Gray Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-dark-gray'
         ),
         array(
-            'title'     => 'Black Button',
+            'title'     => __('Black Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-black'
         ),
         array(
-            'title'     => 'Outline Only Button',
+            'title'     => __('Outline Only Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-outline'
         ),
         array(
-            'title'     => 'Small Button',
+            'title'     => __('Small Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-small'
         ),
         array(
-            'title'     => 'Large Button',
+            'title'     => __('Large Button', 'puzzle-page-builder'),
             'inline'    => 'a',
             'selector'  => 'a',
             'classes'   => 'pz-button pz-button-large'

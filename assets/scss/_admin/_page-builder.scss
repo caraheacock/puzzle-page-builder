@@ -270,10 +270,6 @@
     
     .puzzle-add-image-button, .puzzle-remove-image-button {
         position: absolute;
-        
-        span {
-            @extend %screen-reader-only;
-        }
     }
     
     .puzzle-add-image-button {

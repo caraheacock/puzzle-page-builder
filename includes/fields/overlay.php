@@ -1,6 +1,6 @@
 <?php
 $overlay = new PuzzleField;
-$overlay->set_name('Overlay background color on background image')
+$overlay->set_name(__('Overlay background color on background image', 'puzzle-page-builder'))
     ->set_id('overlay')
     ->set_input_type('checkbox');
 

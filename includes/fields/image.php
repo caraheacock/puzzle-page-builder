@@ -1,6 +1,6 @@
 <?php
 $image = new PuzzleField;
-$image->set_name('Image')
+$image->set_name(__('Image', 'puzzle-page-builder'))
     ->set_id('image')
     ->set_input_type('image');
 

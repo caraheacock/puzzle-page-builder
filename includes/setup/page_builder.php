@@ -29,8 +29,8 @@ function ppb_custom_post_type_template_meta_options() {
     global $post;
     $template = get_post_meta($post->ID, '_puzzle_custom_template', true); ?>
     <select id="puzzle_custom_template_select" name="_puzzle_custom_template">
-        <option value="default"<?php if ($template == 'default') echo ' selected'; ?>>Default Template</option>
-        <option value="template_page_builder.php"<?php if ($template == 'template_page_builder.php') echo ' selected'; ?>>Page Builder</option>
+        <option value="default"<?php if ($template == 'default') echo ' selected'; ?>><?php _e('Default Template', 'puzzle-page-builder'); ?></option>
+        <option value="template_page_builder.php"<?php if ($template == 'template_page_builder.php') echo ' selected'; ?>><?php _e('Page Builder', 'puzzle-page-builder'); ?></option>
     </select>
     <?php
 }
@@ -80,8 +80,8 @@ function ppb_meta_box_options() {
     <div class="puzzle-text-editor-area puzzle-pop-up-area">
         <?php wp_editor('', 'puzzlecustomeditor'); ?>
         <div class="puzzle-pop-up-controls">
-            <button class="puzzle-button" id="puzzle-update-content">Update and Close <i class="ei ei-floppy"></i></button>
-            <button class="puzzle-button" id="puzzle-cancel-editor">Cancel <i class="ei ei-close-alt"></i></button>
+            <button class="puzzle-button" id="puzzle-update-content"><?php _e('Update and Close', 'puzzle-page-builder'); ?> <i class="ei ei-floppy" aria-hidden="true"></i></button>
+            <button class="puzzle-button" id="puzzle-cancel-editor"><?php _e('Cancel', 'puzzle-page-builder'); ?> <i class="ei ei-close-alt" aria-hidden="true"></i></button>
         </div>
     </div>
     

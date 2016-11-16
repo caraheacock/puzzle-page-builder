@@ -1,7 +1,7 @@
 <?php
 $carousel = new PuzzleSection;
-$carousel->set_name('Carousel')
-    ->set_single_name('Slide')
+$carousel->set_name(__('Carousel', 'puzzle-page-builder'))
+    ->set_single_name(__('Slide', 'puzzle-page-builder'))
     ->set_columns_num(-1)
     ->set_admin_column_width(4)
     ->set_order(0)
@@ -10,28 +10,28 @@ $carousel->set_name('Carousel')
         $f->field('background_color'),
         $f->field('overlay'),
         $f->field('align_text')
-            ->set_name('Align Content')
+            ->set_name(__('Align Content', 'puzzle-page-builder'))
             ->set_id('align_content'),
         $f->field('headline'),
         $f->field('headline_color'),
         $f->field('tagline'),
-        $f->field('headline_color')->set_name('Tagline Color')
+        $f->field('headline_color')->set_name(__('Tagline Color', 'puzzle-page-builder'))
             ->set_id('tagline_color'),
-        $f->field('text_color_scheme')->set_name('Content Color Scheme'),
+        $f->field('text_color_scheme')->set_name(__('Content Color Scheme', 'puzzle-page-builder')),
         $f->field('content')
     ))
     ->set_option_fields(array(
         $f->field('id')->set_width(6),
-        (new PuzzleField)->set_name('Carousel Speed')
+        (new PuzzleField)->set_name(__('Carousel Speed', 'puzzle-page-builder'))
             ->set_id('speed')
-            ->set_tip('Enter in milliseconds, or "false" if you do not want the slider to play automatically. Defaults to 10000 (10 seconds between each slide) if left blank.')
+            ->set_tip(__('Enter in milliseconds, or "false" if you do not want the slider to play automatically. Defaults to 10000 (10 seconds between each slide) if left blank.', 'puzzle-page-builder'))
             ->set_placeholder('10000')
             ->set_width(6),
-        (new PuzzleField)->set_name('Hide Arrows')
+        (new PuzzleField)->set_name(__('Hide Arrows', 'puzzle-page-builder'))
             ->set_id('hide_arrows')
             ->set_input_type('checkbox')
             ->set_width(6),
-        (new PuzzleField)->set_name('Hide Pagination')
+        (new PuzzleField)->set_name(__('Hide Pagination', 'puzzle-page-builder'))
             ->set_id('hide_pagination')
             ->set_input_type('checkbox')
             ->set_width(6)

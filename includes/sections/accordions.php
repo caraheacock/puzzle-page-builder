@@ -1,7 +1,7 @@
 <?php
 $accordions = new PuzzleSection;
-$accordions->set_name('Accordions')
-    ->set_single_name('Accordion')
+$accordions->set_name(__('Accordions', 'puzzle-page-builder'))
+    ->set_single_name(__('Accordion', 'puzzle-page-builder'))
     ->set_columns_num(-1)
     ->set_order(60)
     ->set_column_fields(array(
@@ -17,7 +17,7 @@ $accordions->set_name('Accordions')
         $f->field('background_image')->set_width(6),
         $f->field('background_color')->set_width(6),
         $f->field('overlay'),
-        (new PuzzleField)->set_name('Only have one accordion open at a time')
+        (new PuzzleField)->set_name(__('Only have one accordion open at a time', 'puzzle-page-builder'))
             ->set_id('open_one_at_a_time')
             ->set_input_type('checkbox'),
         $f->field('main_content')

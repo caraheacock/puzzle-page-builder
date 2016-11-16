@@ -162,6 +162,10 @@
     overflow: hidden;
 }
 
+.#{$prefix}screen-reader-only {
+    @extend %screen-reader-only;
+}
+
 /* Section backgrounds */
 
 .#{$prefix}white-background {

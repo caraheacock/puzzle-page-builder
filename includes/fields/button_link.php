@@ -1,6 +1,6 @@
 <?php
 $button_link = new PuzzleField;
-$button_link->set_name('Button Link')
+$button_link->set_name(__('Button Link', 'puzzle-page-builder'))
     ->set_id('button_link')
     ->set_placeholder('http://')
     ->set_save_as('link')

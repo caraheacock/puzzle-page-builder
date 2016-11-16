@@ -1,7 +1,7 @@
 <?php
 $features = new PuzzleSection;
-$features->set_name('Features')
-    ->set_single_name('Feature')
+$features->set_name(__('Features', 'puzzle-page-builder'))
+    ->set_single_name(__('Feature', 'puzzle-page-builder'))
     ->set_columns_num(-1)
     ->set_admin_column_width(4)
     ->set_order(40)
@@ -12,7 +12,7 @@ $features->set_name('Features')
         $f->field('button_text'),
         $f->field('button_link'),
         $f->field('open_link_in_new_tab'),
-        (new PuzzleField)->set_name('Make icon into a link')
+        (new PuzzleField)->set_name(__('Make icon into a link', 'puzzle-page-builder'))
             ->set_id('icon_link')
             ->set_input_type('checkbox')
     ))
@@ -26,19 +26,15 @@ $features->set_name('Features')
         $f->field('background_image')->set_width(6),
         $f->field('background_color')->set_width(6),
         $f->field('overlay'),
-        (new PuzzleField)->set_name('Icon Color')
+        (new PuzzleField)->set_name(__('Icon Color', 'puzzle-page-builder'))
             ->set_id('icon_color')
             ->set_input_type('select')
-            ->set_options(array(
-                'primary'           => 'Primary Color',
-                'secondary'         => 'Secondary Color',
-                'text-color'        => 'Text Color',
-                'headline-color'    => 'Headline Color',
-                'white'             => 'White',
-                'light-gray'        => 'Light Gray',
-                'medium-gray'       => 'Medium Gray',
-                'dark-gray'         => 'Dark Gray',
-                'black'             => 'Black'
+            ->set_options(array_merge(
+                $puzzle_colors->theme_colors_for_dropdown(),
+                array(
+                    'text-color'        => 'Text Color',
+                    'headline-color'    => 'Headline Color'
+                )
             ))
             ->set_width(4),
         $f->field('button_color')->set_width(4),

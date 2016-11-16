@@ -1,6 +1,6 @@
 <?php
 $headline = new PuzzleField;
-$headline->set_name('Headline')
+$headline->set_name(__('Headline', 'puzzle-page-builder'))
     ->set_id('headline')
     ->set_save_as('h2');
 

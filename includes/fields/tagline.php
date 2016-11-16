@@ -1,6 +1,6 @@
 <?php
 $tagline = new PuzzleField;
-$tagline->set_name('Tagline')
+$tagline->set_name(__('Tagline', 'puzzle-page-builder'))
     ->set_id('tagline')
     ->set_save_as('h3');
 

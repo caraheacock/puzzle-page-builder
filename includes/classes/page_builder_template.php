@@ -59,7 +59,7 @@ class PuzzlePageBuilderTemplate {
 
         /* Add templates to the array. */
         $this->templates = array(
-            'template_page_builder.php' => 'Page Builder'
+            'template_page_builder.php' => __('Page Builder', 'puzzle-page-builder')
         );
     }
     

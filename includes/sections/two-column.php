@@ -1,7 +1,7 @@
 <?php
 $two_column = new PuzzleSection;
-$two_column->set_name('Two Column')
-    ->set_single_name('Column')
+$two_column->set_name(__('Two Column', 'puzzle-page-builder'))
+    ->set_single_name(__('Column', 'puzzle-page-builder'))
     ->set_columns_num(2)
     ->set_admin_column_width(6)
     ->set_order(20)
@@ -11,7 +11,7 @@ $two_column->set_name('Two Column')
     ->set_option_fields(array(
         $f->field('headline')->set_width(6),
         $f->field('id')->set_width(6),
-        (new PuzzleField)->set_name('Column Widths')
+        (new PuzzleField)->set_name(__('Column Widths', 'puzzle-page-builder'))
             ->set_id('column_widths')
             ->set_input_type('select')
             ->set_options(array(

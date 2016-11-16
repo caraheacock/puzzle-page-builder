@@ -25,7 +25,9 @@ class PuzzlePageBuilder {
             
             $tip = '';
             if (!empty($field->tip())) {
-                $tip = '<i class="puzzle-field-tip-button fa fa-question-circle"></i><span class="puzzle-field-tip-content"><span>' . $field->tip() . '</span></span>';
+                $tip  = '<i class="puzzle-field-tip-button fa fa-question-circle" aria-hidden="true" title="' . __('Help', 'puzzle-page-builder') . '"></i>';
+                $tip .= '<span class="pz-screen-reader-only">' . __('Help', 'puzzle-page-builder') . '</span>';
+                $tip .= '<span class="puzzle-field-tip-content"><span>' . $field->tip() . '</span></span>';
             }
             
             $output .= '<div class="column ' . $input_width . ($field->input_type() == 'icon' ? ' puzzle-icon-preview' : '') . '">';
@@ -38,7 +40,9 @@ class PuzzlePageBuilder {
                 case 'textarea':
                     $output .= $field->name() . $tip;
                     $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
-                    $output .= '<button class="puzzle-button open-editor-button">Open Editor</button>';
+                    $output .= '<button class="puzzle-button open-editor-button">';
+                    $output .= __('Open Editor', 'puzzle-page-builder');
+                    $output .= '</button>';
                     break;
                 case 'checkbox':
                     $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '><label for="' . $input_name . '">' . $field->name() . '</label>' . $tip;
@@ -55,9 +59,11 @@ class PuzzlePageBuilder {
                     $icon_value = (!empty($data[$id]) ? $data[$id] : $puzzle_icon_libraries->default_icon());
                     
                     $output .= $field->name() . $tip;
-                    $output .= '<i class="' . $icon_value . '"></i>';
+                    $output .= '<i class="' . $icon_value . '" aria-hidden="true"></i>';
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $icon_value . '" readonly />';
-                    $output .= '<button class="puzzle-button puzzle-add-icon">Choose Icon</button>';
+                    $output .= '<button class="puzzle-button puzzle-add-icon">';
+                    $output .= __('Choose Icon', 'puzzle-page-builder');
+                    $output .= '</button>';
                     break;
                 case 'image':
                     $image_id = $data[$id];
@@ -67,8 +73,8 @@ class PuzzlePageBuilder {
                     $output .= '<div class="puzzle-image-container">';
                     $output .= $image;
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $image_id . '" readonly />';
-                    $output .= '<a class="puzzle-add-image-button" data-editor="content" href="#"><i class="ei ei-plus-alt2"></i><span>Add Image</span></a> ';
-                    $output .= '<a class="puzzle-remove-image-button" href="#"><i class="ei ei-close-alt"></i><span>Remove Image</span></a>';
+                    $output .= '<a class="puzzle-add-image-button" data-editor="content" href="#" title="' . __('Add Image', 'puzzle-page-builder') . '" aria-label="' . __('Add Image', 'puzzle-page-builder') . '"><i class="ei ei-plus-alt2" aria-hidden="true"></i></a>';
+                    $output .= '<a class="puzzle-remove-image-button" href="#" title="' . __('Remove Image', 'puzzle-page-builder') . '" aria-label="' . __('Remove Image', 'puzzle-page-builder') . '"><i class="ei ei-close-alt" aria-hidden="true"></i></a>';
                     $output .= '</div>';
                     break;
                 case 'color':
@@ -93,11 +99,11 @@ class PuzzlePageBuilder {
         $puzzle_sections = (new PuzzleSections)->sections();
         
         $output  = '<div class="puzzle-add-section">';
-        $output .= '<a class="puzzle-add-section-open-buttons" href="#">';
-        $output .= '<i class="ei ei-plus-alt"></i>';
+        $output .= '<a class="puzzle-add-section-open-buttons" href="#" title="' . __('Add Section', 'puzzle-page-builder') . '" aria-label="' . __('Add Section', 'puzzle-page-builder') . '">';
+        $output .= '<i class="ei ei-plus-alt" aria-hidden="true"></i>';
         $output .= '</a>';
         $output .= '<div class="puzzle-add-section-buttons">';
-        $output .= '<h4>Add Section</h4>';
+        $output .= '<h4>' . __('Add Section', 'puzzle-page-builder') . '</h4>';
         
         foreach ($puzzle_sections as $current_puzzle_section) {
             $output .= '<button class="puzzle-button puzzle-button-transparent puzzle-add-section-button" data-type="' . $current_puzzle_section->slug() . '" data-insert="after">' . $current_puzzle_section->name() . '</button> ';
@@ -122,31 +128,45 @@ class PuzzlePageBuilder {
         if ($is_section || $puzzle_section->has_unlimited_columns()) {
             $output .= '<div class="pz-row puzzle-section-menu-top">';
             $output .= '<div class="puzzle-has-dropdown">';
-            $output .= '<a class="puzzle-dropdown-trigger" href="#" title="Add"><i class="ei ei-plus"></i></a>';
+            
+            $output .= '<a class="puzzle-dropdown-trigger" href="#" title="' . __('Add', 'puzzle-page-builder') . '" aria-label="' . __('Add', 'puzzle-page-builder') . '"><i class="ei ei-plus" aria-hidden="true"></i></a>';
+            
             $output .= '<ul>';
+            
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before">';
-            $output .= '<i class="ei ei-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
+            $output .= '<i class="ei ei-plus" aria-hidden="true"></i> ';
+            $output .= sprintf(__('Add %s Before', 'puzzle-page-builder'), ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()));
             $output .= '</a>';
             $output .= '</li>';
+            
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after">';
-            $output .= '<i class="ei ei-plus"></i> Add ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
+            $output .= '<i class="ei ei-plus" aria-hidden="true"></i> ';
+            $output .= sprintf(__('Add %s After', 'puzzle-page-builder'), ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()));
             $output .= '</a>';
             $output .= '</li>';
+            
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="before" data-copy="true">';
-            $output .= '<i class="ei ei-documents-alt"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' Before';
+            $output .= '<i class="ei ei-documents-alt" aria-hidden="true"></i> ';
+            $output .= sprintf(__('Copy %s Before', 'puzzle-page-builder'), ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()));
             $output .= '</a>';
             $output .= '</li>';
+            
             $output .= '<li>';
             $output .= '<a class="puzzle-add-' . ($is_section ? 'section' : 'column') . '-button" href="#" data-type="' . $puzzle_section->slug() . '" data-insert="after" data-copy="true">';
-            $output .= '<i class="ei ei-documents-alt"></i> Copy ' . ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()) . ' After';
+            $output .= '<i class="ei ei-documents-alt" aria-hidden="true"></i> ';
+            $output .= sprintf(__('Copy %s After', 'puzzle-page-builder'), ($is_section ? $puzzle_section->name() : $puzzle_section->single_name()));
             $output .= '</a>';
             $output .= '</li>';
+            
             $output .= '</ul>';
+            
             $output .= '</div>';
-            $output .= '<a class="puzzle-remove-section" href="#" title="Delete"><i class="ei ei-close-alt2"></i></a>';
+            
+            $output .= '<a class="puzzle-remove-section" href="#" title="' . __('Delete', 'puzzle-page-builder') . '" aria-label="' . __('Delete', 'puzzle-page-builder') . '"><i class="ei ei-close-alt2" aria-hidden="true"></i></a>';
+            
             $output .= '</div>';
         }
         
@@ -158,10 +178,14 @@ class PuzzlePageBuilder {
             $output .= '<h4>' . $puzzle_section->single_name() . '</h4>';
         }
         
-        $output .= '<a class="puzzle-collapse" href="#" title="Expand Content"><i class="ei"></i></a>';
+        $output .= '<a class="puzzle-collapse" href="#" title="' . __('Expand Content', 'puzzle-page-builder') . '" aria-label="' . __('Expand Content', 'puzzle-page-builder') . '">';
+        $output .= '<i class="ei" aria-hidden="true"></i>';
+        $output .= '</a>';
         
         if ($is_section && $puzzle_section->columns_num() !== 0) {
-            $output .= '<a class="puzzle-collapse-all" href="#" title="Expand All Content"><i class="ei"></i></a>';
+            $output .= '<a class="puzzle-collapse-all" href="#" title="' . __('Expand All Content', 'puzzle-page-builder') . '" aria-label="' . __('Expand All Content', 'puzzle-page-builder') . '">';
+            $output .= '<i class="ei" aria-hidden="true"></i>';
+            $output .= '</a>';
         }
         
         $output .= '</div>';
@@ -274,7 +298,9 @@ class PuzzlePageBuilder {
         
         if ($puzzle_section->has_unlimited_columns()) {
             $output .= '<div class="puzzle-add-column-area">';
-            $output .= '<button class="puzzle-button puzzle-button-primary puzzle-add-column-button" data-type="' . $puzzle_section->slug() . '" data-insert="end">Add ' . $puzzle_section->single_name() . '</button>';
+            $output .= '<button class="puzzle-button puzzle-button-primary puzzle-add-column-button" data-type="' . $puzzle_section->slug() . '" data-insert="end">';
+            $output .= sprintf(__('Add %s', 'puzzle-page-builder'), $puzzle_section->single_name());
+            $output .= '</button>';
             $output .= '</div>';
         }
         

@@ -1,7 +1,7 @@
 <?php
 $one_column = new PuzzleSection;
-$one_column->set_name('One Column')
-    ->set_single_name('Column')
+$one_column->set_name(__('One Column', 'puzzle-page-builder'))
+    ->set_single_name(__('Column', 'puzzle-page-builder'))
     ->set_columns_num(1)
     ->set_order(10)
     ->set_column_fields(array(

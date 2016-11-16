@@ -40,7 +40,8 @@ if (!empty($social_links)) {
     $social_media .= '<div class="pz-social-links">';
     
     foreach($social_links as $soc => $link) {
-        $social_media .= '<a href="' . $link . '" target="_blank"><i class="fa fa-' . $soc . '-square"></i></a>';
+        $soc_name = ppb_humanize($soc);
+        $social_media .= '<a href="' . $link . '" target="_blank" title="' . $soc_name . '" aria-label="' . $soc_name . '"><i class="fa fa-' . $soc . '-square" aria-hidden="true"></i></a>';
     }
     
     $social_media .= '</div>';

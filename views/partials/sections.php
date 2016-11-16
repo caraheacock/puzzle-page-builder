@@ -81,7 +81,10 @@ if (!empty($page_sections)) :
                 singleItem: true,
                 autoPlay: <?php echo $owl_autoplay; ?>,
                 navigation: <?php echo $owl_navigation; ?>,
-                navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                navigationText: [
+                    '<i class="fa fa-angle-left" aria-hidden="true"></i><span class="pz-screen-reader-only">Back</span>',
+                    '<i class="fa fa-angle-right" aria-hidden="true"></i><span class="pz-screen-reader-only">Next</span>'
+                ],
                 pagination: <?php echo $owl_pagination; ?>,
                 transitionStyle: 'fade'
             });

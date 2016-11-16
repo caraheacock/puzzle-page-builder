@@ -1,40 +1,40 @@
 <?php
 $team_members = new PuzzleSection;
-$team_members->set_name('Team Members')
-    ->set_single_name('Team Member')
+$team_members->set_name(__('Team Members', 'puzzle-page-builder'))
+    ->set_single_name(__('Team Member', 'puzzle-page-builder'))
     ->set_columns_num(-1)
     ->set_admin_column_width(4)
     ->set_order(50)
     ->set_column_fields(array(
         $f->field('subhead')
-            ->set_name('Name')
+            ->set_name(__('Name', 'puzzle-page-builder'))
             ->set_id('name'),
-        (new PuzzleField)->set_name('Title')
+        (new PuzzleField)->set_name(__('Title', 'puzzle-page-builder'))
             ->set_id('title')
             ->set_input_type('text')
             ->set_save_as('h5'),
         $f->field('image'),
         $f->field('content'),
-        (new PuzzleField)->set_name('Phone')
+        (new PuzzleField)->set_name(__('Phone', 'puzzle-page-builder'))
             ->set_id('phone')
             ->set_input_type('text')
             ->set_save_as('content'),
-        (new PuzzleField)->set_name('Email Address')
+        (new PuzzleField)->set_name(__('Email Address', 'puzzle-page-builder'))
             ->set_id('email')
             ->set_input_type('text')
             ->set_placeholder('person@example.com')
             ->set_save_as('content'),
-        (new PuzzleField)->set_name('Facebook Link')
+        (new PuzzleField)->set_name(__('Facebook Link', 'puzzle-page-builder'))
             ->set_id('facebook')
             ->set_input_type('text')
             ->set_placeholder('https://www.facebook.com/johndoe')
             ->set_save_as('link'),
-        (new PuzzleField)->set_name('Twitter Link')
+        (new PuzzleField)->set_name(__('Twitter Link', 'puzzle-page-builder'))
             ->set_id('twitter')
             ->set_input_type('text')
             ->set_placeholder('https://twitter.com/johndoe')
             ->set_save_as('link'),
-        (new PuzzleField)->set_name('LinkedIn Link')
+        (new PuzzleField)->set_name(__('LinkedIn Link', 'puzzle-page-builder'))
             ->set_id('linkedin')
             ->set_input_type('text')
             ->set_placeholder('https://www.linkedin.com/in/johndoe')

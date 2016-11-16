@@ -1,7 +1,7 @@
 <?php
 $call_to_action = new PuzzleSection;
-$call_to_action->set_name('Call to Action')
-    ->set_single_name('Call to Action')
+$call_to_action->set_name(__('Call to Action', 'puzzle-page-builder'))
+    ->set_single_name(__('Call to Action', 'puzzle-page-builder'))
     ->set_columns_num(1)
     ->set_order(70)
     ->set_column_fields(array(
