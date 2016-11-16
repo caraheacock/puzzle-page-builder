@@ -4,7 +4,7 @@
  * Plugin Name: Puzzle Page Builder
  * Plugin URI: https://github.com/caraheacock/puzzle-page-builder
  * Description: Create pages using custom sections.
- * Version: 0.14.4
+ * Version: 0.14.5
  * Author: Cara Heacock
  * Author URI: http://caraheacock.com
  * License: GPL2
@@ -45,13 +45,13 @@ function ppb_init_objects() {
     $puzzle_sections = new PuzzleSections;
     
     /* Include colors */
-    include(PPB_PLUGIN_DIR . 'includes/colors/colors.php');
+    include(PPB_PLUGIN_DIR . 'includes/objects/colors/colors.php');
     
     /* Hook to allow developers to modify colors */
     do_action('ppb_modify_colors', $puzzle_colors);
     
     /* Include fields */
-    foreach (glob(PPB_PLUGIN_DIR . 'includes/fields/*.php') as $filename) {
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/objects/fields/*.php') as $filename) {
         include $filename;
     }
     
@@ -62,7 +62,7 @@ function ppb_init_objects() {
     do_action('ppb_modify_fields', $f);
     
     /* Include icon libraries */
-    foreach (glob(PPB_PLUGIN_DIR . 'includes/icon_libraries/*.php') as $filename) {
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/objects/icon_libraries/*.php') as $filename) {
         include $filename;
     }
     
@@ -70,7 +70,7 @@ function ppb_init_objects() {
     do_action('ppb_modify_icon_libraries', $puzzle_icon_libraries);
     
     /* Include sections */
-    foreach (glob(PPB_PLUGIN_DIR . 'includes/sections/*.php') as $filename) {
+    foreach (glob(PPB_PLUGIN_DIR . 'includes/objects/sections/*.php') as $filename) {
         include $filename;
     }
     
