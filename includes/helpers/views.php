@@ -95,8 +95,8 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
     
     // Special columns
     $special_columns = array(
-        5 => '2point4',
-        8 => '1point5'
+        5 => 'one-fifth',
+        8 => 'one-eighth'
     );
     
     /*
