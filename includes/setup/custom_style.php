@@ -5,7 +5,7 @@
  * Settings
  */
 
-/* Save custom CSS using user-defined colors */
+/* Save custom CSS using user-defined settings */
 function ppb_save_custom_style() {
     ob_start();
     require(PPB_PLUGIN_DIR . '/includes/miscellaneous/custom_style.css.php');

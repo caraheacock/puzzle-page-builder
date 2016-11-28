@@ -4,7 +4,6 @@
 
 .#{$prefix}section {
     position: relative;
-    padding: $space-unit 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,6 +14,14 @@
     
     &.#{$prefix}section-no-padding-bottom {
         padding-bottom: 0;
+    }
+    
+    &.#{$prefix}section-normal-padding-top {
+        padding-top: $space-unit * 2;
+    }
+    
+    &.#{$prefix}section-normal-padding-bottom {
+        padding-bottom: $space-unit * 2;
     }
     
     &.#{$prefix}section-large-padding-top {

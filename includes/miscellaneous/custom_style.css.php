@@ -9,31 +9,44 @@
  * plugin options.
  */
 
+/* Colors */
 $puzzle_colors = new PuzzleColors;
+
 $puzzle_theme_colors = $puzzle_colors->theme_colors();
 $puzzle_text_colors = $puzzle_colors->text_colors();
 
 $primary_color = $puzzle_colors->theme_color('primary')->color();
 $secondary_color = $puzzle_colors->theme_color('secondary')->color();
 
-// Temporary values
-$section_space = 60;
-$section_space_unit = 'px';
-$column_space = 15;
-$column_space_unit = 'px';
+/* Spacing */
+$puzzle_settings = new PuzzleSettings;
+
+$space_unit = $puzzle_settings->space('unit');
+$section_padding = $puzzle_settings->space('section_padding');
+$column_padding = $puzzle_settings->space('column_padding');
+$column_margin = $puzzle_settings->space('column_margin');
 
 ?>
 /* Global */
-.pz-section {
-    padding: <?php echo $section_space . $section_space_unit; ?> 0;
+.pz-section.pz-section-normal-padding-top {
+    padding-top: <?php echo $section_padding . $space_unit; ?>;
+}
+
+.pz-section.pz-section-normal-padding-bottom {
+    padding-bottom: <?php echo $section_padding . $space_unit; ?>;
 }
 
 .pz-section.pz-section-large-padding-top {
-    padding-top: <?php echo ($section_space * 2) . $section_space_unit; ?>;
+    padding-top: <?php echo ($section_padding * 2) . $space_unit; ?>;
 }
 
 .pz-section.pz-section-large-padding-bottom {
-    padding-bottom: <?php echo ($section_space * 2) . $section_space_unit; ?>;
+    padding-bottom: <?php echo ($section_padding * 2) . $space_unit; ?>;
+}
+
+.col-inner {
+    margin: <?php echo $column_margin . $space_unit; ?>;
+    padding: <?php echo $column_padding . $space_unit; ?>;
 }
 
 /* Text */

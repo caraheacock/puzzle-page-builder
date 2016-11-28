@@ -86,6 +86,39 @@ class PuzzleSettings {
     function page_builder_post_types() { return self::$PageBuilderPostTypes; }
     
     /*
+     * Array: the units and measurements for spacing between sections
+     * and columns
+     */
+    private static $Space = array(
+        'unit'              => 'px',
+        'section_padding'   => 30,
+        'column_padding'    => 15,
+        'column_margin'     => 10
+    );
+    
+    function set_space($id, $amount) {
+        if (array_key_exists($id, self::$Space)) {
+            self::$Space[$id] = $amount;
+        }
+        return $this;
+    }
+    
+    function set_spacing($new_spacing) {
+        foreach ($new_spacing as $id => $amount) {
+            self::set_space($id, $amount);
+        }
+        return $this;
+    }
+    
+    function space($id = NULL) {
+        if ($id && array_key_exists($id, self::$Space)) {
+            return self::$Space[$id];
+        } else {
+            return self::$Space;
+        }
+    }
+    
+    /*
      * String: the theme's directory where custom template partials are kept
      * for section loops.
      *
