@@ -5,7 +5,7 @@
     
     <?php if (!empty($puzzle_column['headline']) || !empty($puzzle_column['tagline']) || !empty($puzzle_column['content'])) : ?>
     <div class="pz-row">
-        <div class="column pz-carousel-slide-inner">
+        <div class="pz-col pz-carousel-slide-inner">
             <?php if (!empty($puzzle_column['headline'])) : ?>
             <h1><span class="pz-<?php echo $puzzle_column['headline_color']; ?>-text"><?php echo $puzzle_column['headline']; ?></span></h1>
             <?php endif; ?>

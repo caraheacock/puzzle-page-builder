@@ -65,17 +65,17 @@ class PuzzleSection {
     
     /* Returns a string of classes for the columns in the page builder */
     function admin_column_classes() {
-        $output = 'xs-12';
+        $output = 'pz-xs-12';
         
         switch ($this->admin_column_width) {
             case 3:
-                $output .= ' sm-3 md-6 lg-3';
+                $output .= ' pz-sm-3 pz-md-6 pz-lg-3';
                 break;
             case 4:
-                $output .= ' sm-4 md-6 lg-4';
+                $output .= ' pz-sm-4 pz-md-6 pz-lg-4';
                 break;
             case 6:
-                $output .= ' sm-6';
+                $output .= ' pz-sm-6';
                 break;
         }
         

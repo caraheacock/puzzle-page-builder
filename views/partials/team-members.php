@@ -50,17 +50,17 @@ if (!empty($social_links)) {
 ?>
 
 <?php if ($puzzle_options_data['layout'] == 'rows') : ?>
-    <div class="column xs-12 pz-team-member-row">
+    <div class="pz-col pz-xs-12 pz-team-member-row">
         <?php if (!empty($image)) : ?>
-        <div class="column xs-12 sm-5 md-4 lg-3">
-            <div class="col-inner">
+        <div class="pz-col pz-xs-12 pz-sm-5 pz-md-4 pz-lg-3">
+            <div class="pz-col-inner">
                 <?php echo $image; ?>
             </div>
         </div>
         <?php endif; ?>
         
-        <div class="column xs-12<?php if ($image) echo ' sm-7 md-8 lg-9'; ?> pz-team-member-content">
-            <div class="col-inner">
+        <div class="pz-col pz-xs-12<?php if ($image) echo ' pz-sm-7 pz-md-8 pz-lg-9'; ?> pz-team-member-content">
+            <div class="pz-col-inner">
                 <?php
                 if ($name) echo '<h3>' . $name . '</h3>';
                 if ($title) echo '<h4>' . $title . '</h4>';
@@ -70,8 +70,8 @@ if (!empty($social_links)) {
         </div>
     </div>
 <?php else : ?>
-    <div class="column <?php echo ppb_span_classes($puzzle_columns_num); ?> pz-team-member-columns">
-        <div class="col-inner">
+    <div class="pz-col <?php echo $col_classes; ?> pz-team-member-columns">
+        <div class="pz-col-inner">
             <?php if (!empty($image)) echo $image; ?>
             <div class="pz-team-member-content">
                 <?php

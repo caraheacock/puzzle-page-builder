@@ -30,8 +30,8 @@ if (!empty($page_sections)) :
             
             <?php if (!empty($puzzle_options_data['headline'])) : ?>
             <div class="pz-row pz-section-headline">
-                <div class="column xs-12">
-                    <div class="col-inner">
+                <div class="pz-col pz-xs-12">
+                    <div class="pz-col-inner">
                         <h2><?php echo $puzzle_options_data['headline']; ?></h2>
                     </div>
                 </div>
@@ -40,8 +40,8 @@ if (!empty($page_sections)) :
             
             <?php if (!empty($main_content)) : ?>
             <div class="pz-row pz-main-content">
-                <div class="column xs-12">
-                    <div class="col-inner">
+                <div class="pz-col pz-xs-12">
+                    <div class="pz-col-inner">
                         <?php echo apply_filters('ppb_like_the_content', $main_content); ?>
                     </div>
                 </div>
@@ -52,9 +52,9 @@ if (!empty($page_sections)) :
             if (!empty($puzzle_columns_data)) :
                 if ($puzzle_section_type == 'features' || $puzzle_section_type == 'team-members') {
                     if ($puzzle_options_data['layout'] == 'columns') {
-                        $span_classes = ppb_span_classes($puzzle_columns_num);
+                        $col_classes = ppb_col_classes($puzzle_columns_num);
                     } else {
-                        $span_classes = 'xs-12';
+                        $col_classes = 'pz-xs-12';
                     }
                 }
                 ?>

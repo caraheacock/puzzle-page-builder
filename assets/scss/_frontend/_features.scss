@@ -32,7 +32,7 @@
     }
     
     .#{$prefix}icon-column {
-        .col-inner {
+        .#{$prefix}col-inner {
             @include display-flex;
             @include flex-direction(column);
             @include align-items(center);
@@ -81,7 +81,7 @@
 @include breakpoint($size-sm) {
     .#{$prefix}features {
         .#{$prefix}icon-row {
-            .col-inner {
+            .#{$prefix}col-inner {
                 @include display-flex;
             }
             

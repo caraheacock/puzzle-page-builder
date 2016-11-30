@@ -44,7 +44,7 @@ $column_margin = $puzzle_settings->space('column_margin');
     padding-bottom: <?php echo ($section_padding * 2) . $space_unit; ?>;
 }
 
-.col-inner {
+.pz-col-inner {
     margin: <?php echo $column_margin . $space_unit; ?>;
     padding: <?php echo $column_padding . $space_unit; ?>;
 }

@@ -63,28 +63,47 @@ function ppb_section_id($s, $page_section) {
  * Generates width classes for an item
  *
  * $total - integer, the total number of items
- * $min - integer, the minimum number of items per row, defaults to 3
- * $max - integer, the maximum number of items per row, defaults to 4,
- *        MUST be greater than $min or results will be strange
- * $size1 - string, what size to make the first resize, defaults to 'md'
- * $size2 - string, what size to make the final resize, defaults to 'lg'
+ * $args - array, arguments for customizing the width classes
+ *   'prefix' - string, the grid class prefix, defaults to 'pz-'
+ *   'min' - integer, the minimum number of items per row, defaults to 3
+ *   'max' - integer, the maximum number of items per row, defaults to 4,
+ *           MUST be greater than $min or results will be strange
+ *   'size1' - string, what size to make the first resize, defaults to 'md'
+ *   'size2' - string, what size to make the final resize, defaults to 'lg'
  *
  * Returns a string of classes for the best fit for an item
  */
-function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'lg') {
-    $span_classes = '';
+function ppb_col_classes($total, $args = array()) {
+    $col_classes = '';
+    
+    /* Set default arguments */
+    $default_args = array(
+        'prefix' => 'pz-',
+        'min' => 3,
+        'max' => 4,
+        'size1' => 'md',
+        'size2' => 'lg'
+    );
+    
+    if (empty($args)) {
+        $args = $default_args;
+    } else {
+        foreach ($default_args as $key => $value) {
+            if (!isset($args[$key])) $args[$key] = $value;
+        }
+    }
     
     /*
      * If the first size change is not 'xs', make the initial size of the item
      * full width.
      */
-    if ($size1 != 'xs') {
-        $span_classes .= 'xs-12';
+    if ($args['size1'] != 'xs') {
+        $col_classes .= $args['prefix'] . 'xs-12';
     
         // If the max columns per row is 1, we're done
-        if ($max <= 1) return $span_classes;
+        if ($args['max'] <= 1) return $col_classes;
         
-        $span_classes .= ' ';
+        $col_classes .= ' ';
     }
     
     /*
@@ -104,14 +123,14 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
      * by 3, make the columns 1/3 width at the first resize. Else, make them
      * half width.
      */
-    if ($max >= 3 && $total % 3 == 0) {
-        $span_classes .= $size1 . '-4';
+    if ($args['max'] >= 3 && $total % 3 == 0) {
+        $col_classes .= $args['prefix'] . $args['size1'] . '-4';
     } else {
-        $span_classes .= $size1 . '-6';
+        $col_classes .= $args['prefix'] . $args['size1'] . '-6';
     }
     
     /* If the max columns per row is 2, we're done */
-    if ($max <= 2) return $span_classes;
+    if ($args['max'] <= 2) return $col_classes;
     
     /*
      * The following two for loops determine the best size for items at the
@@ -145,12 +164,12 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
      *
      * So, as stated, let's start $gap at 0 and work our way up to $min.
      */
-    for ($gap = 0; $gap < $min; $gap++) {
+    for ($gap = 0; $gap < $args['min']; $gap++) {
         /*
          * Start at the max items per row and work our way down to the min.
          * $n is the number of items we're presently trying to fit per row.
          */
-        for ($n = $max; $n >= $min; $n--) {
+        for ($n = $args['max']; $n >= $args['min']; $n--) {
             /*
              * If $n does not have a grid class (e.g. we don't have a class
              * for fitting 7 items per row), skip it.
@@ -178,7 +197,7 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
                  * is "lg-3" (the item spans 3 columns in a 12 column layout).
                  */
                 $col = (!empty($special_columns[$n]) ? $special_columns[$n] : 12 / $n);
-                $span_classes .= ' ' . $size2 . '-' . $col;
+                $col_classes .= ' ' . $args['prefix'] . $args['size2'] . '-' . $col;
                 
                 /* Break out of the 2 for loops. */
                 break 2;
@@ -186,7 +205,7 @@ function ppb_span_classes($total, $min = 3, $max = 4, $size1 = 'md', $size2 = 'l
         }
     }
     
-    return $span_classes;
+    return $col_classes;
 }
 
 ?>

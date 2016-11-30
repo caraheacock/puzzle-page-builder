@@ -231,7 +231,7 @@ function ppb_meta_box_options() {
             $('.puzzle-has-dropdown ul').removeClass('show');
             
             /* Animate the new section */
-            highlightSection($newColumn.find('.col-inner'));
+            highlightSection($newColumn.find('.pz-col-inner'));
             
             /*
              * Re-init WordPress color picker just in case color fields

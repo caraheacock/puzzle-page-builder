@@ -46,7 +46,7 @@
         }
     }
     
-    .puzzle-section-content, .puzzle-columns-area .col-inner {
+    .puzzle-section-content, .puzzle-columns-area .#{$prefix}col-inner {
         &.new {
             @include animation(new-section 1s ease);
         }
@@ -183,13 +183,13 @@
         padding: 10px;
     }
     
-    .puzzle-general-options-area .column,
-    .puzzle-columns-area .column .column {
+    .puzzle-general-options-area .#{$prefix}col,
+    .puzzle-columns-area .#{$prefix}col .#{$prefix}col {
         padding: 5px 10px;
     }
     
     .puzzle-columns-area {
-        .col-inner {
+        .#{$prefix}col-inner {
             width: calc(100% - 10px);
             margin: 5px;
             padding: 0;

@@ -38,3 +38,7 @@
     
     @import 'media';
 }
+
+.#{$prefix}row {
+    position: relative;
+}

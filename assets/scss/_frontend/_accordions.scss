@@ -5,11 +5,11 @@
 .#{$prefix}accordions-content {
     padding: ($space-unit / 2) 0;
     
-    > .column {
+    > .#{$prefix}col {
         padding: 0 ($space-unit / 2);
     }
     
-    .col-inner {
+    .#{$prefix}col-inner {
         padding: ($space-unit / 4) ($space-unit / 3);
         @extend %default-border-radius;
         background-color: rgba(#fff, 0.5);
@@ -56,7 +56,7 @@
     }
 }
 
-.#{$prefix}white-background .#{$prefix}accordions-content .col-inner {
+.#{$prefix}white-background .#{$prefix}accordions-content .#{$prefix}col-inner {
     background-color: $light-gray;
     background-color: rgba($light-gray, 0.5);
     

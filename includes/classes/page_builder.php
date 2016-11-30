@@ -21,7 +21,7 @@ class PuzzlePageBuilder {
         foreach($fields as $field) {
             $id = $field->id();
             $input_name = $input_name_prefix . '[' . $id . ']';
-            $input_width = 'xs-12 sm-' . ($field->width());
+            $input_width = 'pz-xs-12 pz-sm-' . ($field->width());
             
             $tip = '';
             if (!empty($field->tip())) {
@@ -30,7 +30,7 @@ class PuzzlePageBuilder {
                 $tip .= '<span class="puzzle-field-tip-content"><span>' . $field->tip() . '</span></span>';
             }
             
-            $output .= '<div class="column ' . $input_width . ($field->input_type() == 'icon' ? ' puzzle-icon-preview' : '') . '">';
+            $output .= '<div class="pz-col ' . $input_width . ($field->input_type() == 'icon' ? ' puzzle-icon-preview' : '') . '">';
             
             if (!isset($data[$id])) {
                 $data[$id] = '';
@@ -203,8 +203,8 @@ class PuzzlePageBuilder {
      * $column_data - array, the column's data
      */
     function column_markup($puzzle_section, $s, $c, $column_data = array()) {
-        $output = '<div class="column puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '" data-id="' . $c . '">';
-        $output .= '<div class="col-inner">';
+        $output = '<div class="pz-col puzzle-page-builder-column ' . $puzzle_section->admin_column_classes() . '" data-id="' . $c . '">';
+        $output .= '<div class="pz-col-inner">';
         
         $output .= self::section_menu($puzzle_section, false);
         $output .= '<div class="puzzle-collapsable-content">';

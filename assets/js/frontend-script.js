@@ -48,9 +48,9 @@ jQuery('document').ready(function($) {
     };
 
     $accordionHeadlines.click(function() {
-        var $area = $(this).parents('.pz-accordions-content > .column > div'),
+        var $area = $(this).parents('.pz-accordions-content > .pz-col > div'),
             $content = $area.find('.pz-accordion-content'),
-            $siblingAccordionAreas = $area.parents('.pz-accordions-content').find('.column > div').not($area),
+            $siblingAccordionAreas = $area.parents('.pz-accordions-content').find('.pz-col > div').not($area),
             $siblingAccordionContents = $area.parents('.pz-accordions-content').find('.pz-accordion-content').not($content),
             duration = 500;
             

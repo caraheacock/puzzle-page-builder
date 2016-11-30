@@ -9,7 +9,11 @@
 @import '_global/_variables';
 @import '_global/_mixins';
 @import '_global/_utility';
-@import '_global/_grid';
+
+@import '_global/_grid/_variables';
+@import '_global/_grid/_mixins';
+@import '_global/_grid/_grid';
+
 @import '_global/_global';
 
 // Front end
