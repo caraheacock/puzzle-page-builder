@@ -22,112 +22,6 @@
 .#{$prefix}button {
     @extend %button;
     
-    &.#{$prefix}button-white {
-        border-color: #fff;
-        background-color: #fff;
-        
-        &.#{$prefix}button-outline {
-            border-color: #fff;
-            background-color: transparent;
-            
-            &, &:visited {
-                color: #fff;
-            }
-            
-            &:hover, &:focus {
-                border-color: #fff;
-                background-color: #fff;
-            }
-        }
-        
-        &:hover, &:focus, &:visited {
-            color: #fff;
-        }
-    }
-    
-    &.#{$prefix}button-light-gray {
-        border-color: $light-gray;
-        background-color: $light-gray;
-        
-        &.#{$prefix}button-outline {
-            border-color: $light-gray;
-            background-color: transparent;
-            
-            &, &:visited {
-                color: $light-gray;
-            }
-            
-            &:hover, &:focus {
-                border-color: $light-gray;
-                background-color: $light-gray;
-            }
-        }
-        
-        &:hover, &:focus, &:visited {
-            color: #fff;
-        }
-    }
-    
-    &.#{$prefix}button-medium-gray {
-        border-color: $medium-gray;
-        background-color: $medium-gray;
-        
-        &.#{$prefix}button-outline {
-            border-color: $medium-gray;
-            background-color: transparent;
-            
-            &, &:visited {
-                color: $medium-gray;
-            }
-            
-            &:hover, &:focus {
-                border-color: $medium-gray;
-                background-color: $medium-gray;
-                color: #fff;
-            }
-        }
-    }
-    
-    &.#{$prefix}button-dark-gray {
-        border-color: $dark-gray;
-        background-color: $dark-gray;
-        
-        &.#{$prefix}button-outline {
-            border-color: $dark-gray;
-            background-color: transparent;
-            
-            &, &:visited {
-                color: $dark-gray;
-            }
-            
-            &:hover, &:focus {
-                border-color: $dark-gray;
-                background-color: $dark-gray;
-                color: #fff;
-            }
-        }
-    }
-    
-    &.#{$prefix}button-black {
-        border-color: #000;
-        background-color: #000;
-        
-        &.#{$prefix}button-outline {
-            border-color: #000;
-            background-color: transparent;
-            
-            &, &:visited {
-                color: #000;
-            }
-            
-            &:hover, &:focus {
-                border-color: #000;
-                background-color: #000;
-                color: #fff;
-            }
-        }
-    }
-    
     &.#{$prefix}button-small {
         padding: 7px 15px;
         font-size: 80%;
@@ -168,26 +62,6 @@
 
 /* Section backgrounds */
 
-.#{$prefix}white-background {
-    background-color: #fff;
-}
-
-.#{$prefix}light-gray-background {
-    background-color: $light-gray;
-}
-
-.#{$prefix}medium-gray-background {
-    background-color: $medium-gray;
-}
-
-.#{$prefix}dark-gray-background {
-    background-color: $dark-gray;
-}
-
-.#{$prefix}black-background {
-    background-color: #000;
-}
-
 .#{$prefix}background-overlay {
     position: absolute;
     top: 0;
@@ -195,26 +69,4 @@
     left: 0;
     right: 0;
     opacity: 0.5;
-}
-
-/* Text colors */
-
-.#{$prefix}white-text {
-    color: #fff;
-}
-
-.#{$prefix}light-gray-text {
-    color: $light-gray;
-}
-
-.#{$prefix}medium-gray-text {
-    color: $medium-gray;
-}
-
-.#{$prefix}dark-gray-text {
-    color: $dark-gray;
-}
-    
-.#{$prefix}black-text {
-    color: #000;
 }

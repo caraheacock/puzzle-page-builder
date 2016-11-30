@@ -152,6 +152,33 @@ class PuzzleColors {
     }
     
     function text_colors() { return self::$TextColors; }
+    
+    /*
+     * Array: list of link colors to use
+     * These are different from the theme colors because they are just
+     * key-value pairs and not PuzzleColor objects. The user can only update
+     * existing values in this array; they cannot add or remove values.
+     */
+    private static $LinkColors = array(
+        'link_dark'         => '#3b54a5', // Default primary color
+        'link_dark_hover'   => '#2cb799', // Default secondary color
+        'link_light'        => '#fff',
+        'link_light_hover'  => 'rgba(255, 255, 255, 0.75)'
+    );
+    
+    function set_link_color($id, $hex) {
+        if (array_key_exists($id, self::$LinkColors)) {
+            self::$LinkColors[$id] = $hex;
+        }
+    }
+    
+    function set_link_colors($new_link_colors) {
+        foreach ($new_link_colors as $id => $hex) {
+            self::set_link_color($id, $hex);
+        }
+    }
+    
+    function link_colors() { return self::$LinkColors; }
 }
 
 ?>

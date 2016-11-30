@@ -14,6 +14,7 @@ $puzzle_colors = new PuzzleColors;
 
 $puzzle_theme_colors = $puzzle_colors->theme_colors();
 $puzzle_text_colors = $puzzle_colors->text_colors();
+$puzzle_link_colors = $puzzle_colors->link_colors();
 
 $primary_color = $puzzle_colors->theme_color('primary')->color();
 $secondary_color = $puzzle_colors->theme_color('secondary')->color();
@@ -68,6 +69,15 @@ $column_margin = $puzzle_settings->space('column_margin');
     color: <?php echo $puzzle_text_colors['text_dark']; ?>;
 }
 
+.pz-dark-text a {
+    color: <?php echo $puzzle_link_colors['link_dark']; ?>;
+}
+
+.pz-dark-text a:hover,
+.pz-dark-text a:focus {
+    color: <?php echo $puzzle_link_colors['link_dark_hover']; ?>;
+}
+
 .pz-light-text h1,
 .pz-light-text h2,
 .pz-light-text h3,
@@ -83,6 +93,15 @@ $column_margin = $puzzle_settings->space('column_margin');
 .pz-light-text li,
 .pz-light-text td {
     color: <?php echo $puzzle_text_colors['text_light']; ?>;
+}
+
+.pz-light-text a {
+    color: <?php echo $puzzle_link_colors['link_light']; ?>;
+}
+
+.pz-light-text a:hover,
+.pz-light-text a:focus {
+    color: <?php echo $puzzle_link_colors['link_light_hover']; ?>;
 }
 
 /* Utility */
@@ -120,7 +139,9 @@ $column_margin = $puzzle_settings->space('column_margin');
 
 .pz-button,
 .pz-button.pz-button-secondary:hover,
-.pz-button.pz-button-secondary:focus {
+.pz-button.pz-button-secondary:focus,
+a.pz-button.pz-button-secondary:hover,
+a.pz-button.pz-button-secondary:focus {
     background-color: <?php echo $primary_color; ?>;
     border-color: <?php echo $primary_color; ?>;
     color: #fff;
@@ -132,8 +153,8 @@ $column_margin = $puzzle_settings->space('column_margin');
 
 .pz-button:hover,
 .pz-button:focus,
-.pz-button.pz-button-secondary,
-.pz-button.pz-button-secondary:visited {
+a.pz-button:hover,
+a.pz-button:focus {
     background-color: <?php echo $secondary_color; ?>;
     border-color: <?php echo $secondary_color; ?>;
     color: #fff;
@@ -163,38 +184,26 @@ $column_margin = $puzzle_settings->space('column_margin');
     color: #fff;
 }
 
-.pz-button.pz-button-secondary.pz-button-outline,
-.pz-button.pz-button-secondary.pz-button-outline:visited {
-    border-color: <?php echo $secondary_color; ?>;
+<?php foreach($puzzle_theme_colors as $id => $color) :
+    $text_color = $puzzle_text_colors['text_' . $color->text_color_scheme()];
+    ?>
+.pz-button.pz-button-<?php echo $id; ?> {
+    border-color: <?php echo $color->color(); ?>;
+    background-color: <?php echo $color->color(); ?>;
+    color: <?php echo $text_color; ?>
+}
+
+.pz-button.pz-button-<?php echo $id; ?>.pz-button-outline,
+.pz-button.pz-button-<?php echo $id; ?>.pz-button-outline:visited {
+    border-color: <?php echo $color->color(); ?>;
     background-color: transparent;
-    color: <?php echo $secondary_color; ?>;
+    color: <?php echo $color->color(); ?>;
 }
 
-.pz-button.pz-button-secondary.pz-button-outline:hover,
-.pz-button.pz-button-secondary.pz-button-outline:focus {
-    background-color: <?php echo $secondary_color; ?>;
-    color: #fff;
+.pz-button.pz-button-<?php echo $id; ?>.pz-button-outline:hover,
+.pz-button.pz-button-<?php echo $id; ?>.pz-button-outline:focus {
+    background-color: <?php echo $color->color(); ?>;
+    color: <?php echo $text_color; ?>;
 }
 
-.pz-button.pz-button-white,
-.pz-button.pz-button-white:visited,
-.pz-button.pz-button-light-gray,
-.pz-button.pz-button-light-gray:visited {
-    color: <?php echo $puzzle_text_colors['text_dark']; ?>;
-}
-
-.pz-secondary-background .pz-button.pz-button-white:hover,
-.pz-secondary-background .pz-button.pz-button-white:focus,
-.pz-secondary-background .pz-button.pz-button-light-gray:hover,
-.pz-secondary-background .pz-button.pz-button-light-gray:focus {
-    border-color: <?php echo $primary_color; ?>;
-    background-color: <?php echo $primary_color; ?>;
-    color: #fff;
-}
-
-.pz-button.pz-button-white.pz-button-outline:hover,
-.pz-button.pz-button-white.pz-button-outline:focus,
-.pz-button.pz-button-light-gray.pz-button-outline:hover,
-.pz-button.pz-button-light-gray.pz-button-outline:focus {
-    color: <?php echo $puzzle_text_colors['text_dark']; ?>;
-}
+<?php endforeach; ?>
