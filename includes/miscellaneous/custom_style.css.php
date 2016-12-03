@@ -137,18 +137,23 @@ $column_margin = $puzzle_settings->space('column_margin');
 
 /* Buttons */
 
+<?php
+$primary_color_text_color_scheme = $puzzle_text_colors['text_' . $puzzle_colors->theme_color('primary')->text_color_scheme()];
+$secondary_color_text_color_scheme = $puzzle_text_colors['text_' . $puzzle_colors->theme_color('secondary')->text_color_scheme()];
+?>
 .pz-button,
+a.pz-button,
 .pz-button.pz-button-secondary:hover,
 .pz-button.pz-button-secondary:focus,
 a.pz-button.pz-button-secondary:hover,
 a.pz-button.pz-button-secondary:focus {
     background-color: <?php echo $primary_color; ?>;
     border-color: <?php echo $primary_color; ?>;
-    color: #fff;
+    color: <?php echo $primary_color_text_color_scheme; ?>;
 }
 
 .pz-button:visited {
-    color: #fff;
+    color: <?php echo $primary_color_text_color_scheme; ?>;
 }
 
 .pz-button:hover,
@@ -157,7 +162,7 @@ a.pz-button:hover,
 a.pz-button:focus {
     background-color: <?php echo $secondary_color; ?>;
     border-color: <?php echo $secondary_color; ?>;
-    color: #fff;
+    color: <?php echo $secondary_color_text_color_scheme; ?>;
 }
 
 .pz-secondary-background .pz-button:hover,
@@ -181,7 +186,7 @@ a.pz-button:focus {
 .pz-button.pz-button-outline:focus {
     border-color: <?php echo $primary_color; ?>;
     background-color: <?php echo $primary_color; ?>;
-    color: #fff;
+    color: <?php echo $primary_color_text_color_scheme; ?>;
 }
 
 <?php foreach($puzzle_theme_colors as $id => $color) :
