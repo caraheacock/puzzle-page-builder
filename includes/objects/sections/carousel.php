@@ -24,6 +24,7 @@ $carousel->set_name(__('Carousel', 'puzzle-page-builder'))
         $f->field('id')->set_width(6),
         (new PuzzleField)->set_name(__('Carousel Speed', 'puzzle-page-builder'))
             ->set_id('speed')
+            ->set_input_type('number')
             ->set_tip(__('Enter in milliseconds, or "false" if you do not want the slider to play automatically. Defaults to 10000 (10 seconds between each slide) if left blank.', 'puzzle-page-builder'))
             ->set_placeholder('10000')
             ->set_width(6),

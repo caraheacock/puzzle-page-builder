@@ -37,23 +37,19 @@ class PuzzlePageBuilder {
             }
             
             switch ($field->input_type()) {
-                case 'textarea':
+                case 'checkbox':
+                    $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '><label for="' . $input_name . '">' . $field->name() . '</label>' . $tip;
+                    break;
+                case 'color':
+                    $output .= $field->name() . $tip;
+                    $output .= '<input class="puzzle-color-field" name="' . $input_name . '" value="' . esc_attr($data[$id]) . '" type="text" />';
+                    break;
+                case 'editor':
                     $output .= $field->name() . $tip;
                     $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
                     $output .= '<button class="puzzle-button open-editor-button">';
                     $output .= __('Open Editor', 'puzzle-page-builder');
                     $output .= '</button>';
-                    break;
-                case 'checkbox':
-                    $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '><label for="' . $input_name . '">' . $field->name() . '</label>' . $tip;
-                    break;
-                case 'select':
-                    $output .= $field->name() . $tip;
-                    $output .= '<select name="' . $input_name . '">';
-                    foreach ($field->options() as $option_key => $option_label) {
-                        $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (empty($data[$id]) && !empty($field->selected()) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
-                    }
-                    $output .= '</select>';
                     break;
                 case 'icon':
                     $icon_value = (!empty($data[$id]) ? $data[$id] : $puzzle_icon_libraries->default_icon());
@@ -77,9 +73,17 @@ class PuzzlePageBuilder {
                     $output .= '<a class="puzzle-remove-image-button" href="#" title="' . __('Remove Image', 'puzzle-page-builder') . '" aria-label="' . __('Remove Image', 'puzzle-page-builder') . '"><i class="ei ei-close-alt" aria-hidden="true"></i></a>';
                     $output .= '</div>';
                     break;
-                case 'color':
+                case 'select':
                     $output .= $field->name() . $tip;
-                    $output .= '<input class="puzzle-color-field" name="' . $input_name . '" value="' . esc_attr($data[$id]) . '" type="text" />';
+                    $output .= '<select name="' . $input_name . '">';
+                    foreach ($field->options() as $option_key => $option_label) {
+                        $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (empty($data[$id]) && !empty($field->selected()) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
+                    }
+                    $output .= '</select>';
+                    break;
+                case 'textarea':
+                    $output .= $field->name() . $tip;
+                    $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
                     break;
                 default:
                     $output .= $field->name() . $tip;
