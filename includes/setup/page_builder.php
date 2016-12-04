@@ -279,6 +279,10 @@ function ppb_save_options() {
             $puzzle_sections_data = array_values($_POST['_puzzle_page_sections']);
         }
         
+        /* Sanitize data?? */
+        $puzzle_page_builder = new PuzzlePageBuilder;
+        $puzzle_sections_data = $puzzle_page_builder->sanitize_data($puzzle_sections_data);
+        
         /* Save the page builder fields as post meta */
         update_post_meta($post_id, '_puzzle_page_sections', $puzzle_sections_data);
         
@@ -287,7 +291,6 @@ function ppb_save_options() {
          * This is so the user isn't locked into this plugin because all the
          * content is in the post meta.
          */
-        $puzzle_page_builder = new PuzzlePageBuilder;
         $content = $puzzle_page_builder->saveable_content($puzzle_sections_data);
 
         if (!wp_is_post_revision($post_id)) {

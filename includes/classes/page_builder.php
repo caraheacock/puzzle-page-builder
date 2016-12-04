@@ -18,7 +18,7 @@ class PuzzlePageBuilder {
         $puzzle_icon_libraries = new PuzzleIconLibraries;
         $output = '';
             
-        foreach($fields as $field) {
+        foreach ($fields as $field) {
             $id = $field->id();
             $input_name = $input_name_prefix . '[' . $id . ']';
             $input_width = 'pz-xs-12 pz-sm-' . ($field->width());
@@ -30,6 +30,8 @@ class PuzzlePageBuilder {
                 $tip .= '<span class="puzzle-field-tip-content"><span>' . $field->tip() . '</span></span>';
             }
             
+            $label_and_tip = '<label>' . $field->name() . '</label>' . $tip;
+            
             $output .= '<div class="pz-col ' . $input_width . ($field->input_type() == 'icon' ? ' puzzle-icon-preview' : '') . '">';
             
             if (!isset($data[$id])) {
@@ -38,14 +40,16 @@ class PuzzlePageBuilder {
             
             switch ($field->input_type()) {
                 case 'checkbox':
-                    $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '><label for="' . $input_name . '">' . $field->name() . '</label>' . $tip;
+                    $output .= '<label for="' . $input_name . '">';
+                    $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '>';
+                    $output .= $field->name() . '</label>' . $tip;
                     break;
                 case 'color':
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<input class="puzzle-color-field" name="' . $input_name . '" value="' . esc_attr($data[$id]) . '" type="text" />';
                     break;
                 case 'editor':
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
                     $output .= '<button class="puzzle-button open-editor-button">';
                     $output .= __('Open Editor', 'puzzle-page-builder');
@@ -54,7 +58,7 @@ class PuzzlePageBuilder {
                 case 'icon':
                     $icon_value = (!empty($data[$id]) ? $data[$id] : $puzzle_icon_libraries->default_icon());
                     
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<i class="' . $icon_value . '" aria-hidden="true"></i>';
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $icon_value . '" readonly />';
                     $output .= '<button class="puzzle-button puzzle-add-icon">';
@@ -65,7 +69,7 @@ class PuzzlePageBuilder {
                     $image_id = $data[$id];
                     $image = (!empty($image_id) ? wp_get_attachment_image($image_id, 'large') : '<img src="" />');
 
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<div class="puzzle-image-container">';
                     $output .= $image;
                     $output .= '<input name="' . $input_name . '" type="hidden" value="' . $image_id . '" readonly />';
@@ -74,7 +78,7 @@ class PuzzlePageBuilder {
                     $output .= '</div>';
                     break;
                 case 'select':
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<select name="' . $input_name . '">';
                     foreach ($field->options() as $option_key => $option_label) {
                         $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (empty($data[$id]) && !empty($field->selected()) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
@@ -82,11 +86,11 @@ class PuzzlePageBuilder {
                     $output .= '</select>';
                     break;
                 case 'textarea':
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
                     break;
                 default:
-                    $output .= $field->name() . $tip;
+                    $output .= $label_and_tip;
                     $output .= '<input name="' . $input_name . '" value="' . esc_attr($data[$id]) . '" type="' . $field->input_type() . '"' . (!empty($field->placeholder()) ? ' placeholder="' . $field->placeholder() . '"' : '') . ' />';
             }
             
@@ -319,6 +323,111 @@ class PuzzlePageBuilder {
     }
     
     /*
+     * Gets data from the page builder and sanitizes it. Used by the
+     * sanitize_data() function to loop through both options and columns.
+     *
+     * $fields - array, PuzzleField objects
+     * $data - array, the user input for the fields
+     *
+     * Returns an array of sanitized data
+     */
+    private function get_sanitized_data($fields, $data) {
+        $new_data = $data;
+        
+        foreach ($data as $key => $value) {
+            // If the field doesn't exist, remove it
+            if (empty($fields[$key])) {
+                unset($new_data[$key]);
+            }
+            
+            $input_type = $fields[$key]->input_type();
+            
+            // Sanitize data depending on input type
+            switch ($input_type) {
+                case 'checkbox':
+                    $new_data[$key] = ($value == 'on' ? $value : '');
+                    break;
+                case 'color':
+                    $new_data[$key] = sanitize_hex_color($value);
+                    break;
+                case 'editor':
+                    $new_data[$key] = wp_kses_post($value);
+                    break;
+                case 'hidden':
+                    $new_data[$key] = $value;
+                    break;
+                case 'icon':
+                    $new_data[$key] = sanitize_text_field($value);
+                    break;
+                case 'image':
+                    // The image ID must be a positive integer
+                    $new_data[$key] = (is_numeric($value) && $value > 0 && $value == round($value, 0) ? $value : '');
+                    break;
+                case 'number':
+                    $new_data[$key] = (is_numeric($value) ? absint($value) : '');
+                    break;
+                case 'select':
+                    // The value must be one of the options
+                    $new_data[$key] = (array_key_exists($value, $fields[$key]->options()) ? $value : '');
+                    break;
+                case 'text':
+                    $new_data[$key] = sanitize_text_field($value);
+                    break;
+                case 'textarea':
+                    $new_data[$key] = $value;
+                    break;
+                default:
+                    $new_data[$key] = $value;
+            }
+        }
+        
+        return $new_data;
+    }
+    
+    /*
+     * Sanitizes user data from the page builder
+     *
+     * $data - array, the user input
+     *
+     * Returns an array of sanitized data
+     */
+    function sanitize_data($puzzle_sections_data) {
+        $puzzle_sections = (new PuzzleSections)->sections();
+        $new_puzzle_sections_data = $puzzle_sections_data;
+        
+        /* Loops through each page section */
+        foreach ($puzzle_sections_data as $s => $puzzle_section_data) {
+            $options_data = $puzzle_section_data['options'];
+            $columns_data = (!empty($puzzle_section_data['columns']) ? $puzzle_section_data['columns'] : NULL);
+            $section_type = $puzzle_section_data['type'];
+            
+            $puzzle_section = $puzzle_sections[$section_type];
+            $option_fields = $puzzle_section->option_fields();
+            $column_fields = $puzzle_section->column_fields();
+            
+            /*
+             * Loops through the options of each page section and
+             * sanitizes data.
+             */
+            if ($option_fields) {
+                $new_puzzle_sections_data[$s]['options'] = self::get_sanitized_data($option_fields, $options_data);
+            }
+            
+            /*
+             * Loops through the columns of each page section and
+             * sanitizes data.
+             */
+            if (!empty($columns_data)) {
+                foreach ($columns_data as $c => $column_data) {
+                    $new_puzzle_sections_data[$s]['columns'][$c] = self::get_sanitized_data($column_fields, $column_data);
+                }
+            }
+        }
+        
+        return $new_puzzle_sections_data;
+    }
+    
+    /*
      * Gets data from the page builder that should be saved to the post
      * content. Used by the saveable_content() function to loop through both
      * options and columns.
@@ -328,7 +437,7 @@ class PuzzlePageBuilder {
      *
      * Returns a string of content that should be saved
      */
-    function get_saveable_data($fields, $data) {
+    private function get_saveable_data($fields, $data) {
         $content = '';
         
         foreach ($data as $key => $value) {
