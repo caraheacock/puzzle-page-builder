@@ -67,8 +67,8 @@ function ppb_parameterize($string, $sep = '-'){
     /* Remove whitespace from the beginning and end */
     $slug = trim($slug);
     
-    /* Replace spaces, dashes, and underscores with the separator */
-    $slug = preg_replace('/[\s\_\-]+/', $sep, $slug);
+    /* Replace spaces with the separator */
+    $slug = preg_replace('/[\s]+/', $sep, $slug);
     
     return $slug;
 }

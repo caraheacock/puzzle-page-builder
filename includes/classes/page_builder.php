@@ -23,7 +23,7 @@ class PuzzlePageBuilder {
         foreach ($fields as $field) {
             $id = $field->id();
             $input_name = $input_name_prefix . '[' . $id . ']';
-            $input_width = 'pz-xs-12 pz-sm-' . ($field->width());
+            $input_width = 'pz-xs-12 pz-sm-' . $field->width();
             
             $tip = '';
             if (!empty($field->tip())) {
@@ -52,7 +52,7 @@ class PuzzlePageBuilder {
                     break;
                 case 'editor':
                     $output .= $label_and_tip;
-                    $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
+                    $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . esc_textarea($data[$id]) . '</textarea><br />';
                     $output .= '<button class="puzzle-button open-editor-button">';
                     $output .= __('Open Editor', 'puzzle-page-builder');
                     $output .= '</button>';
@@ -62,7 +62,7 @@ class PuzzlePageBuilder {
                     
                     $output .= $label_and_tip;
                     $output .= '<i class="' . $icon_value . '" aria-hidden="true"></i>';
-                    $output .= '<input name="' . $input_name . '" type="hidden" value="' . $icon_value . '" readonly />';
+                    $output .= '<input name="' . $input_name . '" type="hidden" value="' . esc_attr($icon_value) . '" readonly />';
                     $output .= '<button class="puzzle-button puzzle-add-icon">';
                     $output .= __('Choose Icon', 'puzzle-page-builder');
                     $output .= '</button>';
@@ -74,22 +74,26 @@ class PuzzlePageBuilder {
                     $output .= $label_and_tip;
                     $output .= '<div class="puzzle-image-container">';
                     $output .= $image;
-                    $output .= '<input name="' . $input_name . '" type="hidden" value="' . $image_id . '" readonly />';
+                    $output .= '<input name="' . $input_name . '" type="hidden" value="' . absint($image_id) . '" readonly />';
                     $output .= '<a class="puzzle-add-image-button" data-editor="content" href="#" title="' . __('Add Image', 'puzzle-page-builder') . '" aria-label="' . __('Add Image', 'puzzle-page-builder') . '"><i class="ei ei-plus-alt2" aria-hidden="true"></i></a>';
                     $output .= '<a class="puzzle-remove-image-button" href="#" title="' . __('Remove Image', 'puzzle-page-builder') . '" aria-label="' . __('Remove Image', 'puzzle-page-builder') . '"><i class="ei ei-close-alt" aria-hidden="true"></i></a>';
                     $output .= '</div>';
+                    break;
+                case 'number':
+                    $output .= $label_and_tip;
+                    $output .= '<input name="' . $input_name . '" value="' . (is_numeric($data[$id]) ? $data[$id] : '') . '" type="number"' . (!empty($field->placeholder()) ? ' placeholder="' . $field->placeholder() . '"' : '') . ' />';
                     break;
                 case 'select':
                     $output .= $label_and_tip;
                     $output .= '<select name="' . $input_name . '">';
                     foreach ($field->options() as $option_key => $option_label) {
-                        $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (empty($data[$id]) && !empty($field->selected()) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
+                        $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (empty($data[$id]) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
                     }
                     $output .= '</select>';
                     break;
                 case 'textarea':
                     $output .= $label_and_tip;
-                    $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . $data[$id] . '</textarea><br />';
+                    $output .= '<textarea name="' . $input_name . '" rows="' . (!empty($field->rows()) ? $field->rows() : '5') . '">' . esc_textarea($data[$id]) . '</textarea><br />';
                     break;
                 default:
                     $output .= $label_and_tip;
@@ -355,9 +359,6 @@ class PuzzlePageBuilder {
                 case 'editor':
                     $new_data[$key] = wp_kses_post($value);
                     break;
-                case 'hidden':
-                    $new_data[$key] = $value;
-                    break;
                 case 'icon':
                     $new_data[$key] = sanitize_text_field($value);
                     break;
@@ -516,6 +517,20 @@ class PuzzlePageBuilder {
         }
         
         return $content;
+    }
+    
+    /*
+     * Retrieves the page builder data
+     *
+     * $post_id - integer, the ID of the current post. If blank, this is set
+     *   to the ID of the global $post
+     *
+     * Returns an array of post meta
+     */ 
+    function sections_data($post_id = 0) {
+        if (empty($post_id)) { global $post; $post_id = $post->ID; }
+        $page_sections = get_post_meta($post_id, '_puzzle_page_sections', true);
+        return $page_sections;
     }
 }
 ?>

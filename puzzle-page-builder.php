@@ -1,14 +1,17 @@
 <?php
 
 /**
- * Plugin Name: Puzzle Page Builder
- * Plugin URI: https://github.com/caraheacock/puzzle-page-builder
- * Description: Create pages using custom sections.
- * Version: 0.18.3
- * Author: Cara Heacock
- * Author URI: http://caraheacock.com
- * License: GPL2
- * Text Domain: puzzle-page-builder
+ * Plugin Name:         Puzzle Page Builder
+ * Plugin URI:          https://github.com/caraheacock/puzzle-page-builder
+ * Description:         Create pages using custom sections.
+ * Version:             0.18.4
+ * Author:              Cara Heacock
+ * Author URI:          http://caraheacock.com
+ * License:             GNU General Public License v2 or later
+ * License URI:         http://www.gnu.org/licenses/gpl-2.0.html
+ * Requires at least:   4.0
+ * Tested up to:        4.7
+ * Text Domain:         puzzle-page-builder
  */
 
 if (!defined('ABSPATH')) exit;

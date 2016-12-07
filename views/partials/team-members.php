@@ -7,20 +7,20 @@ if (!empty($puzzle_column['image'])) {
     $image = wp_get_attachment_image($puzzle_column['image'], 'full', false, $image_args);
 }
 
-$name = (!empty($puzzle_column['name']) ? $puzzle_column['name'] : null);
-$title = (!empty($puzzle_column['title']) ? $puzzle_column['title'] : null);
-$content = apply_filters('ppb_like_the_content', $puzzle_column['content']);
+$name = (!empty($puzzle_column['name']) ? esc_html($puzzle_column['name']) : null);
+$title = (!empty($puzzle_column['title']) ? esc_html($puzzle_column['title']) : null);
+$content = ppb_format_content($puzzle_column['content']);
 
 $contact_info = '';
 
 if (!empty($puzzle_column['phone']) || !empty($puzzle_column['email'])) {
     $contact_info .= '<div class="pz-team-member-contact-info">';
-    $contact_info .= (!empty($puzzle_column['phone']) ? '<p><i class="fa fa-phone"></i>' . $puzzle_column['phone']. '</p>' : '');
+    $contact_info .= (!empty($puzzle_column['phone']) ? '<p><i class="fa fa-phone"></i>' . esc_html($puzzle_column['phone']) . '</p>' : '');
     
     if (!empty($puzzle_column['email'])) {
         $contact_info .= '<p><i class="fa fa-envelope-o"></i>';
-        $contact_info .= '<a href="mailto:' . $puzzle_column['email'] . '">';
-        $contact_info .= $puzzle_column['email']; 
+        $contact_info .= '<a href="mailto:' . sanitize_email($puzzle_column['email']) . '">';
+        $contact_info .= sanitize_email($puzzle_column['email']); 
         $contact_info .= '</a>';
         $contact_info .= '</p>';
     }
@@ -41,7 +41,7 @@ if (!empty($social_links)) {
     
     foreach($social_links as $soc => $link) {
         $soc_name = ppb_humanize($soc);
-        $social_media .= '<a href="' . $link . '" target="_blank" title="' . $soc_name . '" aria-label="' . $soc_name . '"><i class="fa fa-' . $soc . '-square" aria-hidden="true"></i></a>';
+        $social_media .= '<a href="' . esc_url($link) . '" target="_blank" title="' . $soc_name . '" aria-label="' . $soc_name . '"><i class="fa fa-' . $soc . '-square" aria-hidden="true"></i></a>';
     }
     
     $social_media .= '</div>';

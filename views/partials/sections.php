@@ -1,6 +1,5 @@
 <?php
-global $post;
-$page_sections = get_post_meta($post->ID, '_puzzle_page_sections', true);
+$page_sections = (new PuzzlePageBuilder)->sections_data();
 $puzzle_sections = (new PuzzleSections)->sections();
 
 if (!empty($page_sections)) :
@@ -19,7 +18,6 @@ if (!empty($page_sections)) :
         
         $section_id = ppb_section_id($s, $page_section);
         
-        $main_content = (!empty($puzzle_options_data['main_content']) ? $puzzle_options_data['main_content'] : false);
         $background_image = (!empty($puzzle_options_data['background_image']) ? ' ' . wp_get_attachment_url($puzzle_options_data['background_image']) : false);
         ?>
         
@@ -32,17 +30,17 @@ if (!empty($page_sections)) :
             <div class="pz-row pz-section-headline">
                 <div class="pz-col pz-xs-12">
                     <div class="pz-col-inner">
-                        <h2><?php echo $puzzle_options_data['headline']; ?></h2>
+                        <h2><?php echo esc_html($puzzle_options_data['headline']); ?></h2>
                     </div>
                 </div>
             </div>
             <?php endif; ?>
             
-            <?php if (!empty($main_content)) : ?>
+            <?php if (!empty($puzzle_options_data['main_content'])) : ?>
             <div class="pz-row pz-main-content">
                 <div class="pz-col pz-xs-12">
                     <div class="pz-col-inner">
-                        <?php echo apply_filters('ppb_like_the_content', $main_content); ?>
+                        <?php echo ppb_format_content($puzzle_options_data['main_content']); ?>
                     </div>
                 </div>
             </div>
@@ -71,11 +69,15 @@ if (!empty($page_sections)) :
         </section>
         <?php
         if ($puzzle_section_type == 'carousel' && $puzzle_columns_num > 1) :
-            $owl_autoplay = (!empty($puzzle_options_data['speed']) ? $puzzle_options_data['speed'] : '10000');
+            $owl_autoplay = '10000';
+            if (!empty($puzzle_options_data['speed']) && is_numeric($puzzle_options_data['speed'])) {
+                $owl_autoplay = absint($puzzle_options_data['speed']);
+            }
+            
             $owl_navigation = (!empty($puzzle_options_data['hide_arrows']) ? 'false' : 'true');
             $owl_pagination = (!empty($puzzle_options_data['hide_pagination']) ? 'false' : 'true');
             ?>
-            <script id="<?php echo $section_id; ?>-carousel-script">
+            <script id="ppb-<?php echo $section_id; ?>-carousel-script">
             jQuery('#<?php echo $section_id; ?> .pz-carousel-content').owlCarousel({
                 items: 1,
                 singleItem: true,
@@ -88,7 +90,7 @@ if (!empty($page_sections)) :
                 pagination: <?php echo $owl_pagination; ?>,
                 transitionStyle: 'fade'
             });
-            jQuery('#<?php echo $section_id; ?>-carousel-script').remove();
+            jQuery('#ppb-<?php echo $section_id; ?>-carousel-script').remove();
             </script>
         <?php
         endif;

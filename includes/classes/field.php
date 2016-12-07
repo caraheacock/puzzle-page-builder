@@ -50,7 +50,6 @@ class PuzzleField {
         'checkbox',
         'color',    // Generates a color picker field
         'editor',   // Generates a textarea with a button to open the WordPress Editor
-        'hidden',
         'icon',     // Prompts the user to choose an icon from the icon library
         'image',    // Generates an image thumbnail with buttons to select/remove the image
         'number',

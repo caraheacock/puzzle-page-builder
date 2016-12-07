@@ -46,7 +46,7 @@ function ppb_meta_box_options() {
     /* Use nonce for verification */
     wp_nonce_field(plugin_basename(__FILE__), 'puzzle_page_sections_meta');
     
-    $puzzle_sections_data = get_post_meta($post->ID, '_puzzle_page_sections', true);
+    $puzzle_sections_data = $puzzle_page_builder->sections_data();
     ?>
     <div id="puzzle-page-section-options" class="puzzle-page-section-options">
         <div class="puzzle-sections">

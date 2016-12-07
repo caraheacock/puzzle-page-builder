@@ -2,7 +2,7 @@
 
 /*
  * Puzzle Page Builder
- * Template helpers
+ * Template logic helpers
  */
 
 if (!defined('ABSPATH')) exit;

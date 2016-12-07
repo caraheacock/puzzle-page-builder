@@ -18,6 +18,6 @@ if ($puzzle_options_data['column_widths'] == '1-3_1-3_1-3') {
 ?>
 <div class="pz-col <?php echo $col_classes; ?>">
     <div class="pz-col-inner">
-        <?php echo apply_filters('ppb_like_the_content', $puzzle_column['content']); ?>
+        <?php echo ppb_format_content($puzzle_column['content']); ?>
     </div>
 </div>

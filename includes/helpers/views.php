@@ -20,19 +20,19 @@ function ppb_section_classes($page_section) {
     $section_classes = 'pz-section pz-' . $page_section['type'];
     
     if (!empty($puzzle_options_data['background_color'])) {
-        $section_classes .= ' pz-' . $puzzle_options_data['background_color'] . '-background';
+        $section_classes .= ' pz-' . ppb_parameterize($puzzle_options_data['background_color']) . '-background';
     }
     
     if (!empty($puzzle_options_data['text_color_scheme'])) {
-        $section_classes .= ' pz-' . $puzzle_options_data['text_color_scheme'] . '-text';
+        $section_classes .= ' pz-' . ppb_parameterize($puzzle_options_data['text_color_scheme']) . '-text';
     }
     
     if (!empty($puzzle_options_data['padding_top'])) {
-        $section_classes .= ' pz-section-' . $puzzle_options_data['padding_top'] . '-padding-top';
+        $section_classes .= ' pz-section-' . ppb_parameterize($puzzle_options_data['padding_top']) . '-padding-top';
     }
     
     if (!empty($puzzle_options_data['padding_bottom'])) {
-        $section_classes .= ' pz-section-' . $puzzle_options_data['padding_top'] . '-padding-bottom';
+        $section_classes .= ' pz-section-' . ppb_parameterize($puzzle_options_data['padding_top']) . '-padding-bottom';
     }
     
     $section_classes .= (!empty($puzzle_options_data['open_one_at_a_time']) ? ' pz-accordions-one-open' : '');
@@ -208,6 +208,31 @@ function ppb_col_classes($total, $args = array()) {
     }
     
     return $col_classes;
+}
+
+/*
+ * Add ppb_like_the_content filter
+ *
+ * Has the same actions as the_content but for times when running
+ * the_content filter conflicts with plugins.
+ * 
+ * The only action this does not have is 'prepend_attachment' because
+ * it causes attachment pages to show attachments in weird places.
+ */
+$actions = array('wptexturize', 'convert_smilies', 'convert_chars', 'wpautop', 'shortcode_unautop');
+foreach ($actions as $action) {
+    add_filter('ppb_like_the_content', $action);
+}
+
+/*
+ * Formats content
+ *
+ * $content - string, the content to format
+ *
+ * Returns a string of sanitized, formatted HTML content
+ */
+function ppb_format_content($content) {
+    return apply_filters('ppb_like_the_content', wp_kses_post($content));
 }
 
 ?>
