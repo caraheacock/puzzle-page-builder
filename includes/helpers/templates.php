@@ -5,6 +5,8 @@
  * Template helpers
  */
 
+if (!defined('ABSPATH')) exit;
+
 /*
  * Locates a template part
  * A theme's templates take precedence over the plugin's templates.

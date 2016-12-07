@@ -5,6 +5,8 @@
  * Icon Libraries Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleIconLibraries {
     /* Array: the icon libraries */
     private static $Libraries = array();

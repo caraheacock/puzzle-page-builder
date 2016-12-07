@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $padding_bottom = new PuzzleField;
 $padding_bottom->set_name(__('Bottom Padding', 'puzzle-page-builder'))
     ->set_id('padding_bottom')

@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $layout = new PuzzleField;
 $layout->set_name(__('Layout', 'puzzle-page-builder'))
     ->set_id('layout')

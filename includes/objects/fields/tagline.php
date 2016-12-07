@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $tagline = new PuzzleField;
 $tagline->set_name(__('Tagline', 'puzzle-page-builder'))
     ->set_id('tagline')

@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $background_color = new PuzzleField;
 $background_color->set_name(__('Background Color', 'puzzle-page-builder'))
     ->set_id('background_color')

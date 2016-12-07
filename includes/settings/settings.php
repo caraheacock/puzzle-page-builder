@@ -5,6 +5,8 @@
  * Settings Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleSettings {
     /*
      * Initializes the PuzzleSettings instance and runs any actions

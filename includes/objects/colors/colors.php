@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $primary = new PuzzleColor;
 $primary->set_name(__('Primary Color', 'puzzle-page-builder'))
     ->set_id('primary')

@@ -5,6 +5,8 @@
  * Stylesheets and Scripts
  */
 
+if (!defined('ABSPATH')) exit;
+
 /* Add styles and scripts */
 function ppb_scripts() {
     $puzzle_settings = new PuzzleSettings;

@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $one_column = new PuzzleSection;
 $one_column->set_name(__('One Column', 'puzzle-page-builder'))
     ->set_single_name(__('Column', 'puzzle-page-builder'))

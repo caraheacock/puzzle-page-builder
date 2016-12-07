@@ -5,6 +5,8 @@
  * Fields Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleFields {
     /* Static variable: array of PuzzleField objects. */
     private static $Fields = array();

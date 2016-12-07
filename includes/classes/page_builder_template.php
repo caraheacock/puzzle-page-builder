@@ -5,6 +5,8 @@
  * Page Builder Template Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzlePageBuilderTemplate {
 
     /*

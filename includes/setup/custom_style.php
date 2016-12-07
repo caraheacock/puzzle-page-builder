@@ -5,6 +5,8 @@
  * Settings
  */
 
+if (!defined('ABSPATH')) exit;
+
 /* Save custom CSS using user-defined settings */
 function ppb_save_custom_style() {
     ob_start();

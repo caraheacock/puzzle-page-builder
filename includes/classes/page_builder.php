@@ -5,6 +5,8 @@
  * Page Builder Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzlePageBuilder {
     /*
      * Returns the markup for fields

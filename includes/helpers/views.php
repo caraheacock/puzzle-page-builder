@@ -5,6 +5,8 @@
  * Views helpers
  */
 
+if (!defined('ABSPATH')) exit;
+
 /*
  * Determines classes for a section
  *

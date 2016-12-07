@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $image = new PuzzleField;
 $image->set_name(__('Image', 'puzzle-page-builder'))
     ->set_id('image')

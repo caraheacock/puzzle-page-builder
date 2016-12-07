@@ -5,6 +5,8 @@
  * Button styles dropdown in WYSIWYG editor
  */
 
+if (!defined('ABSPATH')) exit;
+
 /* Insert WordPress Format dropdown */
 function ppb_mce_buttons($buttons) {
     $puzzle_settings = new PuzzleSettings;

@@ -5,6 +5,8 @@
  * Sections Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleSections {
     /* Static variable: array of PuzzleSection objects. */
     private static $Sections = array();

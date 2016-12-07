@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $call_to_action = new PuzzleSection;
 $call_to_action->set_name(__('Call to Action', 'puzzle-page-builder'))
     ->set_single_name(__('Call to Action', 'puzzle-page-builder'))

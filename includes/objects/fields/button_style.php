@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $button_style = new PuzzleField;
 $button_style->set_name(__('Button Style', 'puzzle-page-builder'))
     ->set_id('button_style')

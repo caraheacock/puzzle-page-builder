@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $elegant_icons = new PuzzleIconLibrary;
 $elegant_icons->set_name('Elegant Icons')
     ->set_example_icon('lightbulb')

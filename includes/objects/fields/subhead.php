@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $subhead = new PuzzleField;
 $subhead->set_name(__('Subhead', 'puzzle-page-builder'))
     ->set_id('subhead')

@@ -5,6 +5,8 @@
  * Icon Library
  */
 
+if (!defined('ABSPATH')) exit;
+
 /* Add hidden icon library */
 function ppb_admin_init_icon_library() {
     $puzzle_settings = new PuzzleSettings;

@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $features = new PuzzleSection;
 $features->set_name(__('Features', 'puzzle-page-builder'))
     ->set_single_name(__('Feature', 'puzzle-page-builder'))

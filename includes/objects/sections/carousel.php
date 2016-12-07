@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $carousel = new PuzzleSection;
 $carousel->set_name(__('Carousel', 'puzzle-page-builder'))
     ->set_single_name(__('Slide', 'puzzle-page-builder'))

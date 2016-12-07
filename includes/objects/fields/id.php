@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $id = new PuzzleField;
 $id->set_name(__('Section Slug', 'puzzle-page-builder'))
     ->set_id('id')

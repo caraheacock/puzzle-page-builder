@@ -5,6 +5,8 @@
  * Section Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleSection {
     /*
      * String: the user-friendly name of the section

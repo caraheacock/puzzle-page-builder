@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $team_members = new PuzzleSection;
 $team_members->set_name(__('Team Members', 'puzzle-page-builder'))
     ->set_single_name(__('Team Member', 'puzzle-page-builder'))

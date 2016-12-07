@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $accordions = new PuzzleSection;
 $accordions->set_name(__('Accordions', 'puzzle-page-builder'))
     ->set_single_name(__('Accordion', 'puzzle-page-builder'))

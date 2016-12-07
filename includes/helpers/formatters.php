@@ -5,6 +5,8 @@
  * Formatting helpers
  */
 
+if (!defined('ABSPATH')) exit;
+
 /*
  * Converts a hex value to rgb
  *

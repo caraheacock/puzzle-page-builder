@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $options = array_merge(
     array('default'   => 'Default Headline Color'),
     $puzzle_colors->theme_colors_for_dropdown()

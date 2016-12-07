@@ -5,6 +5,8 @@
  * Colors Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleColors {
     /* Static variable: array of PuzzleColor objects used for the theme */
     private static $ThemeColors = array('primary' => true, 'secondary' => true);

@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $font_awesome = new PuzzleIconLibrary;
 $font_awesome->set_name('Font Awesome')
     ->set_example_icon('font-awesome')

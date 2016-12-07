@@ -5,6 +5,8 @@
  * Icon Library Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleIconLibrary {
     /*
      * String: the name of the icon library

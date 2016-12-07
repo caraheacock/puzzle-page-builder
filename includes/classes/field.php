@@ -5,6 +5,8 @@
  * Field Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleField {
     /*
      * String: the user-friendly name of the field

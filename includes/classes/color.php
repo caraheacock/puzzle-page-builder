@@ -5,6 +5,8 @@
  * Color Class
  */
 
+if (!defined('ABSPATH')) exit;
+
 class PuzzleColor {
     /*
      * String: the slug of the color

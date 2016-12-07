@@ -9,6 +9,8 @@
  * plugin options.
  */
 
+if (!defined('ABSPATH')) exit;
+
 /* Colors */
 $puzzle_colors = new PuzzleColors;
 

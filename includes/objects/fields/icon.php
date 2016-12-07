@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $icon = new PuzzleField;
 $icon->set_name(__('Icon', 'puzzle-page-builder'))
     ->set_id('icon')

@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $main_content = new PuzzleField;
 $main_content->set_name(__('Main Content', 'puzzle-page-builder'))
     ->set_id('main_content')

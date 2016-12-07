@@ -5,6 +5,8 @@
  * Page builder
  */
 
+if (!defined('ABSPATH')) exit;
+
 /* Adds the page builder meta box to appropriate post types */
 function ppb_meta_box_admin_init() {
     $puzzle_settings = new PuzzleSettings;

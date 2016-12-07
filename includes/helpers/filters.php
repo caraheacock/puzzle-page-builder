@@ -5,6 +5,8 @@
  * Filters
  */
 
+if (!defined('ABSPATH')) exit;
+
 /*
  * Add ppb_like_the_content filter
  *

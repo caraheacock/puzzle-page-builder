@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 $align_text = new PuzzleField;
 $align_text->set_name(__('Align Text', 'puzzle-page-builder'))
     ->set_id('align_text')
