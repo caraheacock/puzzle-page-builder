@@ -39,6 +39,8 @@ function ppb_custom_post_type_template_meta_options() {
 
 /* Page builder markup */
 function ppb_meta_box_options() {
+    if (!current_user_can('edit_posts')) die('Access denied');
+    
     global $post;
     $puzzle_page_builder = new PuzzlePageBuilder;
     $puzzle_sections = (new PuzzleSections)->sections();
@@ -249,6 +251,8 @@ function ppb_meta_box_options() {
 
 /* Save the page builder content */
 function ppb_save_options() {
+    if (!current_user_can('edit_posts')) die('Access denied');
+    
     global $post;
     
     /* Saves the template for custom post types that enable the page builder */
