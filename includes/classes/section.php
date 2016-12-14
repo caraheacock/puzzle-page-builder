@@ -8,6 +8,12 @@
 if (!defined('ABSPATH')) exit;
 
 class PuzzleSection {
+    function __construct($args = array()) {
+        foreach ($args as $attr => $value) {
+            if (property_exists($this, $attr)) $this->$attr = $value;
+        }
+    }
+    
     /*
      * String: the user-friendly name of the section
      * e.g. 'Team Members'

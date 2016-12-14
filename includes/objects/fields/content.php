@@ -1,12 +1,12 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$content = new PuzzleField;
-$content->set_name(__('Content', 'puzzle-page-builder'))
-    ->set_id('content')
-    ->set_input_type('editor')
-    ->set_rows(5)
-    ->set_save_as('content');
+$content = new PuzzleField(array(
+    'name'          => __('Content', 'puzzle-page-builder'),
+    'input_type'    => 'editor',
+    'rows'          => 5,
+    'save_as'       => 'content'
+));
 
 $f->add_field($content);
 ?>

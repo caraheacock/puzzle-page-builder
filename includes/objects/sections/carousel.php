@@ -1,13 +1,13 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$carousel = new PuzzleSection;
-$carousel->set_name(__('Carousel', 'puzzle-page-builder'))
-    ->set_single_name(__('Slide', 'puzzle-page-builder'))
-    ->set_columns_num(-1)
-    ->set_admin_column_width(4)
-    ->set_order(0)
-    ->set_column_fields(array(
+$carousel = new PuzzleSection(array(
+    'name'                  => __('Carousel', 'puzzle-page-builder'),
+    'single_name'           => __('Slide', 'puzzle-page-builder'),
+    'columns_num'           => -1,
+    'admin_column_width'    => 4,
+    'order'                 => 0,
+    'column_fields'         => array(
         $f->field('background_image'),
         $f->field('background_color'),
         $f->field('overlay'),
@@ -21,24 +21,31 @@ $carousel->set_name(__('Carousel', 'puzzle-page-builder'))
             ->set_id('tagline_color'),
         $f->field('text_color_scheme')->set_name(__('Content Color Scheme', 'puzzle-page-builder')),
         $f->field('content')
-    ))
-    ->set_option_fields(array(
+    ),
+    'option_fields'         => array(
         $f->field('id')->set_width(6),
-        (new PuzzleField)->set_name(__('Carousel Speed', 'puzzle-page-builder'))
-            ->set_id('speed')
-            ->set_input_type('number')
-            ->set_tip(__('Enter in milliseconds, or "false" if you do not want the slider to play automatically. Defaults to 10000 (10 seconds between each slide) if left blank.', 'puzzle-page-builder'))
-            ->set_placeholder('10000')
-            ->set_width(6),
-        (new PuzzleField)->set_name(__('Hide Arrows', 'puzzle-page-builder'))
-            ->set_id('hide_arrows')
-            ->set_input_type('checkbox')
-            ->set_width(6),
-        (new PuzzleField)->set_name(__('Hide Pagination', 'puzzle-page-builder'))
-            ->set_id('hide_pagination')
-            ->set_input_type('checkbox')
-            ->set_width(6)
-    ));
+        new PuzzleField(array(
+            'name'          => __('Carousel Speed', 'puzzle-page-builder'),
+            'id'            => 'speed',
+            'input_type'    => 'number',
+            'tip'           => __('Enter in milliseconds, or 0 (zero) if you do not want the slider to play automatically. Defaults to 10000 (10 seconds between each slide) if left blank.', 'puzzle-page-builder'),
+            'placeholder'   => '10000',
+            'width'         => 6
+        )),
+        new PuzzleField(array(
+            'name'          => __('Hide Arrows', 'puzzle-page-builder'),
+            'id'            => 'hide_arrows',
+            'input_type'    => 'checkbox',
+            'width'         => 6
+        )),
+        new PuzzleField(array(
+            'name'          => __('Hide Pagination', 'puzzle-page-builder'),
+            'id'            => 'hide_pagination',
+            'input_type'    => 'checkbox',
+            'width'         => 6
+        ))
+    )
+));
 
 $puzzle_sections->add_section($carousel);
 ?>

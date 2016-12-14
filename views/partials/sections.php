@@ -23,7 +23,7 @@ if (!empty($page_sections)) :
         
         <section id="<?php echo $section_id; ?>" class="<?php echo ppb_section_classes($page_section); ?>"<?php if ($background_image) echo ' style="background-image: url(' . $background_image . ');"'; ?>>
             <?php if (!empty($puzzle_options_data['overlay'])) : ?>
-            <div class="pz-background-overlay <?php echo $puzzle_options_data['background_color']; ?>-background"></div>
+            <div class="pz-background-overlay pz-<?php echo $puzzle_options_data['background_color']; ?>-background"></div>
             <?php endif; ?>
             
             <?php if (!empty($puzzle_options_data['headline'])) : ?>
@@ -70,9 +70,11 @@ if (!empty($page_sections)) :
         <?php
         if ($puzzle_section_type == 'carousel' && $puzzle_columns_num > 1) :
             $owl_autoplay = '10000';
-            if (!empty($puzzle_options_data['speed']) && is_numeric($puzzle_options_data['speed'])) {
+            if (isset($puzzle_options_data['speed']) && is_numeric($puzzle_options_data['speed'])) {
                 $owl_autoplay = absint($puzzle_options_data['speed']);
             }
+            
+            if ($owl_autoplay == 0) $owl_autoplay = 'false';
             
             $owl_navigation = (!empty($puzzle_options_data['hide_arrows']) ? 'false' : 'true');
             $owl_pagination = (!empty($puzzle_options_data['hide_pagination']) ? 'false' : 'true');

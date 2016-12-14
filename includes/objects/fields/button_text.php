@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$button_text = new PuzzleField;
-$button_text->set_name(__('Button Text', 'puzzle-page-builder'))
-    ->set_id('button_text');
+$button_text = new PuzzleField(array(
+    'name'  => __('Button Text', 'puzzle-page-builder')
+));
 
 $f->add_field($button_text);
 ?>

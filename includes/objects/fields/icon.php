@@ -1,10 +1,10 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-$icon = new PuzzleField;
-$icon->set_name(__('Icon', 'puzzle-page-builder'))
-    ->set_id('icon')
-    ->set_input_type('icon');
+$icon = new PuzzleField(array(
+    'name'          => __('Icon', 'puzzle-page-builder'),
+    'input_type'    => 'icon'
+));
 
 $f->add_field($icon);
 ?>

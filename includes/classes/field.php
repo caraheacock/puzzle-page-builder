@@ -8,6 +8,12 @@
 if (!defined('ABSPATH')) exit;
 
 class PuzzleField {
+    function __construct($args = array()) {
+        foreach ($args as $attr => $value) {
+            if (property_exists($this, $attr)) $this->$attr = $value;
+        }
+    }
+    
     /*
      * String: the user-friendly name of the field
      * e.g. 'Button Text'
@@ -22,6 +28,7 @@ class PuzzleField {
     /*
      * String: the ID of the field, alphanumeric characters and underscores
      * only. The ID is how you will access the data later in the post_meta.
+     * If left unset, the ID will be the name in snakecase.
      * e.g. 'button_text'
      */
     private $id;
@@ -29,7 +36,13 @@ class PuzzleField {
         $this->id = $new_id;
         return $this;
     }
-    function id() { return $this->id; }
+    function id() {
+        if (!isset($this->id) && isset($this->name)) {
+            return ppb_parameterize($this->name, '_');
+        }
+        
+        return $this->id;
+    }
     
     /*
      * String: the type of field. Default is 'text'.

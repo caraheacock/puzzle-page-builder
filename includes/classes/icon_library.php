@@ -8,6 +8,12 @@
 if (!defined('ABSPATH')) exit;
 
 class PuzzleIconLibrary {
+    function __construct($args = array()) {
+        foreach ($args as $attr => $value) {
+            if (property_exists($this, $attr)) $this->$attr = $value;
+        }
+    }
+    
     /*
      * String: the name of the icon library
      * e.g. 'Font Awesome'

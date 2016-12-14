@@ -8,6 +8,12 @@
 if (!defined('ABSPATH')) exit;
 
 class PuzzleColor {
+    function __construct($args = array()) {
+        foreach ($args as $attr => $value) {
+            if (property_exists($this, $attr)) $this->$attr = $value;
+        }
+    }
+    
     /*
      * String: the slug of the color
      * e.g. 'primary'
