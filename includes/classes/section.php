@@ -10,7 +10,18 @@ if (!defined('ABSPATH')) exit;
 class PuzzleSection {
     function __construct($args = array()) {
         foreach ($args as $attr => $value) {
-            if (property_exists($this, $attr)) $this->$attr = $value;
+            if (property_exists($this, $attr)) {
+                switch ($attr) {
+                    case 'column_fields':
+                        $this->set_column_fields($value);
+                        break;
+                    case 'option_fields':
+                        $this->set_option_fields($value);
+                        break;
+                    default:
+                        $this->$attr = $value;
+                }
+            }
         }
     }
     
@@ -114,8 +125,8 @@ class PuzzleSection {
      */
     private function add_field($new_field, $fields, $index = false) {
         if (is_int($index) && $index < count($fields)) {
-            $array_start = array_slice($fields, 0, $index);
-            $array_end = array_slice($fields, $index);
+            $array_start = array_slice($fields, 0, $index, true);
+            $array_end = array_slice($fields, $index, NULL, true);
             $fields = array_merge($array_start, array($new_field->id() => $new_field), $array_end);
         } else {
             $fields[$new_field->id()] = $new_field;
