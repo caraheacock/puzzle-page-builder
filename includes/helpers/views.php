@@ -219,6 +219,7 @@ function ppb_col_classes($total, $args = array()) {
  * The only action this does not have is 'prepend_attachment' because
  * it causes attachment pages to show attachments in weird places.
  */
+
 $actions = array(
     'wptexturize'                           => 10,
     'convert_smilies'                       => 20,
