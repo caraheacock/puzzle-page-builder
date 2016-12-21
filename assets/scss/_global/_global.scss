@@ -8,35 +8,35 @@
     background-repeat: no-repeat;
     background-size: cover;
     
-    &.#{$prefix}section-no-padding-top {
-        padding-top: 0;
-    }
-    
-    &.#{$prefix}section-no-padding-bottom {
-        padding-bottom: 0;
-    }
-    
-    &.#{$prefix}section-normal-padding-top {
-        padding-top: $space-unit * 2;
-    }
-    
-    &.#{$prefix}section-normal-padding-bottom {
-        padding-bottom: $space-unit * 2;
-    }
-    
-    &.#{$prefix}section-large-padding-top {
-        padding-top: $space-unit * 2;
-    }
-    
-    &.#{$prefix}section-large-padding-bottom {
-        padding-bottom: $space-unit * 2;
-    }
-    
     &, * {
         box-sizing: border-box;
     }
     
     @import 'media';
+}
+
+.#{$prefix}section-no-padding-top {
+    padding-top: 0;
+}
+
+.#{$prefix}section-no-padding-bottom {
+    padding-bottom: 0;
+}
+
+.#{$prefix}section-normal-padding-top {
+    padding-top: $space-unit * 2;
+}
+
+.#{$prefix}section-normal-padding-bottom {
+    padding-bottom: $space-unit * 2;
+}
+
+.#{$prefix}section-large-padding-top {
+    padding-top: $space-unit * 2;
+}
+
+.#{$prefix}section-large-padding-bottom {
+    padding-bottom: $space-unit * 2;
 }
 
 .#{$prefix}row {

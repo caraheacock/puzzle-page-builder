@@ -8,55 +8,55 @@
     > .#{$prefix}col {
         padding: 0 ($space-unit / 2);
     }
+}
+
+.#{$prefix}accordion {
+    padding: ($space-unit / 4) ($space-unit / 3);
+    @extend %default-border-radius;
+    background-color: rgba(#fff, 0.5);
+    @extend %default-transition;
     
-    .#{$prefix}col-inner {
-        padding: ($space-unit / 4) ($space-unit / 3);
-        @extend %default-border-radius;
-        background-color: rgba(#fff, 0.5);
-        @extend %default-transition;
-        
-        &:hover, &:active, &.#{$prefix}active-accordion {
-            background-color: #fff;
-        }
-        
-        &.#{$prefix}active-accordion {
-            .#{$prefix}accordion-headline {
-                .fa:before {
-                    content: '\f056';
-                }
-            }
-        }
+    &:hover, &:active, &.#{$prefix}active-accordion {
+        background-color: #fff;
     }
     
-    .#{$prefix}accordion-headline {
-        @include display-flex;
-        @include align-items(center);
-        margin: 0;
-        cursor: pointer;
-        
-        span {
-            display: block;
-            @include flex(1 1 100%);
-        }
-    
-        .fa {
-            @include flex(0 0 auto);
-            font-size: 220%;
-            @extend %default-transition;
-            
-            &:before {
-                content: '\f055';
+    &.#{$prefix}active-accordion {
+        .#{$prefix}accordion-headline {
+            .fa:before {
+                content: '\f056';
             }
         }
-    }
-    
-    .#{$prefix}accordion-content {
-        display: none;
-        padding: 10px 0;
     }
 }
 
-.#{$prefix}white-background .#{$prefix}accordions-content .#{$prefix}col-inner {
+.#{$prefix}accordion-headline {
+    @include display-flex;
+    @include align-items(center);
+    margin: 0;
+    cursor: pointer;
+    
+    span {
+        display: block;
+        @include flex(1 1 100%);
+    }
+
+    .fa {
+        @include flex(0 0 auto);
+        font-size: 220%;
+        @extend %default-transition;
+        
+        &:before {
+            content: '\f055';
+        }
+    }
+}
+
+.#{$prefix}accordion-content {
+    display: none;
+    padding: 10px 0;
+}
+
+.#{$prefix}white-background .#{$prefix}accordions-content .#{$prefix}accordion {
     background-color: $light-gray;
     background-color: rgba($light-gray, 0.5);
     
