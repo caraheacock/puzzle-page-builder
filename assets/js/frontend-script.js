@@ -48,25 +48,25 @@ jQuery('document').ready(function($) {
     };
 
     $accordionHeadlines.click(function() {
-        var $area = $(this).parents('.pz-accordions-content > .pz-col > div'),
-            $content = $area.find('.pz-accordion-content'),
-            $siblingAccordionAreas = $area.parents('.pz-accordions-content').find('.pz-col > div').not($area),
-            $siblingAccordionContents = $area.parents('.pz-accordions-content').find('.pz-accordion-content').not($content),
+        var $accordion = $(this).closest('.pz-accordion'),
+            $content = $accordion.find('.pz-accordion-content'),
+            $siblingAccordions = $accordion.closest('.pz-accordions-content').find('.pz-accordion').not($accordion),
+            $siblingAccordionContents = $accordion.closest('.pz-accordions-content').find('.pz-accordion-content').not($content),
             duration = 500;
             
-        if ($siblingAccordionContents.filter(':visible').length > 0 && $content.parents('.pz-accordions-one-open').length > 0) {
-            $siblingAccordionContents.slideUp(duration);
+        if ($siblingAccordions.filter(':visible').length > 0 && $content.parents('.pz-accordions-one-open').length > 0) {
+            $siblingAccordions.slideUp(duration);
             $siblingAccordionAreas.removeClass('pz-active-accordion');
             
             setTimeout(function() {
                 $content.slideToggle(duration);
-                $area.toggleClass('pz-active-accordion');
-                scrollToContent($area, duration);
+                $accordion.toggleClass('pz-active-accordion');
+                scrollToContent($accordion, duration);
             }, duration);
         } else {
             $content.slideToggle(duration);
-            $area.toggleClass('pz-active-accordion');
-            scrollToContent($area, duration);
+            $accordion.toggleClass('pz-active-accordion');
+            scrollToContent($accordion, duration);
         }
     });
 });

@@ -60,6 +60,19 @@ class PuzzleColor {
         return $this;
     }
     function text_color_scheme() { return $this->text_color_scheme; }
+    
+    /*
+     * Integer: the order in which this color will appear in the page builder
+     * relative to other colors. The first and second colors will be the
+     * primary and secondary colors respectively, meaning by default they will
+     * be the most used throughout the page builder, such as for buttons, etc.
+     */
+    private $order = 0;
+    function set_order($new_order) {
+        $this->order = $new_order;
+        return $this;
+    }
+    function order() { return $this->order; }
 }
 
 ?>

@@ -18,8 +18,8 @@ $puzzle_theme_colors = $puzzle_colors->theme_colors();
 $puzzle_text_colors = $puzzle_colors->text_colors();
 $puzzle_link_colors = $puzzle_colors->link_colors();
 
-$primary_color = $puzzle_colors->theme_color('primary')->color();
-$secondary_color = $puzzle_colors->theme_color('secondary')->color();
+$primary_color = array_values($puzzle_theme_colors)[0];
+$secondary_color = array_values($puzzle_theme_colors)[1];
 
 /* Spacing */
 $puzzle_settings = new PuzzleSettings;
@@ -31,19 +31,19 @@ $column_margin = $puzzle_settings->space('column_margin');
 
 ?>
 /* Global */
-.pz-section.pz-section-normal-padding-top {
+.pz-section-normal-padding-top {
     padding-top: <?php echo $section_padding . $space_unit; ?>;
 }
 
-.pz-section.pz-section-normal-padding-bottom {
+.pz-section-normal-padding-bottom {
     padding-bottom: <?php echo $section_padding . $space_unit; ?>;
 }
 
-.pz-section.pz-section-large-padding-top {
+.pz-section-large-padding-top {
     padding-top: <?php echo ($section_padding * 2) . $space_unit; ?>;
 }
 
-.pz-section.pz-section-large-padding-bottom {
+.pz-section-large-padding-bottom {
     padding-bottom: <?php echo ($section_padding * 2) . $space_unit; ?>;
 }
 
@@ -122,73 +122,69 @@ $column_margin = $puzzle_settings->space('column_margin');
 /* Sections */
 
 .pz-carousel .owl-theme .owl-controls .owl-page.active span {
-    background-color: <?php echo $primary_color; ?>;
+    background-color: <?php echo $primary_color->color(); ?>;
 }
 
 .pz-carousel .owl-theme .owl-controls.clickable .owl-page:hover span {
-    background-color: <?php echo $secondary_color; ?>;
+    background-color: <?php echo $secondary_color->color(); ?>;
 }
 
 .pz-accordion-headline i {
-    color: <?php echo $primary_color; ?>;
+    color: <?php echo $primary_color->color(); ?>;
 }
 
 .pz-accordion-headline:hover .fa {
-    color: <?php echo $secondary_color; ?>;
+    color: <?php echo $secondary_color->color(); ?>;
 }
 
 /* Buttons */
 
-<?php
-$primary_color_text_color_scheme = $puzzle_text_colors['text_' . $puzzle_colors->theme_color('primary')->text_color_scheme()];
-$secondary_color_text_color_scheme = $puzzle_text_colors['text_' . $puzzle_colors->theme_color('secondary')->text_color_scheme()];
-?>
 .pz-button,
 a.pz-button,
-.pz-button.pz-button-secondary:hover,
-.pz-button.pz-button-secondary:focus,
-a.pz-button.pz-button-secondary:hover,
-a.pz-button.pz-button-secondary:focus {
-    background-color: <?php echo $primary_color; ?>;
-    border-color: <?php echo $primary_color; ?>;
-    color: <?php echo $primary_color_text_color_scheme; ?>;
+.pz-button.pz-button-<?php echo $secondary_color->id(); ?>:hover,
+.pz-button.pz-button-<?php echo $secondary_color->id(); ?>:focus,
+a.pz-button.pz-button-<?php echo $secondary_color->id(); ?>:hover,
+a.pz-button.pz-button-<?php echo $secondary_color->id(); ?>:focus {
+    background-color: <?php echo $primary_color->color(); ?>;
+    border-color: <?php echo $primary_color->color(); ?>;
+    color: <?php echo $primary_color->text_color_scheme(); ?>;
 }
 
 .pz-button:visited {
-    color: <?php echo $primary_color_text_color_scheme; ?>;
+    color: <?php echo $primary_color->text_color_scheme(); ?>;
 }
 
 .pz-button:hover,
 .pz-button:focus,
 a.pz-button:hover,
 a.pz-button:focus {
-    background-color: <?php echo $secondary_color; ?>;
-    border-color: <?php echo $secondary_color; ?>;
-    color: <?php echo $secondary_color_text_color_scheme; ?>;
+    background-color: <?php echo $secondary_color->color(); ?>;
+    border-color: <?php echo $secondary_color->color(); ?>;
+    color: <?php echo $secondary_color->text_color_scheme(); ?>;
 }
 
-.pz-secondary-background .pz-button:hover,
-.pz-secondary-background .pz-button:focus {
+.pz-<?php echo $secondary_color->id(); ?>-background .pz-button:hover,
+.pz-<?php echo $secondary_color->id(); ?>-background .pz-button:focus {
     background-color: #fff;
     border-color: #fff;
     color: <?php echo $puzzle_text_colors['text_dark']; ?>;
 }
 
 .pz-button.pz-button-outline {
-    border-color: <?php echo $primary_color; ?>;
+    border-color: <?php echo $primary_color->color(); ?>;
     background-color: transparent;
-    color: <?php echo $primary_color; ?>;
+    color: <?php echo $primary_color->color(); ?>;
 }
 
 .pz-button.pz-button-outline:visited {
-    color: <?php echo $primary_color; ?>;
+    color: <?php echo $primary_color->color(); ?>;
 }
 
 .pz-button.pz-button-outline:hover,
 .pz-button.pz-button-outline:focus {
-    border-color: <?php echo $primary_color; ?>;
-    background-color: <?php echo $primary_color; ?>;
-    color: <?php echo $primary_color_text_color_scheme; ?>;
+    border-color: <?php echo $primary_color->color(); ?>;
+    background-color: <?php echo $primary_color->color(); ?>;
+    color: <?php echo $primary_color->text_color_scheme(); ?>;
 }
 
 <?php foreach($puzzle_theme_colors as $id => $color) :
