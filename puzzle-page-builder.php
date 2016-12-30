@@ -4,7 +4,7 @@
  * Plugin Name:         Puzzle Page Builder
  * Plugin URI:          https://github.com/puzzalea/puzzle-page-builder
  * Description:         Create pages using custom sections.
- * Version:             0.19.4
+ * Version:             0.19.5
  * Author:              Puzzalea
  * Author URI:          https://github.com/puzzalea/puzzalea
  * License:             GNU General Public License v2 or later
