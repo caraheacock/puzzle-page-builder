@@ -71,7 +71,10 @@ class PuzzleField {
         'textarea'
     );
     
-    /* Integer: the width of the field, in the context of a 12 column grid */
+    /*
+     * Integer: the width of the field in the page builder, in the context of
+     * a 12 column grid
+     */
     private $width = 12;
     function set_width($new_width) {
         if (!in_array($new_width, array(2, 3, 4, 6, 12))) {
@@ -139,7 +142,7 @@ class PuzzleField {
     function selected() { return $this->selected; }
     
     /*
-     * String: placeholder text for 'text' and 'textarea' fields.
+     * String: placeholder text for 'number' and 'text' fields.
      */
     private $placeholder;
     function set_placeholder($new_placeholder) {
@@ -201,7 +204,7 @@ class PuzzleField {
     
     /*
      * String: another field's ID. The data in the $save_as_link_text field
-     * will be used  as the text in the anchor tag when saving this field to
+     * will be used as the text in the anchor tag when saving this field to
      * the post content, if this field's $save_as is set to 'link'.
      *
      * For example, you might have two fields: 'button_text' and 'link'. If the

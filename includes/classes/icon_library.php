@@ -116,7 +116,7 @@ class PuzzleIconLibrary {
     
     /* Returns the markup for the icon library */
     function markup() {
-        $output = '<hr />';
+        $output  = '<hr />';
         $output .= '<h3><i class="' . $this->full_icon_class($this->example_icon) . '"></i> ' . $this->name . '</h3>';
         $output .= '<div class="puzzle-icon-choices-container">';
         

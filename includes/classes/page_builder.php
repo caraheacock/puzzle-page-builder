@@ -43,7 +43,7 @@ class PuzzlePageBuilder {
             switch ($field->input_type()) {
                 case 'checkbox':
                     $output .= '<label for="' . $input_name . '">';
-                    $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '"' . (!empty($data[$id]) ? ' checked' : '') . '>';
+                    $output .= '<input type="checkbox" name="' . $input_name . '" id="' . $input_name . '" value="1"' . (!empty($data[$id]) ? ' checked' : '') . '>';
                     $output .= $field->name() . '</label>' . $tip;
                     break;
                 case 'color':

@@ -37,8 +37,8 @@ $features = new PuzzleSection(array(
             'options'       => array_merge(
                 $puzzle_colors->theme_colors_for_dropdown(),
                 array(
-                    'text-color'        => 'Text Color',
-                    'headline-color'    => 'Headline Color'
+                    'text-color'        => __('Text Color', 'puzzle-page-builder'),
+                    'headline-color'    => __('Headline Color', 'puzzle-page-builder')
                 )
             ),
             'width'         => 4

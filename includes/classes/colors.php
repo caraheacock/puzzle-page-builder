@@ -89,7 +89,7 @@ class PuzzleColors {
      * Array: list of text colors to use
      * These are different from the theme colors because they are just
      * key-value pairs and not PuzzleColor objects. The user can only update
-     * existing values in this array; they cannot add or remove values.
+     * existing values in this array; they cannot add, change, or remove keys.
      */
     private static $TextColors = array(
         'headline_dark'     => '#333',
