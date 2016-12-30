@@ -11,8 +11,11 @@ if (!defined('ABSPATH')) exit;
  * Converts a hex value to rgb
  *
  * $hex - string, hex color, e.g. '#abc123'
+ * $return_array - whether or not to return an array of the rgb values,
+ *   false by default (returns a string, e.g. '171, 193, 35', not an array)
  *
- * Returns a string of the color converted to rgb, with values separated by commas
+ * Returns a string of the color converted to rgb, with values separated
+ * by commas, or an array of the three rgb values if $return_array is true
  */
 function ppb_hex2rgb($hex, $return_array = false) {
     $hex = str_replace('#', '', $hex);
@@ -57,7 +60,7 @@ function ppb_humanize($string) {
  *
  * Returns a string with the indicated separators
  */
-function ppb_parameterize($string, $sep = '-'){
+function ppb_parameterize($string, $sep = '-') {
     /* Downcase */
     $slug = strtolower($string);
     
