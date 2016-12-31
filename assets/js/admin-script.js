@@ -18,24 +18,6 @@ jQuery('document').ready(function($) {
     templateCheck();
     $('#page_template').change(templateCheck);
     
-    /* Shows and hides areas depending on template for custom post types */
-    var customTemplateCheck = function() {
-        if ($('#puzzle_custom_template_select').val() === 'template_page_builder.php') {
-            $('#postdivrich, #post-preview').hide();
-            $('#puzzle_page_builder_options').show();
-            $('#using-puzzle-page-builder').val(1);
-        } else {
-            $('#postdivrich, #post-preview').show();
-            $('#puzzle_page_builder_options').hide();
-            $('#using-puzzle-page-builder').val(0);
-        }
-    };
-    
-    if ($('#puzzle_custom_template_select').length > 0) {
-        customTemplateCheck();
-        $('#puzzle_custom_template_select').change(customTemplateCheck);
-    }
-    
     /* Allow user to sort sections and columns using jQuery UI sortable */
     $('.puzzle-sections').sortable({
         distance: 10,

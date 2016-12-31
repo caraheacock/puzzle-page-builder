@@ -9,13 +9,6 @@ if (!defined('ABSPATH')) exit;
 
 class PuzzleSettings {
     /*
-     * Initializes the PuzzleSettings instance and runs any actions
-     */
-    function __construct() {
-        do_action('ppb_modify_settings', $this);
-    }
-    
-    /*
      * Boolean: indicating if button formats are available in the formats
      * dropdown in the WYSIWYG editor
      */

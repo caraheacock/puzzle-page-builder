@@ -45,7 +45,12 @@ class PuzzlePageBuilderTemplate {
         /*
          * Add a filter to insert template into the theme templates.
          */
-        add_filter('theme_page_templates', array($this, 'register_puzzle_page_builder_template'));
+        foreach ($this->settings->page_builder_post_types() as $post_type) {
+            add_filter(
+                'theme_' . $post_type . '_templates',
+                array($this, 'register_puzzle_page_builder_template')
+            );
+        }
         
         /*
          * Add a filter to the template include to determine if the page has our
@@ -75,11 +80,7 @@ class PuzzlePageBuilderTemplate {
         if (!is_singular()) return $template;
         
         /* Get the name of the post's template */
-        if ($post->post_type == 'page') {
-            $active_template = get_post_meta($post->ID, '_wp_page_template', true);
-        } else {
-            $active_template = get_post_meta($post->ID, '_puzzle_custom_template', true);
-        }
+        $active_template = get_post_meta($post->ID, '_wp_page_template', true);
         
         /*
          * Check if this template is one of our plugin's templates. If it
@@ -116,6 +117,9 @@ class PuzzlePageBuilderTemplate {
     }
 }
 
-$puzzle_page_builder_template = new PuzzlePageBuilderTemplate;
+function ppb_init_page_builder_template() {
+    $puzzle_page_builder_template = new PuzzlePageBuilderTemplate;
+}
+add_action('init', 'ppb_init_page_builder_template', 12);
 
 ?>

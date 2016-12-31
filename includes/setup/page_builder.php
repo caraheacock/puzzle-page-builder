@@ -15,26 +15,8 @@ function ppb_meta_box_admin_init() {
     if ($puzzle_page_builder_post_types) {
         foreach ($puzzle_page_builder_post_types as $post_type) {
             add_meta_box('puzzle_page_builder_options', 'Page Builder', 'ppb_meta_box_options', $post_type, 'normal', 'high');
-        
-            if ($post_type != 'page') {
-                add_meta_box('puzzle_custom_template', 'Template', 'ppb_custom_post_type_template_meta_options', $post_type, 'side', 'low');
-            }
         }
     }
-}
-
-/*
- * A dropdown that emulates the functionality of the template picker,
- * for post types that are not 'page' that need to use the page builder.
- */
-function ppb_custom_post_type_template_meta_options() {
-    global $post;
-    $template = get_post_meta($post->ID, '_puzzle_custom_template', true); ?>
-    <select id="puzzle_custom_template_select" name="_puzzle_custom_template">
-        <option value="default"<?php if ($template == 'default') echo ' selected'; ?>><?php _e('Default Template', 'puzzle-page-builder'); ?></option>
-        <option value="template_page_builder.php"<?php if ($template == 'template_page_builder.php') echo ' selected'; ?>><?php _e('Page Builder', 'puzzle-page-builder'); ?></option>
-    </select>
-    <?php
 }
 
 /* Page builder markup */
@@ -254,11 +236,6 @@ function ppb_save_options() {
     if (!current_user_can('edit_posts')) die('Access denied');
     
     global $post;
-    
-    /* Saves the template for custom post types that enable the page builder */
-    if (!empty($post) && isset($_POST['_puzzle_custom_template'])) {
-        update_post_meta($post->ID, '_puzzle_custom_template', $_POST['_puzzle_custom_template']);
-    }
     
     if (!empty($post) && !empty($_POST['using_puzzle_page_builder']) && $_POST['using_puzzle_page_builder'] == 1) {
         $post_id = $post->ID;

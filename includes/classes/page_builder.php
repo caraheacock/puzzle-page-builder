@@ -87,7 +87,7 @@ class PuzzlePageBuilder {
                     $output .= $label_and_tip;
                     $output .= '<select name="' . $input_name . '">';
                     foreach ($field->options() as $option_key => $option_label) {
-                        $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (empty($data[$id]) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
+                        $output .= '<option value="' . $option_key . '"' . ($data[$id] == $option_key || (!isset($data[$id]) && $field->selected() == $option_key) ? ' selected' : '') . '>' . $option_label . '</option>';
                     }
                     $output .= '</select>';
                     break;
