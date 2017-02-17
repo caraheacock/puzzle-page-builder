@@ -33,3 +33,6 @@ engines:
         enabled: false
 exclude_paths:
   - assets/js/lib/**/*
+ratings:
+  paths:
+    - "**/*"
