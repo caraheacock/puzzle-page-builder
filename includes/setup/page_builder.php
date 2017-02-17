@@ -23,7 +23,6 @@ function ppb_meta_box_admin_init() {
 function ppb_meta_box_options() {
     if (!current_user_can('edit_posts')) die('Access denied');
     
-    global $post;
     $puzzle_page_builder = new PuzzlePageBuilder;
     $puzzle_sections = (new PuzzleSections)->sections();
     

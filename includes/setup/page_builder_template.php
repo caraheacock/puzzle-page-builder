@@ -118,7 +118,7 @@ class PuzzlePageBuilderTemplate {
 }
 
 function ppb_init_page_builder_template() {
-    $puzzle_page_builder_template = new PuzzlePageBuilderTemplate;
+    new PuzzlePageBuilderTemplate;
 }
 add_action('init', 'ppb_init_page_builder_template', 12);
 

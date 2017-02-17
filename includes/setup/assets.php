@@ -32,9 +32,9 @@ function ppb_scripts() {
     
     /* Owl Carousel script */
     if ($puzzle_settings->has_owl_carousel()) {
-        $owl_carousel_script_location = 'assets/js/lib/owl.carousel.min.js';
+        $owl_carousel_script_location = 'assets/js/lib/owl.carousel.js';
         wp_enqueue_script(
-            'owl-carousel-script',
+            'puzzle-page-builder-owl-carousel-script',
             PPB_PLUGIN_URL . $owl_carousel_script_location,
             array('jquery'),
             filemtime(PPB_PLUGIN_DIR . $owl_carousel_script_location)

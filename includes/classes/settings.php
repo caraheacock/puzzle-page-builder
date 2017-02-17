@@ -113,6 +113,10 @@ class PuzzleSettings {
         }
     }
     
+    function spacing() {
+        return self::$Space;
+    }
+    
     /*
      * String: the theme's directory where custom template partials are kept
      * for section loops.

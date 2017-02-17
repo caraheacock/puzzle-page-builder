@@ -41,7 +41,7 @@ class PuzzleIconLibrary {
         $this->icons = $new_icons;
         return $this;
     }
-    function icons() { return $icons; }
+    function icons() { return $this->icons; }
     
     /*
      * String: the name of the example icon
@@ -53,7 +53,7 @@ class PuzzleIconLibrary {
         $this->example_icon = $new_example_icon;
         return $this;
     }
-    function example_icon() { return $example_icon; }
+    function example_icon() { return $this->example_icon; }
     
     /*
      * String: the icon CSS class
@@ -64,7 +64,7 @@ class PuzzleIconLibrary {
         $this->icon_class = $new_icon_class;
         return $this;
     }
-    function icon_class() { return $icon_class; }
+    function icon_class() { return $this->icon_class; }
     
     /*
      * String: the icon CSS prefix
@@ -75,7 +75,7 @@ class PuzzleIconLibrary {
         $this->prefix = $new_prefix;
         return $this;
     }
-    function prefix() { return $prefix; }
+    function prefix() { return $this->prefix; }
     
     /*
      * String: the icon CSS postfix
@@ -86,7 +86,7 @@ class PuzzleIconLibrary {
         $this->postfix = $new_postfix;
         return $this;
     }
-    function postfix() { return $postfix; }
+    function postfix() { return $this->postfix; }
     
     /*
      * Integer: the order in which this library will appear in the page builder
