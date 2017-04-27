@@ -351,7 +351,7 @@ class PuzzlePageBuilder {
             // Sanitize data depending on input type
             switch ($input_type) {
                 case 'checkbox':
-                    $new_data[$key] = ($value == 'on' ? $value : '');
+                    $new_data[$key] = (!empty($value) ? 1 : '');
                     break;
                 case 'color':
                     $new_data[$key] = sanitize_hex_color($value);
